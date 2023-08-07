@@ -4,8 +4,8 @@ module.exports = (sequelize) => {
   class User extends Model {
     static associate(models) {
       // Define las asociaciones aquí
+      User.belongsTo(models.Role, { foreignKey: 'RoleId', as: 'role' });
       User.belongsToMany(models.Course, { through: 'UserCourse', foreignKey: 'UserId', as: 'courses' });
-      User.belongsTo(models.Role);
     }
   }
 
