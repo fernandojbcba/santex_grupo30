@@ -14,7 +14,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    // Puedes dejar el método down vacío o hacer lo necesario para revertir los cambios si es necesario
+    // Se puede dejar el método down vacío 
   },
 };
  
