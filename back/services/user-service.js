@@ -1,45 +1,60 @@
-const { NotAuthorized, NotFound } = require('../exceptions/user-exceptions')
-const { User } = require('../models/user')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { NotAuthorized } = require('../exceptions/not-authorized-exeptions');
+const { NotFound } = require('../exceptions/not-found-exeptions');
+const { User } = require('../models/user');
 
 async function login(user, password) {
   const userRecord = await User.findOne({
     where: {
-      userName: user, 
-    }
-  })
+      userName: user,
+    },
+  });
 
   if (!userRecord) {
-    throw new NotFound("Usuario no encontrado")
+    throw new NotFound('Usuario no encontrado');
   }
 
   // Validar la contraseña
-  if (userRecord.password !== password) { 
-    throw new NotAuthorized("Contraseña incorrecta")
+  if (userRecord.password !== password) {
+    throw new NotAuthorized('Contraseña incorrecta');
   }
 
-  // Generar el token de acceso 
-  const secretKey = 'ClaveUltraSecreta' // asi estaba en la muestra que hicimos en la clase, no sabia que poner ja
+  // Generar el token de acceso
+  const secretKey = 'ClaveUltraSecreta'; // asi hicimos en clase, no sabia que poner ja
   const tokenClaims = {
     id: userRecord.id,
     email: userRecord.email,
     name: userRecord.name,
     iat: Math.floor(Date.now() / 1000), // Fecha de emisión del token
-    exp: Math.floor(Date.now() / 1000) + (60 * 60) // Fecha de vencimiento del token en una hora desde la emisión (1 hora de duración)
-  }
+    exp: Math.floor(Date.now() / 1000) + (60 * 60), // Vencimiento del token en 1 hora
+  };
 
-  const accessToken = jwt.sign(tokenClaims, secretKey)
+  const accessToken = jwt.sign(tokenClaims, secretKey);
 
   // Datos para enviar al frontend (sin contraseña)
   const userToSend = {
     id: userRecord.id,
     email: userRecord.email,
     name: userRecord.name,
-    accessToken: accessToken
-  }
+    accessToken,
+  };
 
-  return userToSend
+  return userToSend;
 }
 
-module.exports = { login }
+async function getEnrolledCourses(userId) {
+  // Obtenemos los cursos en los que está inscrito el usuario
+  const userRecord = await User.findByPk(userId);
+  const enrolledCourses = await userRecord.getCourses();
 
+  // Mapeamos los cursos a un formato más adecuado para enviar al frontend
+  const coursesToSend = enrolledCourses.map((course) => ({
+    id: course.id,
+    title: course.title,
+    description: course.description,
+  }));
+
+  return coursesToSend;
+}
+
+module.exports = { login, getEnrolledCourses };
