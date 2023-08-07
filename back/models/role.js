@@ -2,8 +2,8 @@ const { Model, DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   class Role extends Model {
-    static associate() {
-      // Puedes definir asociaciones aquí si es necesario
+    static associate(models) {
+      Role.hasMany(models.User); // Un rol tiene muchos usuarios
     }
   }
 

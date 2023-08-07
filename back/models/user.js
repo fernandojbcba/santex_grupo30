@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     static associate(models) {
       // Define las asociaciones aquí
       User.belongsToMany(models.Course, { through: 'UserCourse', foreignKey: 'UserId', as: 'courses' });
-      User.belongsTo(models.Role, { foreignKey: 'RoleId', as: 'role' });
+      User.belongsTo(models.Role);
     }
   }
 
