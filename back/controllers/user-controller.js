@@ -22,7 +22,7 @@ async function login(req, res, next) {
 async function sendEnrolledCourses(req, res, next) {
   try {
     const userId = req.user.id;
-    const enrolledCourses = await userService.getCoursesEnrolled(userId);
+    const enrolledCourses = await userService.getEnrolledCourses(userId);
 
     res.status(200).json(enrolledCourses);
   } catch (error) {

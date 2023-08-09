@@ -20,18 +20,17 @@ async function login(user, password) {
   }
 
   // Generar el token de acceso
-  const secretKey = 'ClaveUltraSecreta'; // asi hicimos en clase, no sabia que poner ja
+  const secretKey = 'ClaveUltraSecreta';
   const tokenClaims = {
     id: userRecord.id,
     email: userRecord.email,
     name: userRecord.name,
-    iat: Math.floor(Date.now() / 1000), // Fecha de emisión del token
-    exp: Math.floor(Date.now() / 1000) + (60 * 60), // Vencimiento del token en 1 hora
+    iat: Math.floor(Date.now() / 1000),
+    exp: Math.floor(Date.now() / 1000) + (60 * 60),
   };
 
   const accessToken = jwt.sign(tokenClaims, secretKey);
 
-  // Datos para enviar al frontend (sin contraseña)
   const userToSend = {
     id: userRecord.id,
     email: userRecord.email,
@@ -43,11 +42,9 @@ async function login(user, password) {
 }
 
 async function getEnrolledCourses(userId) {
-  // Obtenemos los cursos en los que está inscrito el usuario
   const userRecord = await User.findByPk(userId);
   const enrolledCourses = await userRecord.getCourses();
 
-  // Mapeamos los cursos a un formato más adecuado para enviar al frontend
   const coursesToSend = enrolledCourses.map((course) => ({
     id: course.id,
     title: course.title,
