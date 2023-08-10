@@ -1,16 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
-  const UserRole = sequelize.define('UserRole', {
+  const UserCourse = sequelize.define('UserCourse', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    // Define las claves foráneas para UserId y RoleId
     UserId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    RoleId: {
+    CourseId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -22,19 +21,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
+  }, {
+    tableName: 'usercourse', // Aquí especificas el nombre real de la tabla
   });
 
-  // Define las asociaciones
-  UserRole.associate = (models) => {
-    UserRole.belongsTo(models.User, {
-      foreignKey: 'UserId',
+  UserCourse.associate = (models) => {
+    UserCourse.belongsTo(models.Course, {
+      foreignKey: 'CourseId',
       onDelete: 'CASCADE',
     });
-    UserRole.belongsTo(models.Role, {
-      foreignKey: 'RoleId',
+
+    UserCourse.belongsTo(models.User, {
+      foreignKey: 'UserId',
       onDelete: 'CASCADE',
     });
   };
 
-  return UserRole;
+  return UserCourse;
 };
