@@ -1,0 +1,1 @@
+En servicios la parte comentada es la configuracion junto con el backend. Al no saber como era la estructura del back, opté por simularlo. La lógica funciona correctamente
