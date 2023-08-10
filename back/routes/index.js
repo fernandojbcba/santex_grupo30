@@ -1,21 +1,25 @@
 const Express = require('express');
-
 // Middlewares:
 const rootPath = require('../middleware/root_path.middleware');
 const errors = require('../middleware/error_handler.middleware');
 
-const app = Express();
+// importo rutas
+const loginRoute = require('./login-route'); // Importa las rutas de cursos
+const courseRoute = require('./course-route'); // Importa las rutas de cursos
+
+const router = Express();
 
 // Rutas
-
+router.use('/login', loginRoute);
+router.use('/courses', courseRoute);
 // use=
-app.use('/ping', (req, res) => {
+router.use('/ping', (req, res) => {
   res.json({
     response: 'pong!',
   });
 });
-app.use('/', rootPath.handler);
-app.use(rootPath.setHeaders);
-app.use(errors.handler);
+router.use('/', rootPath.handler);
+router.use(rootPath.setHeaders);
+router.use(errors.handler);
 
-module.exports = app;
+module.exports = router;
