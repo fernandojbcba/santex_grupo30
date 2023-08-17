@@ -61,12 +61,18 @@ app.use(express.urlencoded(
 const whitelist = process.env.CORS.split(' ');
 
 const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
+  origin: function (origin, callback) {
+    if (process.env.ENVIRONMENT === 'development') {
+      // Permite todas las solicitudes en desarrollo
       callback(null, true);
     } else {
-      logger.api.error('Not allowed by CORS', { origin });
-      callback(new Error('Not allowed by CORS'));
+      // Restringe las solicitudes en producción según tu lista blanca
+      if (whitelist.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        logger.api.error('Not allowed by CORS', { origin });
+        callback(new Error('Not allowed by CORS'));
+      }
     }
   },
 };
