@@ -5,10 +5,10 @@ const { NotFound } = require('../exceptions/not-found-exeptions');
 const { User } = require('../models');
 
 class UserService {
-  async login(user, password) {
+  async login(email, password) {
     const userRecord = await User.findOne({
       where: {
-        userName: user,
+        email,
       },
       include: 'role',
     });

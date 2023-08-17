@@ -5,10 +5,10 @@ async function loginController(req, res, next) {
 
   try {
     // Obtengo datos de usuario y contraseña de req.body
-    const { user, password } = req.body;
+    const { email, password } = req.body;
 
     // Llamo al método login de UserService
-    const userResponse = await userService.login(user, password);
+    const userResponse = await userService.login(email, password);
 
     // envío la respuesta JSON
     res.status(200).json({
