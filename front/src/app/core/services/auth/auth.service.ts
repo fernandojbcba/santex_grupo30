@@ -23,13 +23,13 @@ export class AuthService {
     this.loadUser();
   }
 
-  public login(username: string, password: string) {
+  public login(email: string, password: string) {
     const body = {
-      username,
+      email,
       password,
     };
 
-    return this.http.post('users/login', body);
+    return this.http.post('/login', body);
   }
 
   /**
