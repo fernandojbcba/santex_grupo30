@@ -1,8 +1,8 @@
 <!-- Ruta: http://localhost:4200/dashboard/courses-list -->
 <h1>Listado de Cursos</h1>
 <div *ngFor="let course of courses">
-  <h2>{{ course.name }}</h2>
+  <h2>{{ course.id }}</h2>
+  <p>{{ course.title }}</p>
   <p>{{ course.description }}</p>
-  <p>Cupos disponibles: {{ course.cupos }}</p>
   <!-- <button (click)="register(course.id)">Inscribirse</button> -->
 </div>
