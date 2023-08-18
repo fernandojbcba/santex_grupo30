@@ -86,7 +86,7 @@ models.sequelize.authenticate()
   });
 
 // Aquí se configura el puerto
-const port = process.env.PORT || 3010; // si no está configurado uso el port 3000
+const port = process.env.PORT || 3000; // si no está configurado uso el port 3000
 
 app.use('/', routes);
 // La aplicación escucha en el puerto configurado
