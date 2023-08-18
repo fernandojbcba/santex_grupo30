@@ -16,9 +16,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ListCoursesComponent } from './list-courses/list-courses.component';
+import { MyCoursesComponent } from './my-courses/my-courses.component';
 
 @NgModule({
-  declarations: [DashboardPageComponent],
+  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

@@ -66,7 +66,22 @@ export class AuthService {
       this.http.setHeader('Authorization', `Bearer ${token}`);
     }
   }
-
+  public loadUser2() {
+    const token = this.cookieService.get('token');
+    if (token) {
+      const parts = token.split('.');
+      if (parts.length === 3) {
+        const payload = JSON.parse(atob(parts[1]));
+        const { id, user } = payload;
+        return{ id, user }
+      } else {
+        console.error('Invalid token format');
+      }
+    } else {
+      console.error('Token not found');
+    }
+    return token;
+  }
   public isLoggedIn(): boolean {
       return !!this.cookieService.get('user');
   }
