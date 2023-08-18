@@ -1,5 +1,4 @@
 
-
 export interface User {
     id: number;
     username: string;
@@ -12,5 +11,3 @@ export interface User {
   export const MIN_PASSWORD_LENGTH: number = 5;
   export const MAX_PASSWORD_LENGTH: number = 60;
   export const PASSWORD_PATTERN: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?.,])[A-Za-z\\d#$@!%&*?.,]{5,250}$';
-  
-  

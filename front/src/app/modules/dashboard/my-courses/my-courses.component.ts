@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../core/services/user/user.service'
+
 
 @Component({
   selector: 'app-my-courses',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-courses.component.css']
 })
 export class MyCoursesComponent implements OnInit {
-
-  constructor() { }
+  myCourses: any[] = [];
+  constructor(private http:UserService) { }
 
   ngOnInit(): void {
+    this.http.get<any>('/courses/enrolled/:id').subscribe(
+      data => {
+        this.myCourses=data;
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
+   
+
   }
 
-}
+

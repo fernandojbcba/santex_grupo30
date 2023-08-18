@@ -1,1 +1,8 @@
-<p>my-courses works!</p>
+<h2>my of Courses</h2>
+
+<ul>
+  <li *ngFor="let mycourse of myCourses">
+    <mat-icon>class</mat-icon> <!-- Material Icon for "class" -->
+    {{ mycourse.title }} - {{ mycourse.description }}
+  </li>
+</ul>

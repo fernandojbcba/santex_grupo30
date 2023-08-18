@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../../core/http/api.service'
 
 @Component({
   selector: 'app-list-courses',
@@ -9,12 +9,16 @@ import { HttpClient } from '@angular/common/http';
 export class ListCoursesComponent implements OnInit {
   courses: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http:ApiService) {}
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:3010/courses/list').subscribe(courses => {
-      this.courses = courses;
-    });
-  
+    this.http.get<any>('/courses/list').subscribe(
+      data => {
+        this.courses=data;
+      },
+      error => {
+        console.log(error)
+      }
+    );
   }
 }
