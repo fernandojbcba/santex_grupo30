@@ -20,9 +20,8 @@ export class MyCoursesComponent implements OnInit {
         console.log(error)
       }
     );
+    
   }
-   
-
-  }
-
+ 
+}
 

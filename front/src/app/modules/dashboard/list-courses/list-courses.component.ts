@@ -21,4 +21,10 @@ export class ListCoursesComponent implements OnInit {
       }
     );
   }
+  register() {
+    if (confirm('¿Estás seguro de que quieres inscribirte en este curso?')) {
+      alert('Inscripción exitosa!');
+    }
+
+  }
 }

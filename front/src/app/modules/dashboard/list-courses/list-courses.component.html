@@ -4,6 +4,7 @@
   <li *ngFor="let course of courses">
     <mat-icon>class</mat-icon> <!-- Material Icon for "class" -->
     {{ course.title }} - {{ course.description }}
+    <button (click)="register()">Inscribirse</button>
   </li>
 </ul>
 

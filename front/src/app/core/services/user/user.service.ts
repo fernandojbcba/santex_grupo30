@@ -26,26 +26,18 @@ export class UserService {
 
 
   public get<T>(url: string, params?: HttpParams): Observable<T> {
-    // Obten el token de autenticación almacenado en las cookies
+    
     const userStr = this.cookieService.get('user');
-    const token = this.cookieService.get('token');
+    
     const user = JSON.parse(userStr);
 
     const userId = user.id;
     console.log(userId)
-    const httpHeaders = this.http.getHeaders();
+   
    
     url = url.replace(':id', userId);
     
-    const opts = {
-      headers: httpHeaders,
-      params: (params ? params : null) as HttpParams,
-    };
-
-    if (params) {
-      opts.params = params;
-    }
-
+    
     
     return this.http.get<T>(url);
     
