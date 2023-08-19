@@ -9,5 +9,5 @@ router.get('/list', courseController.getAllCourses);
 // router.get('/usercourse', userController.getEnrolledCourses);
 // router.get('/enrolled-courses', authenticateToken, userController.getEnrolledCourses);
 router.get('/enrolled/:userId', authenticateToken, courseController.getEnrolledCourses);
-router.post('/enrolled/usercourse', userController.addUserCourseController);
+router.post('/enrolled/usercourse', authenticateToken, userController.addUserCourseController);
 module.exports = router;

@@ -49,7 +49,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       this.authService.login(loginData.username, loginData.password)
         .subscribe(
           (res: any) => {
-            console.log(res);
             this.authService.setUser(res);
             this.router.navigateByUrl('/dashboard');
             

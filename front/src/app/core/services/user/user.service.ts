@@ -42,4 +42,17 @@ export class UserService {
     return this.http.get<T>(url);
     
   }
+  public post<T>(url: string,course:string): Observable<T> {
+    
+    const userStr = this.cookieService.get('user');
+    const user = JSON.parse(userStr);
+    const userId = user.id;
+    const body = { "userId": userId, "courseId": course }
+    
+    
+    return this.http.post<T>(url, body);
+    
+  }
+
+
 }

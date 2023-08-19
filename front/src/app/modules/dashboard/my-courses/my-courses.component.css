@@ -1,0 +1,23 @@
+h2 {
+  text-align: center;
+}
+.tabla {
+  display: flex;
+  justify-content: center;
+
+ 
+}
+.column-title {
+  width: 30%;
+  text-align: center;
+}
+
+.column-description {
+  width: 50%;
+  text-align: center;
+}
+.column-botton {
+  width: 10%;
+  justify-content: center;
+  text-align: center;
+}
