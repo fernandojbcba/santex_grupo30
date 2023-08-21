@@ -25,4 +25,15 @@ async function loginController(req, res, next) {
   }
 }
 
-module.exports = { loginController };
+async function createUser(req, res, next) {
+  const registro = new UserService();
+  try {
+    const userData = { ...req.body, RoleId: 2 };
+    await registro.CreateUser(userData);
+    res.status(201).json('Usuario Registrado');
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { loginController, createUser };

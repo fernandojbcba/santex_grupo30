@@ -18,7 +18,7 @@ export class MyCoursesComponent implements OnInit {
         this.myCourses=data;
       },
       error => {
-        console.log(error)
+       
       }
     );
     

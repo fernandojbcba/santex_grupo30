@@ -12,7 +12,6 @@ class UserService {
       },
       include: 'role',
     });
-
     if (!userRecord) {
       throw new NotFound('Usuario no encontrado');
     }
@@ -28,7 +27,7 @@ class UserService {
       user: userRecord.userName,
       role: userRecord.role.roleName,
       iat: Math.floor(Date.now() / 1000),
-      exp: Math.floor(Date.now() / 1000) + (60 * 60),
+      exp: Math.floor(Date.now() / 1000) + 60,
     };
 
     const accessToken = jwt.sign(tokenClaims, secretKey);
@@ -41,6 +40,10 @@ class UserService {
     };
 
     return userToSend;
+  }
+
+  async CreateUser(userData) {
+    return User.create(userData);
   }
 }
 

@@ -33,6 +33,10 @@ export class RefreshTokenInterceptor {
       this.authService.logOut();
       return throwError(err);
     }
+    if (err.status === 403) {
+      this.authService.logOut();
+      return throwError(err);
+    }
 
     // 404
     if (err.status === 404) {

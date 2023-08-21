@@ -20,6 +20,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ListCoursesComponent } from './list-courses/list-courses.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent],
@@ -46,6 +47,7 @@ import { MyCoursesComponent } from './my-courses/my-courses.component';
     MatOptionModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    MatDialogModule,
   ],
   exports: [
     DashboardPageComponent

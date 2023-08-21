@@ -19,7 +19,7 @@ export class ListCoursesComponent implements OnInit {
         this.courses=data;
       },
       error => {
-        console.log(error)
+        
       }
     );
   }
