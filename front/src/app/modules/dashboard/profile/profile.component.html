@@ -1,0 +1,23 @@
+<mat-card class="example-card" *ngIf="profileData">
+  
+  <mat-card class="cards">
+    <mat-card-header>
+      <img
+      mat-card-lg-image
+      src="https://img2.freepng.es/20180413/ccw/kisspng-computer-icons-user-profile-person-5ad0a067829640.8878511915236219915349.jpg"
+    />
+      <mat-card-title>{{ profileData.userName }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Hola, {{ profileData.firstName }} {{ profileData.lastName }}</p>
+      <p>tu email es {{ profileData.email}} </p>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    
+    <mat-card-footer>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</mat-card>
+
+<router-outlet></router-outlet>

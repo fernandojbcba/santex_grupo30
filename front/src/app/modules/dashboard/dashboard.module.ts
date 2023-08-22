@@ -21,9 +21,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ListCoursesComponent } from './list-courses/list-courses.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent],
+  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

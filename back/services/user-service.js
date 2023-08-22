@@ -27,7 +27,7 @@ class UserService {
       user: userRecord.userName,
       role: userRecord.role.roleName,
       iat: Math.floor(Date.now() / 1000),
-      exp: Math.floor(Date.now() / 1000) + 60,
+      exp: Math.floor(Date.now() / 1000) + (60 * 60),
     };
 
     const accessToken = jwt.sign(tokenClaims, secretKey);
@@ -49,6 +49,17 @@ class UserService {
     userData.password = hashedPassword;
 
     return User.create(userData);
+  }
+
+  async getUserByToken(token) {
+    const secretKey = process.env.SECRET_KEY || 'ClaveUltraSecreta';
+    const decodedToken = jwt.verify(token, secretKey);
+    console.log(decodedToken);
+    const userId = decodedToken.id;
+    const UserProfile = await User.findByPk(userId, {
+      attributes: ['firstName', 'lastName', 'userName', 'email'],
+    });
+    return UserProfile;
   }
 }
 

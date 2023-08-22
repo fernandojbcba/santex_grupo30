@@ -53,6 +53,9 @@ export class UserService {
     return this.http.post<T>(url, body);
     
   }
+  getProfile(): Observable<User> {
+    return this.http.get<User>('/user/profile');
+  }
 
 
 }
