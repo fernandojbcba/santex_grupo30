@@ -31,7 +31,10 @@ export class AuthService {
 
     return this.http.post('/login', body);
   }
-
+  public register(RegisterData: string) {
+    const body = RegisterData
+    return this.http.post('/login/register', body);
+  }
   /**
    * setUser
    * @param user Server user response.

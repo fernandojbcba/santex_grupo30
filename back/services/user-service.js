@@ -43,6 +43,11 @@ class UserService {
   }
 
   async CreateUser(userData) {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
+
+    userData.password = hashedPassword;
+
     return User.create(userData);
   }
 }
