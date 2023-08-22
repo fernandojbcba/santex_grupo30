@@ -9,30 +9,27 @@ const createUser = async (req, res) => {
       firstName, lastName, userName, password, email,
     } = req.body;
 
-    // Verifica si el correo electrónico ya está en uso
+    // Verifico si el email ya está en uso
     const existingUser = await userService.getUserByEmail(email);
     if (existingUser) {
       return res.status(400).json({ message: 'Email already in use' });
     }
 
-    // Busca el rol "user" por defecto en la base de datos
+    // Busco el rol "user" por defecto en la base de datos
     const role = await Role.findOne({ where: { roleName: 'user' } });
 
     if (!role) {
       return res.status(404).json({ message: 'Default role "user" not found' });
     }
 
-    // Hashea el password antes de guardarlo
-    const hashedPassword = await userService.hashPassword(password);
-
     // Crea el usuario con el rol "user" por defecto
     const user = await userService.createUser(
       firstName,
       lastName,
       userName,
-      hashedPassword,
+      password,
       email,
-      role.roleName, // Asigna el ID del rol "user" al campo RoleId
+      role.roleName, // Asigno user por defecto
     );
 
     return res.status(201).json(user);
@@ -40,7 +37,7 @@ const createUser = async (req, res) => {
     return res.status(500).json({ message: 'Error creating user' });
   }
 };
-// Actualizar un usuario por su ID
+// Actualizo el usuario por ID
 const updateUser = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -48,16 +45,16 @@ const updateUser = async (req, res) => {
       firstName, lastName, userName, password, email, roleId,
     } = req.body;
 
-    // Verifica si el usuario existe
+    // Verifico si el usuario existe
     const existingUser = await userService.getUserById(userId);
     if (!existingUser) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Hashea el password antes de guardarlo
+    // Hasheo el password antes de guardarlo
     const hashedPassword = await userService.hashPassword(password);
 
-    // Actualiza el usuario
+    // Actualizo el usuario
     const updatedUser = await userService.updateUser(userId, {
       firstName,
       lastName,
@@ -73,21 +70,21 @@ const updateUser = async (req, res) => {
   }
 };
 
-// Eliminar un usuario por su ID
+// Elimino un usuario por ID
 const deleteUser = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    // Verifica si el usuario existe en la base de datos
+    // Verifico si user existe en la base
     const user = await userService.getUserById(userId);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Si el usuario existe, procede a eliminarlo
+    // Si el usuario existe, lo elimino
     await userService.deleteUser(userId);
 
-    return res.status(204).json(); // 204 No Content (indicando éxito sin contenido)
+    return res.status(204).json();
   } catch (error) {
     return res.status(500).json({ message: 'Error deleting user' });
   }

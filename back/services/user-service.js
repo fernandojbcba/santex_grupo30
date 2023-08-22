@@ -53,7 +53,8 @@ class UserService {
   }
 
   async hashPassword(password) {
-    return bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    return hashedPassword;
   }
 
   async getUserById(userId) {
@@ -84,7 +85,7 @@ class UserService {
       user: userRecord.userName,
       role: userRecord.role.roleName,
       iat: Math.floor(Date.now() / 1000),
-      exp: Math.floor(Date.now() / 1000) + (60 * 60),
+      exp: Math.floor(Date.now() / 1000) + 60 * 60,
     };
 
     const accessToken = jwt.sign(tokenClaims, secretKey);
