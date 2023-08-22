@@ -2,9 +2,65 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { NotAuthorized } = require('../exceptions/not-authorized-exeptions');
 const { NotFound } = require('../exceptions/not-found-exeptions');
-const { User } = require('../models');
+const { User, Role } = require('../models');
 
 class UserService {
+  // Crear un nuevo usuario
+  async createUser(firstName, lastName, userName, password, email, roleName) {
+    const role = await Role.findOne({ where: { roleName } });
+
+    if (!role) {
+      throw new Error('Role not found');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      firstName,
+      lastName,
+      userName,
+      password: hashedPassword,
+      email,
+      RoleId: role.id,
+    });
+
+    return user;
+  }
+
+  async getUserByEmail(email) {
+    return User.findOne({ where: { email } });
+  }
+
+  async updateUser(userId, updatedFields) {
+    const existingUser = await User.findByPk(userId);
+    if (!existingUser) {
+      throw new NotFound('User not found');
+    }
+
+    Object.assign(existingUser, updatedFields);
+    await existingUser.save();
+
+    return existingUser;
+  }
+
+  async deleteUser(userId) {
+    const existingUser = await User.findByPk(userId);
+    if (!existingUser) {
+      throw new NotFound('User not found');
+    }
+
+    await existingUser.destroy();
+  }
+
+  async hashPassword(password) {
+    return bcrypt.hash(password, 10);
+  }
+
+  async getUserById(userId) {
+    const user = await User.findByPk(userId);
+    return user;
+  }
+
   async login(user, password) {
     const userRecord = await User.findOne({
       where: {
@@ -22,7 +78,7 @@ class UserService {
       throw new NotAuthorized('Contraseña incorrecta');
     }
 
-    const secretKey = process.env.SECRET_KEY || 'ClaveUltraSecreta';
+    const secretKey = process.env.SECRET_KEY;
     const tokenClaims = {
       id: userRecord.id,
       user: userRecord.userName,

@@ -1,0 +1,13 @@
+PORT=3000
+APP=academy
+CORS=http://localhost:4200
+DB_DATABASE=bwihhqeqhxhkoodtxv8g
+DB_DIALECT=mysql
+DB_HOST=bwihhqeqhxhkoodtxv8g-mysql.services.clever-cloud.com
+DB_PASSWORD=C1lMRrdYoXlHAve5c9xJ
+DB_PORT=3306
+DB_USERNAME=ug8rtyj67400ual7
+ENVIRONMENT=development 
+LOG_LEVEL=debug 
+SESSION_SECRET=secret
+SECRET_KEY=miClaveSecreta123
