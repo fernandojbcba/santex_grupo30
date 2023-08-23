@@ -31,6 +31,10 @@ class UserService {
     return User.findOne({ where: { email } });
   }
 
+  async getAllUsers() {
+    return User.findAll({ include: 'role' });
+  }
+
   async updateUser(userId, updatedFields) {
     const existingUser = await User.findByPk(userId);
     if (!existingUser) {

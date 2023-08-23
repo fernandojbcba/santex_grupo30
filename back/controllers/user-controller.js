@@ -37,6 +37,40 @@ const createUser = async (req, res) => {
     return res.status(500).json({ message: 'Error creating user' });
   }
 };
+/*
+//este còdigo trae listado de usuarios pero con pass y eso no es bueno
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await userService.getAllUsers();
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(500).json({ message: 'Error retrieving users' });
+  }
+};
+*/
+// acà traigo listado de users sin pass
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await userService.getAllUsers();
+
+    // Crear una nueva lista de usuarios con el campo "RoleName" en lugar de "RoleId"
+    const usersWithRoleName = users.map((user) => {
+      // quito role anidado, roleID y pass del listado al desestructurar alobjeto user
+      const {
+        password, role, RoleId, ...userWithoutPassword
+      } = user.toJSON();
+      const { roleName } = user.role;
+
+      // Creo un nuevo objeto con los cambios y agrego roleName
+      return { ...userWithoutPassword, roleName };
+    });
+    // envìo la lista como respuesta
+    return res.status(200).json(usersWithRoleName);
+  } catch (error) {
+    return res.status(500).json({ message: 'Error retrieving users' });
+  }
+};
+
 // Actualizo el usuario por ID
 const updateUser = async (req, res) => {
   try {
@@ -90,4 +124,6 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, updateUser, deleteUser };
+module.exports = {
+  createUser, getAllUsers, updateUser, deleteUser,
+};
