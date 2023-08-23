@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Crear Usuario</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput placeholder="Nombre" formControlName="firstName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Apellido" formControlName="lastName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Nombre de usuario" formControlName="userName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Correo electrónico" formControlName="email" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Contraseña" formControlName="password" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Crear Usuario</button>
+    </form>
+  </div>

@@ -22,9 +22,11 @@ import { ListCoursesComponent } from './list-courses/list-courses.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProfileComponent } from './profile/profile.component';
+import { UserCreateComponent } from './user-create/user-create.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
-  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent],
+  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent, UserCreateComponent, UserEditComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

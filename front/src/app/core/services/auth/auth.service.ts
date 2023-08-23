@@ -75,8 +75,8 @@ export class AuthService {
       const parts = token.split('.');
       if (parts.length === 3) {
         const payload = JSON.parse(atob(parts[1]));
-        const { id, user } = payload;
-        return{ id, user }
+        const { id, user, role } = payload;
+        return{ id, user, role }
       } else {
         console.error('Invalid token format');
       }

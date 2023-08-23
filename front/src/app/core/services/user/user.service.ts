@@ -32,7 +32,7 @@ export class UserService {
     const user = JSON.parse(userStr);
 
     const userId = user.id;
-    console.log(userId)
+  
    
    
     url = url.replace(':id', userId);
@@ -55,6 +55,9 @@ export class UserService {
   }
   getProfile(): Observable<User> {
     return this.http.get<User>('/user/profile');
+  }
+  createUser(user: any): Observable<any> {
+    return this.http.post<User>('/users', user);
   }
 
 

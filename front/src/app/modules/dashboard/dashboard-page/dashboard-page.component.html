@@ -1,9 +1,12 @@
 <mat-toolbar color="primary" class="expanded-toolbar">
     <span>
       <button mat-button routerLink="/">Hola,{{user}} </button>
-      <button mat-button routerLink="/dashboard/profile"><mat-icon>account_circle</mat-icon></button>
-      <button mat-button routerLink="/dashboard/my_courses"><mat-icon>description</mat-icon></button>
-      <button mat-button routerLink="/dashboard/courses_list"><mat-icon>home</mat-icon></button>
+      <button mat-button routerLink="/dashboard/profile"><mat-icon>account_circle</mat-icon>perfil</button>
+      <button mat-button routerLink="/dashboard/my_courses"><mat-icon>description</mat-icon>Mis Cursos</button>
+      <button mat-button routerLink="/dashboard/courses_list"><mat-icon>list</mat-icon>Lista Cursos</button>
+      <button *ngIf="adminlog" mat-button routerLink="/dashboard/usercreate"><mat-icon>perm_identity
+      </mat-icon>Crear Usuario</button>
+      <button *ngIf="adminlog" mat-button routerLink="/dashboard/useredit"><mat-icon>manage_accounts</mat-icon>Modificar Usuario</button>
     </span>
     <div fxLayout="row" fxShow="false" fxShow.gt-sm>
       <button mat-button (click)="logout()">

@@ -7,10 +7,11 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 })
 
 export class DashboardPageComponent implements  OnInit{
-  
-  dateUser?: string | { id: any; user: any; };
+  adminlog:boolean = false;
+  dateUser?: string | { id: any; user: any; role: any; };
   id: any;
   user: any;
+  role: any;
   constructor(private authService: AuthService) {
 
   }
@@ -20,10 +21,13 @@ export class DashboardPageComponent implements  OnInit{
     if (typeof this.dateUser === 'object') {
       this.id = this.dateUser.id;
       this.user = this.dateUser.user;
+      this.role = this.dateUser.role;
     } else {
       
     }
-
+    if (this.role === 'admin'){
+      this.adminlog = true;
+    }
   }
   logout() {
     this.authService.logOut();
