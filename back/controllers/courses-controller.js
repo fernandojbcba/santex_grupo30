@@ -23,5 +23,41 @@ async function getEnrolledCourses(req, res) {
     res.status(500).json({ error: 'An error occurred while fetching courses.' });
   }
 }
+async function createCourse(req, res) {
+  const courseData = req.body;
 
-module.exports = { getAllCourses, getEnrolledCourses };
+  try {
+    const newCourse = await courseService.createCourse(courseData);
+    res.status(201).json(newCourse);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while creating the course.' });
+  }
+}
+
+async function updateCourse(req, res) {
+  const { courseId } = req.params;
+  const updatedData = req.body;
+
+  try {
+    const updatedCourse = await courseService.updateCourse(courseId, updatedData);
+    res.status(200).json(updatedCourse);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while updating the course.' });
+  }
+}
+
+async function deleteCourse(req, res) {
+  const { courseId } = req.params;
+
+  try {
+    await courseService.deleteCourse(courseId);
+    res.status(204).send();
+  } catch (error) {
+    // console.error('Error deleting course:', error); // Registrar el error completo
+    res.status(500).json({ error: 'An error occurred while deleting the course.' });
+  }
+}
+
+module.exports = {
+  getAllCourses, getEnrolledCourses, createCourse, updateCourse, deleteCourse,
+};
