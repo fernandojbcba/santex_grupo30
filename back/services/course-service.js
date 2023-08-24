@@ -2,14 +2,25 @@ const { Course, UserCourse } = require('../models');
 
 class CourseService {
   async getAllCourses() {
-    const courses = await Course.findAll();
+    const courses = await Course.findAll({
+      where: {
+        isDeleted: false, // Filtrar registros no borrados
+        isPublished: true, // Mostrar solo cursos publicados
+      },
+    });
     return courses;
   }
 
   async getCoursesForUser(userId) {
     const userCourse = await UserCourse.findAll({
       where: { UserId: userId },
-      include: [{ model: Course, as: 'Course' }],
+      include: [
+        {
+          model: Course,
+          as: 'Course',
+          where: { isDeleted: false }, // Filtrar por registros no borrados
+        },
+      ],
     });
 
     const courses = userCourse.map((course) => course.Course);
@@ -37,8 +48,8 @@ class CourseService {
     if (!course) {
       throw new Error('Course not found');
     }
-
-    await course.destroy();
+    await course.update({ isDeleted: true });
+    // await course.destroy();
   }
 }
 
