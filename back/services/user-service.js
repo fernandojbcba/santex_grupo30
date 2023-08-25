@@ -36,6 +36,7 @@ class UserService {
 
   async updateUser(userId, updatedFields) {
     const existingUser = await User.findByPk(userId);
+
     if (!existingUser) {
       throw new NotFound('User not found');
     }

@@ -23,7 +23,7 @@ const createUser = async (req, res) => {
     }
 
     // Crea el usuario con el rol "user" por defecto
-    const user = await userService.createUser(
+    await userService.createUser(
       firstName,
       lastName,
       userName,
@@ -31,7 +31,6 @@ const createUser = async (req, res) => {
       email,
       role.roleName, // Asigno user por defecto
     );
-    console.log(user);
     return res.status(201).json({ message: 'create user ok' });
   } catch (error) {
     return res.status(500).json({ message: 'Error creating user' });
@@ -64,9 +63,8 @@ const updateUser = async (req, res) => {
   try {
     const { userId } = req.params;
     const {
-      firstName, lastName, userName, password, email, roleId,
+      firstName, lastName, userName, password, email, RoleId,
     } = req.body;
-
     // Verifico si el usuario existe
     const existingUser = await userService.getUserById(userId);
     if (!existingUser) {
@@ -83,7 +81,7 @@ const updateUser = async (req, res) => {
       userName,
       password: hashedPassword,
       email,
-      roleId,
+      RoleId,
     });
 
     return res.status(200).json(updatedUser);
