@@ -30,6 +30,7 @@ export class RefreshTokenInterceptor {
 
     // Session expired.
     if (err.status === 440) {
+  
       this.authService.logOut();
       return throwError(err);
     }

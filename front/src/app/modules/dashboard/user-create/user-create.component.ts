@@ -1,5 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit,  OnDestroy } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import {
+  MAX_USERNAME_LENGTH,
+  MIN_USERNAME_LENGTH,
+  PASSWORD_PATTERN,
+} from '../../../core/interfaces/users/user.interface';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
@@ -7,31 +19,72 @@ import { UserService } from 'src/app/core/services/user/user.service';
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.css']
 })
-export class UserCreateComponent {
-  userForm: FormGroup;
+export class UserCreateComponent implements OnInit, OnDestroy{
+  public registerForm = this.formBuilder.group({ commodity: [null] });
+  formSubscritions: Subscription = new Subscription();
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    private userService: UserService,
+    private toastService: ToastService,
+    private router: Router,
+  ) {}
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
-    this.userForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      userName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+  ngOnInit(): void {
+    this.crearRegistroForm();
+  }
+  private crearRegistroForm() {
+    this.registerForm  = this.formBuilder.group({
+      firstName: new UntypedFormControl(null, Validators.required),
+      lastName: new UntypedFormControl(null, Validators.required),
+      userName: new UntypedFormControl(
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(MIN_USERNAME_LENGTH),
+          Validators.maxLength(MAX_USERNAME_LENGTH),
+        ])
+      ),
+      email: new UntypedFormControl(
+        null,
+        Validators.compose([Validators.required, Validators.email])
+      ),
+      password: new UntypedFormControl(
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(PASSWORD_PATTERN),
+        ])
+      ),
     });
   }
 
-  onSubmit() {
-    if (this.userForm.valid) {
-      const user = this.userForm.value;
-      this.userService.createUser(user).subscribe(
-        (response) => {
-          console.log('Usuario creado:', response);
-          // Puedes hacer algo aquí después de crear el usuario, como redireccionar a otra página.
-        },
-        (error) => {
-          console.error('Error al crear usuario:', error);
-        }
-      );
+
+  
+  register() {
+    const RegisterData = this.registerForm?.value;
+    this.formSubscritions.add(
+      this.userService.createUser(RegisterData)
+        .subscribe(
+          (res: any) => {
+            this.toastService.UserCreateok("Usuario Creado Correctamente");
+          
+            
+          },
+          (err) => {
+            // 
+           this.toastService.presentToast("eroor al crear usuario");
+
+          }
+        )
+    );
+  }
+  public checkForm() {
+    if (this.registerForm.valid) {
+      this.register();
     }
   }
+  ngOnDestroy(): void {
+    this.formSubscritions.unsubscribe();
+  }
 }
+

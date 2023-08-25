@@ -53,12 +53,26 @@ export class UserService {
     return this.http.post<T>(url, body);
     
   }
-  getProfile(): Observable<User> {
-    return this.http.get<User>('/user/profile');
-  }
-  createUser(user: any): Observable<any> {
-    return this.http.post<User>('/users', user);
-  }
+  public getProfile(): Observable<User> {
+    const userStr = this.cookieService.get('user');
+    
+    const user = JSON.parse(userStr);
 
+    const userId = user.id;
 
+    return this.http.get<User>(`/user/profile/${userId}`);
+  }
+  public createUser(user: any): Observable<any> {
+    return this.http.post<User>('/user', user);
+  }
+  public deleteUser<T>(userId:number): Observable<any>{
+    const url = `/user/${userId}`
+    return this.http.delete<T>(url);
+  }
+  public updateUser<T>(userId:number, editedUser:any):Observable<any>{
+    const url = `/user/${userId}`
+    const body = editedUser
+    return this.http.put<T>(url,body)
+
+  }
 }

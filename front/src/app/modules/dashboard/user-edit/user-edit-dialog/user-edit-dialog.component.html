@@ -1,0 +1,26 @@
+<h2>Editar Usuario</h2>
+<form [formGroup]="editForm">
+  <mat-form-field>
+    <input matInput placeholder="Nombre" formControlName="firstName" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Apellido" formControlName="lastName" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Nombre de usuario" formControlName="userName" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" type="password" formControlName="password">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Rol</mat-label>
+    <mat-select formControlName="RoleName" required>
+      <mat-option *ngFor="let role of roleOptions" [value]="role">{{ role }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onSaveChanges()">Guardar Cambios</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</form>

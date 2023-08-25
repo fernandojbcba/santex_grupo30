@@ -16,7 +16,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ListCoursesComponent } from './list-courses/list-courses.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
@@ -24,9 +23,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProfileComponent } from './profile/profile.component';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserEditDialogComponent } from './user-edit/user-edit-dialog/user-edit-dialog.component';
 
 @NgModule({
-  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent, UserCreateComponent, UserEditComponent],
+  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent, UserCreateComponent, UserEditComponent, UserEditDialogComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -51,6 +51,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDialogModule,
+    
   ],
   exports: [
     DashboardPageComponent

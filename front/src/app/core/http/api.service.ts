@@ -162,7 +162,7 @@ export class ApiService {
    */
   public put<T>(url: string, body?: any): Observable<T> {
     let putBody = body;
-    const opts = {
+      const opts = {
       headers: this.httpHeaders,
     };
 

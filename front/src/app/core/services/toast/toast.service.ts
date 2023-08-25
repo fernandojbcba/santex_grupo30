@@ -12,4 +12,7 @@ export class ToastService {
   public presentToast(message: string): void {
     this.toastController.open(message, 'Entendido' ,{duration: 2000});
   }
+  public UserCreateok(message: string): void {
+    this.toastController.open(message, 'Entendido' ,{duration: 2000});
+  }
 }

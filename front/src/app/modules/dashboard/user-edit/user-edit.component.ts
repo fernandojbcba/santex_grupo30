@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../core/services/user/user.service'
+import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UserEditDialogComponent } from './user-edit-dialog/user-edit-dialog.component';
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
@@ -7,11 +10,14 @@ import { UserService } from '../../../core/services/user/user.service'
 })
 export class UserEditComponent implements OnInit {
   allUsers: any[] = [];
-  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'edit' , 'delete']; 
-  constructor(private http:UserService) { }
+  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'rol', 'edit' , 'delete']; 
+  constructor(private userService:UserService, private toastService:ToastService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.http.get<any>('/user/list').subscribe(
+    this.loadUsers()
+  }
+  loadUsers(){
+    this.userService.get<any>('/user/list').subscribe(
       data => {
         this.allUsers=data;
       },
@@ -20,6 +26,30 @@ export class UserEditComponent implements OnInit {
       }
     );
     
+  }
+  delete(userId:number){
+    this.userService.deleteUser(userId)
+    .subscribe(
+      (res: any) => {
+        this.toastService.UserCreateok("Usuario borrado Correctamente");
+        this.loadUsers()
+        
+      },
+      
+    )
+  }
+  openEditDialog(user: any) {
+    const dialogRef = this.dialog.open(UserEditDialogComponent, {
+      width: '400px', // Ancho del diálogo
+      data: user // Pasa los datos del usuario al diálogo
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'saved') {
+        
+        this.loadUsers();
+      }
+    });
   }
 
 }

@@ -12,19 +12,19 @@ import {
   PASSWORD_PATTERN,
 } from '../../../core/interfaces/users/user.interface';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css'],
 })
-export class RegisterPageComponent implements OnInit {
+export class RegisterPageComponent implements OnInit, OnDestroy {
   public registerForm = this.formBuilder.group({ commodity: [null] });
   formSubscritions: Subscription = new Subscription();
   constructor(
     private formBuilder: UntypedFormBuilder,
-    private authService: AuthService,
+    private userService: UserService,
     private toastService: ToastService,
     private router: Router,
   ) {}
@@ -61,10 +61,10 @@ export class RegisterPageComponent implements OnInit {
   register() {
     const RegisterData = this.registerForm?.value;
     this.formSubscritions.add(
-      this.authService.register(RegisterData)
+      this.userService.createUser(RegisterData)
         .subscribe(
           (res: any) => {
-            this.toastService.presentToast("Usuario Creado Correctamente");
+            this.toastService.UserCreateok("Usuario Creado Correctamente");
             this.router.navigateByUrl('/login');
             
           },
