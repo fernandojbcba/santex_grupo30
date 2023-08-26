@@ -1,0 +1,31 @@
+/* Estilos para el contenedor del diálogo */
+.container {
+    padding: 20px;
+  }
+  
+  /* Estilos para los campos de entrada */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  /* Estilos para los checkboxes */
+  .mat-checkbox {
+    margin-right: 10px;
+  }
+  
+  /* Estilos para el botón de crear y cancelar */
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para el botón de cancelar */
+  .button-row button[mat-dialog-close] {
+    background-color: #ccc;
+    color: #fff;
+  }
+  
+  /* Estilos adicionales según necesidad */
+  

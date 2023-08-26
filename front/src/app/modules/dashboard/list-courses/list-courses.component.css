@@ -1,0 +1,26 @@
+h2{
+  text-align: center;
+}
+.couses_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly
+}
+.cards {
+    max-width: 400px;  
+    margin-bottom: 20px;
+
+  }
+  
+
+  
+mat-card-header{
+justify-content: center;
+  }
+mat-card-content{
+    justify-content: center;
+      }
+mat-card-actions{
+    display:flex;
+    justify-content: center;
+}

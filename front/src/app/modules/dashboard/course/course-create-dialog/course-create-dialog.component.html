@@ -1,0 +1,57 @@
+<div [formGroup]="createForm" (ngSubmit)="createForm.valid && createCourse()">
+  <h2>Crear Curso</h2>
+  <mat-form-field>
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="title" />
+    <mat-error *ngIf="createForm.controls['title']?.errors?.['required']">
+      El título es requerido.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Descripción</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+    <mat-error *ngIf="createForm.controls['description']?.errors?.['required']">
+      La descripción es requerida.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Duración</mat-label>
+    <input matInput formControlName="duration" />
+    <mat-error *ngIf="createForm.controls['duration']?.errors?.['required']">
+      La duración es requerida.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Días y Horas</mat-label>
+    <input matInput formControlName="daysAndHours" />
+    <mat-error
+      *ngIf="createForm.controls['daysAndHours']?.errors?.['required']"
+    >
+      Los días y horas son requeridos.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Precio</mat-label>
+    <input matInput formControlName="price" />
+    <mat-error *ngIf="createForm.controls['price']?.errors?.['required']">
+      El precio es requerido.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Publicar</mat-label>
+    <mat-select formControlName="isPublished" required>
+      <mat-option *ngFor="let publicar of publicarOptions" [value]="publicar">{{ publicar }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="button-row">
+    <button mat-raised-button color="primary" (click)="checkForm()">
+      Crear Curso
+    </button>
+    <button mat-button mat-dialog-close>Cancelar</button>
+  </div>
+</div>

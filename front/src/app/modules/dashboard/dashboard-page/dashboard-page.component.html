@@ -1,1 +1,33 @@
-<p>Page works!</p>
+<mat-toolbar color="primary" class="expanded-toolbar">
+  <span>
+    <button mat-button routerLink="/">Hola,{{ user }}</button>
+    <button mat-button routerLink="/dashboard/profile">
+      <mat-icon>account_circle</mat-icon>perfil
+    </button>
+    <button mat-button routerLink="/dashboard/my_courses">
+      <mat-icon>description</mat-icon>Mis Cursos
+    </button>
+    <button mat-button routerLink="/dashboard/courses_list">
+      <mat-icon>list</mat-icon>Lista Cursos
+    </button>
+    <button *ngIf="adminlog" mat-button routerLink="/dashboard/courseedit">
+      <mat-icon>assignment</mat-icon>Cursos
+    </button>
+    <button *ngIf="adminlog" mat-button routerLink="/dashboard/useredit">
+      <mat-icon>manage_accounts</mat-icon>Usuarios
+    </button>
+  </span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-button (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
+  </div>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Logout
+  </button>
+</mat-menu>
+<router-outlet></router-outlet>

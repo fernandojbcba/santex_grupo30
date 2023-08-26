@@ -1,23 +1,31 @@
 const jwt = require('jsonwebtoken');
 
-function authenticateToken(req, res, next) {
-  const authHeader = req.headers.authorization;
-  const token = authHeader && authHeader.split(' ')[1];
-
-  if (!token) {
-    return res.status(401).json({ error: 'Token no proporcionado' });
-  }
-
-  jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
-    if (err) {
-      return res.status(403).json({ error: 'Token inválido' });
+async function authenticateToken(req, res, next) {
+  try {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ error: 'Token no proporcionado' });
     }
-    req.user = user;
-    return next();
-  });
 
-  // Agrega este return si no hay error para poder hacer commit
-  return undefined;
+    const decodedToken = await new Promise((resolve, reject) => {
+      jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+        if (err) reject(err);
+        resolve(decoded);
+      });
+    });
+    if (decodedToken.role === 'admin') {
+      req.user = decodedToken;
+      return next();
+    } if (decodedToken.id !== parseInt(req.params.userId, 10)) {
+      return res.status(403).json({ error: 'Acceso no autorizado' });
+    }
+
+    req.user = decodedToken;
+    return next();
+  } catch (error) {
+    return res.status(403).json({ error: 'Token inválido' });
+  }
 }
 
 module.exports = authenticateToken;
