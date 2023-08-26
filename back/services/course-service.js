@@ -4,8 +4,8 @@ class CourseService {
   async getAllCourses() {
     const courses = await Course.findAll({
       where: {
-        isDeleted: false, // Filtrar registros no borrados
-        isPublished: true, // Mostrar solo cursos publicados
+        isDeleted: false,
+        // isPublished: true,
       },
     });
     return courses;

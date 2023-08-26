@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../core/http/api.service'
+import { CourseService } from 'src/app/core/services/course/course.service'; 
 import { UserService } from 'src/app/core/services/user/user.service';
 import { Router } from '@angular/router';
+import { Course } from 'src/app/core/interfaces/courses/course.interface';
 @Component({
   selector: 'app-list-courses',
   templateUrl: './list-courses.component.html',
@@ -9,23 +10,25 @@ import { Router } from '@angular/router';
 
 })
 export class ListCoursesComponent implements OnInit {
+ 
   courses: any[] = [];
-
-  constructor(private http:ApiService, private http2:UserService, private router:Router,) {}
+  constructor(private courseService:CourseService, private userService:UserService, private router:Router,) {}
 
   ngOnInit() {
-    this.http.get<any>('/courses/list').subscribe(
+    
+  this.listcourse();
+  }
+  listcourse(){
+    this.courseService.get<Course[]>('/courses/list').subscribe(
       data => {
-        this.courses=data;
-      },
-      error => {
-        
+        this.courses = data.filter(Course => Course.isPublished === true);
+      
       }
     );
   }
   register(idcourse: any) {
     if (confirm('¿Estás seguro de que quieres inscribirte en este curso?')) {
-      this.http2.post<any>('/courses/enrolled/usercourse', idcourse).subscribe(
+      this.userService.post<any>('/courses/enrolled/usercourse', idcourse).subscribe(
         data => {
           alert('Inscripción exitosa!');
           this.router.navigateByUrl('/dashboard/my_courses');
