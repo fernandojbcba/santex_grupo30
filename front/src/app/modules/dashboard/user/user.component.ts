@@ -3,10 +3,11 @@ import { UserService } from '../../../core/services/user/user.service'
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserEditDialogComponent } from './user-edit-dialog/user-edit-dialog.component';
+import { UserCreateDialogComponent } from './user-create-dialog/user-create-dialog.component';
 @Component({
   selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css']
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
 export class UserEditComponent implements OnInit {
   allUsers: any[] = [];
@@ -52,4 +53,16 @@ export class UserEditComponent implements OnInit {
     });
   }
 
+  openCreateDialog() {
+    const dialogRef = this.dialog.open(UserCreateDialogComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'saved') {
+        
+        this.loadUsers();
+      }
+    });
+  }
 }

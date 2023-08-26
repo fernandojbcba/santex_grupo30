@@ -21,12 +21,15 @@ import { ListCoursesComponent } from './list-courses/list-courses.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProfileComponent } from './profile/profile.component';
-import { UserCreateComponent } from './user-create/user-create.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
-import { UserEditDialogComponent } from './user-edit/user-edit-dialog/user-edit-dialog.component';
+import { UserEditComponent } from './user/user.component';
+import { UserEditDialogComponent } from './user/user-edit-dialog/user-edit-dialog.component';
+import { UserCreateDialogComponent } from './user/user-create-dialog/user-create-dialog.component';
+import { CourseEditComponent } from './course/course.component';
+import { CourseCreateDialogComponent } from './course/course-create-dialog/course-create-dialog.component';
+import { CourseEditDialogComponent } from './course/course-edit-dialog/course-edit-dialog.component';
 
 @NgModule({
-  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent, UserCreateComponent, UserEditComponent, UserEditDialogComponent],
+  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent, UserEditComponent, UserEditDialogComponent, UserCreateDialogComponent, CourseEditComponent, CourseCreateDialogComponent, CourseEditDialogComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

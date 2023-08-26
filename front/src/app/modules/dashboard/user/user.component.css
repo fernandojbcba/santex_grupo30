@@ -1,15 +1,23 @@
 h2 {
     text-align: center;
   }
+.buttonCreate{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
   .tabla {
     display: flex;
     justify-content: center;
-  
-   
+    max-height: calc(100vh - 400px);
+    overflow-y: auto;
+
+    
   }
 .mat-elevation-z8 {
     width: 80%;
-    border-collapse: collapse;
+    border-collapse:collapse;
     border-spacing: 0;
   }
   
@@ -40,9 +48,15 @@ h2 {
   }
   
   /* Estilos para las filas */
-  .mat-row,
+  .mat-row{
+    display: table-row;
+  }
   .mat-header-row {
     display: table-row;
+        position: sticky;
+      top: 0;
+      background-color: white;
+      z-index: 10; 
   }
   
   /* Borde inferior para la última fila */

@@ -10,19 +10,21 @@ import {
   MAX_USERNAME_LENGTH,
   MIN_USERNAME_LENGTH,
   PASSWORD_PATTERN,
-} from '../../../core/interfaces/users/user.interface';
+} from '../../../../core/interfaces/users/user.interface';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { UserService } from 'src/app/core/services/user/user.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-user-create',
-  templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.css']
+  selector: 'app-user-create-dialog',
+  templateUrl: './user-create-dialog.component.html',
+  styleUrls: ['./user-create-dialog.component.css']
 })
-export class UserCreateComponent implements OnInit, OnDestroy{
+export class UserCreateDialogComponent implements OnInit, OnDestroy{
   public registerForm = this.formBuilder.group({ commodity: [null] });
   formSubscritions: Subscription = new Subscription();
   constructor(
+    public dialogRef: MatDialogRef<UserCreateDialogComponent>,
     private formBuilder: UntypedFormBuilder,
     private userService: UserService,
     private toastService: ToastService,
@@ -67,13 +69,13 @@ export class UserCreateComponent implements OnInit, OnDestroy{
         .subscribe(
           (res: any) => {
             this.toastService.UserCreateok("Usuario Creado Correctamente");
-          
+            this.dialogRef.close('saved'); 
             
           },
           (err) => {
             // 
            this.toastService.presentToast("eroor al crear usuario");
-
+           console.error('Error al crear el usuario:', err);
           }
         )
     );
@@ -87,4 +89,5 @@ export class UserCreateComponent implements OnInit, OnDestroy{
     this.formSubscritions.unsubscribe();
   }
 }
+
 

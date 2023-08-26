@@ -4,9 +4,8 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { ListCoursesComponent } from './list-courses/list-courses.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { ProfileComponent } from './profile/profile.component';
-import { UserCreateComponent } from './user-create/user-create.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
-
+import { UserEditComponent } from './user/user.component';
+import { CourseEditComponent } from './course/course.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,8 +15,8 @@ const routes: Routes = [
       { path: 'courses_list', component: ListCoursesComponent },
       { path: 'my_courses', component: MyCoursesComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'usercreate', component: UserCreateComponent },
       { path: 'useredit', component: UserEditComponent },
+      {path: 'courseedit', component:CourseEditComponent }
     ]
   }
 ];

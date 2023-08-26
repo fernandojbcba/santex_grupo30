@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Edit Course</h2>
+<div mat-dialog-content [formGroup]="editForm">
+  <mat-form-field>
+    <input matInput placeholder="Title" formControlName="title">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Description" formControlName="description"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Days and Hours" formControlName="daysAndHours">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Duration" formControlName="duration">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Price" formControlName="price">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Publication Status</mat-label>
+    <mat-select formControlName="isPublished">
+      <mat-option *ngFor="let option of publicarOptions" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Cancel</button>
+  <button mat-button color="primary" (click)="editCourse()">Save</button>
+</div>
