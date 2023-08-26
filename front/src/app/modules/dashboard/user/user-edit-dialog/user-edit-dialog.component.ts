@@ -27,12 +27,14 @@ export class UserEditDialogComponent {
       lastName: [user.lastName, Validators.required],
       userName: [user.userName, Validators.required],
       email: [user.email, [Validators.required, Validators.email]],
-      password:[user.password],
+      password:[],
       RoleName:[user.roleName],
-    });
+    }
+    );
   }
 
   onSaveChanges() {
+
     if (this.editForm.valid) {
       const editedUser = this.editForm.value;
       const roleName: keyof typeof this.roleMap = editedUser.RoleName;
