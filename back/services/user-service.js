@@ -31,7 +31,10 @@ class UserService {
   }
 
   async getAllUsers() {
-    return User.findAll({ include: 'role' });
+    return User.findAll({
+      include: 'role',
+      attributes: { exclude: ['password'] },
+    });
   }
 
   async updateUser(userId, updatedFields) {

@@ -44,7 +44,6 @@ export class CourseComponent implements OnInit {
     )
   }
   openEditDialog(course: any) {
-    console.log(course)
     const dialogRef = this.dialog.open(CourseEditDialogComponent, {
       width: '400px', // Ancho del diálogo
       data: course 

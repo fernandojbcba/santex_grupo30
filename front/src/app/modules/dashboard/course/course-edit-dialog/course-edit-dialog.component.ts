@@ -42,7 +42,7 @@ export class CourseEditDialogComponent  {
     const courseData = this.editForm?.value;
     const isPublished: keyof typeof this.publicarMap = courseData.isPublished;
     courseData.isPublished = this.publicarMap[isPublished];
-    console.log(courseData)
+
       this.courseService.updateCourse(this.course.id ,courseData).subscribe(
         (res: any) => {
           this.dialogRef.close('saved');

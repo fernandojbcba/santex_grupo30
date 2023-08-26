@@ -40,7 +40,6 @@ const createUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
   try {
     const users = await userService.getAllUsers();
-
     // Crear una nueva lista de usuarios con el campo "RoleName" en lugar de "RoleId"
     const usersWithRoleName = users.map((user) => {
       // quito role anidado, roleID y pass del listado al desestructurar alobjeto user
