@@ -5,11 +5,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserEditDialogComponent } from './user-edit-dialog/user-edit-dialog.component';
 import { UserCreateDialogComponent } from './user-create-dialog/user-create-dialog.component';
 @Component({
-  selector: 'app-user-edit',
+  selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserEditComponent implements OnInit {
+export class UserComponent implements OnInit {
   allUsers: any[] = [];
   displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'rol', 'edit' , 'delete']; 
   constructor(private userService:UserService, private toastService:ToastService, private dialog: MatDialog) { }

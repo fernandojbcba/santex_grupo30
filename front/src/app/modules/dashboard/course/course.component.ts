@@ -11,11 +11,11 @@ import { CourseCreateDialogComponent } from './course-create-dialog/course-creat
   styleUrls: ['./course.component.css']
 })
 
-export class CourseEditComponent implements OnInit {
+export class CourseComponent implements OnInit {
   
   
   allCourses: any[] = [];
-  displayedColumns: string[] = [ 'title', 'description', 'daysAndHours', 'duration', 'price', 'isPublished', 'edit', 'delete'];
+  displayedColumns: string[] = [ 'title', 'description', 'daysAndHours', 'duration', 'price', 'isPublished', 'edit', 'delete' ];
   constructor(private courseService:CourseService, private toastService:ToastService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
