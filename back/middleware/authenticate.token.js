@@ -14,13 +14,13 @@ async function authenticateToken(req, res, next) {
         resolve(decoded);
       });
     });
-    if (decodedToken.role === 'admin') {
+    /* if (decodedToken.role === 'admin') {
       req.user = decodedToken;
       return next();
     } if (decodedToken.id !== parseInt(req.params.userId, 10)) {
       return res.status(403).json({ error: 'Acceso no autorizado' });
     }
-
+*/
     req.user = decodedToken;
     return next();
   } catch (error) {
