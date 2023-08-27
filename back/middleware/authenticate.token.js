@@ -21,6 +21,7 @@ async function authenticateToken(req, res, next) {
     //   return res.status(403).json({ error: 'Acceso no autorizado' });
     // }
 
+
     req.user = decodedToken;
     return next();
   } catch (error) {
