@@ -1,36 +1,4 @@
-/*'use strict';
 
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Users', [
-      {
-        firstName: 'John',
-        lastName: 'Doe',
-        userName: 'johndoe',
-        password: 'password123',
-        email: 'john@example.com',
-        RoleId: 1, // Assuming 'admin' role has id 1
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        firstName: 'Jane',
-        lastName: 'Smith',
-        userName: 'janesmith',
-        password: 'password456',
-        email: 'jane@example.com',
-        RoleId: 2, // Assuming 'user' role has id 2
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    ]);
-  },
-
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Users', null, {});
-  },
-};
-*/
 'use strict';
 
 module.exports = {
