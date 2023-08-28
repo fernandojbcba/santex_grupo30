@@ -47,7 +47,9 @@ class UserService {
     Object.assign(existingUser, updatedFields);
     await existingUser.save();
 
-    return existingUser;
+    return User.findByPk(userId, {
+      attributes: { exclude: ['password'] },
+    });
   }
 
   async deleteUser(userId) {

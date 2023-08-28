@@ -8,14 +8,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Users } from 'src/app/core/interfaces/users/user.interface';
-
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit ,AfterViewInit{
-  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'rol', 'edit' , 'delete']; 
+  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'rol', 'button' ]; 
   dataSource = new MatTableDataSource<Users>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
