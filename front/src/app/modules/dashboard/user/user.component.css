@@ -9,9 +9,11 @@ h2 {
 
   .tabla {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    max-height: calc(100vh - 400px);
-    overflow-y: auto;
+
+
 
     
   }
@@ -20,6 +22,9 @@ h2 {
     border-collapse:collapse;
     border-spacing: 0;
   }
+.buscar{
+  width: 80%;
+}
   
   /* Estilos para las celdas del encabezado */
   .mat-header-cell {
@@ -67,4 +72,9 @@ h2 {
   /* Cambiar color al pasar el mouse sobre una fila */
   .mat-row:hover {
     background-color: #f5f5f5;
+  }
+  .mat-paginator {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
   }
