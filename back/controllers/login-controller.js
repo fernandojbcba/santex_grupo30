@@ -17,6 +17,8 @@ async function loginController(req, res, next) {
       token: userResponse.accessToken,
     });
   } catch (error) {
+    const { statusCode } = error;
+    res.status(statusCode).json({ message: error.message });
     next(error);
   }
 }

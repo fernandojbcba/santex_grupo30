@@ -82,7 +82,7 @@ class UserService {
     });
 
     if (!userRecord) {
-      throw new NotFound('Usuario no encontrado');
+      throw new NotAuthorized('Usuario no encontrado');
     }
 
     const passwordMatches = await bcrypt.compare(password, userRecord.password);
