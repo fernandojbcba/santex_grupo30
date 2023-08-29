@@ -1,22 +1,21 @@
 h2 {
   text-align: center;
   margin-top: 10px;
+  font-family: 'arialRounder', sans-serif;
 }
-.buttonCreate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .tabla {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 20%;
+  margin:10px 10%;
+  background-color: #fff;
+  border-radius: 20px;
 }
 .mat-elevation-z8 {
-  width: 80%;
+  width: 90%;
   border-collapse: collapse;
   border-spacing: 0;
 }

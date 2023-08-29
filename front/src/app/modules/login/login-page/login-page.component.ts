@@ -65,10 +65,19 @@ export class LoginPageComponent implements OnInit, OnDestroy {
             this.router.navigateByUrl('/dashboard');
           },
           (err) => {
-         
-                this.toastService.presentToast("error en contraseña");
-              
-            
+            const { message } = err.error;
+          
+            if (err instanceof HttpErrorResponse) {
+              if (!navigator.onLine) {
+                this.toastService.presentToast("No hay conexión a Internet.");
+              } else {
+                if (err.status === 401) {
+                  this.toastService.presentToast(message);
+                } else {
+                  this.toastService.presentToast("Error en la conexión.");
+                }
+              }
+            }
           }
         )
     );
