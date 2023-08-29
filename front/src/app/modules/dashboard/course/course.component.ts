@@ -49,7 +49,8 @@ export class CourseComponent implements OnInit, AfterViewInit{
     
   }
   delete(courseId:number){
-    this.courseService.deleteCourse(courseId)
+    if (confirm('¿Estás seguro de que quieres eliminar este curso?')) {
+      this.courseService.deleteCourse(courseId)
     .subscribe(
       (res: any) => {
         this.toastService.UserCreateok("Curso borrado Correctamente");
@@ -58,6 +59,8 @@ export class CourseComponent implements OnInit, AfterViewInit{
       },
       
     )
+    }
+    
   }
   openEditDialog(course: any) {
     const dialogRef = this.dialog.open(CourseEditDialogComponent, {

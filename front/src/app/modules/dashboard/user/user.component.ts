@@ -48,6 +48,7 @@ export class UserComponent implements OnInit ,AfterViewInit{
     
   }
   delete(userId:number){
+    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
     this.userService.deleteUser(userId)
     .subscribe(
       (res: any) => {
@@ -58,6 +59,7 @@ export class UserComponent implements OnInit ,AfterViewInit{
       
     )
   }
+}
   openEditDialog(user: any) {
     const dialogRef = this.dialog.open(UserEditDialogComponent, {
       width: '400px', // Ancho del diálogo

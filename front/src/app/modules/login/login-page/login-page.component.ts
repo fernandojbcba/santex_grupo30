@@ -1,14 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  Validators,
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { MAX_PASSWORD_LENGTH, MAX_USERNAME_LENGTH, MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH } from '../../../../app/core/interfaces/users/user.interface';
+import {
+  MAX_PASSWORD_LENGTH,
+  MAX_USERNAME_LENGTH,
+  MIN_PASSWORD_LENGTH,
+  MIN_USERNAME_LENGTH,
+} from '../../../../app/core/interfaces/users/user.interface';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
   public loginForm = this.formBuilder.group({ commodity: [null] });
@@ -18,11 +28,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private formBuilder: UntypedFormBuilder,
     private router: Router,
     private authService: AuthService,
-    private toastService: ToastService,
-  
-  ) {
-  }
-
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.crearLoginForm();
@@ -30,16 +37,21 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   private crearLoginForm() {
     this.loginForm = this.formBuilder.group({
-      username: new UntypedFormControl(null, Validators.compose([
-        Validators.required,
-        Validators.minLength(MIN_USERNAME_LENGTH),
-        Validators.maxLength(MAX_USERNAME_LENGTH)
-      ])),
-      password: new UntypedFormControl(null, Validators.compose([
-        Validators.required,
-        Validators.minLength(MIN_PASSWORD_LENGTH),
-        Validators.maxLength(MAX_PASSWORD_LENGTH)
-      ]))
+      username: new UntypedFormControl(
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(MAX_USERNAME_LENGTH),
+        ])
+      ),
+      password: new UntypedFormControl(
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(MAX_PASSWORD_LENGTH),
+        ])
+      ),
     });
   }
 
@@ -51,17 +63,16 @@ export class LoginPageComponent implements OnInit, OnDestroy {
           (res: any) => {
             this.authService.setUser(res);
             this.router.navigateByUrl('/dashboard');
-            
           },
           (err) => {
-            // 
-           this.toastService.presentToast(err.error);
-
+         
+                this.toastService.presentToast("error en contraseña");
+              
+            
           }
         )
     );
   }
-
   public checkForm() {
     if (this.loginForm.valid) {
       this.login();
