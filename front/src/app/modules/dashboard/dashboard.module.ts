@@ -27,6 +27,9 @@ import { UserCreateDialogComponent } from './user/user-create-dialog/user-create
 import { CourseComponent } from './course/course.component';
 import { CourseCreateDialogComponent } from './course/course-create-dialog/course-create-dialog.component';
 import { CourseEditDialogComponent } from './course/course-edit-dialog/course-edit-dialog.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent, UserComponent, UserEditDialogComponent, UserCreateDialogComponent, CourseComponent, CourseCreateDialogComponent, CourseEditDialogComponent],
@@ -54,6 +57,10 @@ import { CourseEditDialogComponent } from './course/course-edit-dialog/course-ed
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDialogModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+   
     
   ],
   exports: [

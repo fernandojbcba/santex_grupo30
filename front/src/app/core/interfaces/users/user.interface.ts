@@ -5,7 +5,19 @@ export interface User {
     updatedAt: Date;
     createdAt: Date;
   }
-
+export interface Users {
+  id: number;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+  roleName: string;
+  }
+  
+  
+  
   export const MIN_USERNAME_LENGTH: number = 5;
   export const MAX_USERNAME_LENGTH: number = 60;
   export const MIN_PASSWORD_LENGTH: number = 5;

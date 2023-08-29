@@ -17,7 +17,6 @@ async function loginController(req, res, next) {
       token: userResponse.accessToken,
     });
   } catch (error) {
-    // Manejo de errores
     next(error);
   }
 }
