@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 export class DashboardPageComponent implements  OnInit{
   adminlog:boolean = false;
+  teacherlog:boolean = false;
   dateUser?: string | { id: any; user: any; role: any; };
   id: any;
   user: any;
@@ -27,6 +28,9 @@ export class DashboardPageComponent implements  OnInit{
     }
     if (this.role === 'admin'){
       this.adminlog = true;
+    };
+    if (this.role === 'teacher'){
+      this.teacherlog = true;
     }
   }
   logout() {

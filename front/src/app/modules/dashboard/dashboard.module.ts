@@ -30,9 +30,10 @@ import { CourseEditDialogComponent } from './course/course-edit-dialog/course-ed
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TeacherComponent } from './teacher/teacher.component';
 
 @NgModule({
-  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent, UserComponent, UserEditDialogComponent, UserCreateDialogComponent, CourseComponent, CourseCreateDialogComponent, CourseEditDialogComponent],
+  declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent, UserComponent, UserEditDialogComponent, UserCreateDialogComponent, CourseComponent, CourseCreateDialogComponent, CourseEditDialogComponent, TeacherComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

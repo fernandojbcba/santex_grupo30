@@ -16,6 +16,9 @@
     <button *ngIf="adminlog" mat-button routerLink="/dashboard/useredit">
       <mat-icon>manage_accounts</mat-icon>Usuarios
     </button>
+    <button *ngIf="adminlog || teacherlog" mat-button routerLink="/dashboard/teacher">
+      <mat-icon>school</mat-icon>Teacher
+    </button>
   </span>
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
     <button mat-button (click)="logout()">
