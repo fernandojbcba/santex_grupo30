@@ -17,7 +17,7 @@ class CourseService {
       include: [
         {
           model: Course,
-          as: 'Course',
+          as: 'teachers',
           where: { isDeleted: false }, // Filtrar por registros no borrados
         },
       ],
@@ -50,6 +50,22 @@ class CourseService {
     }
     await course.update({ isDeleted: true });
     // await course.destroy();
+  }
+
+  async getCourseById(courseId) {
+    try {
+      const course = await Course.findOne({
+        where: { id: courseId, isDeleted: false },
+      });
+
+      if (!course) {
+        throw new Error('Course not found');
+      }
+
+      return course;
+    } catch (error) {
+      throw new Error('Error fetching course by ID');
+    }
   }
 }
 

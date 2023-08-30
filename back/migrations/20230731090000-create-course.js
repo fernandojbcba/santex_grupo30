@@ -18,27 +18,27 @@ module.exports = {
         allowNull: false
       },
       daysAndHours: {
-        type: Sequelize.STRING, // Agrega el campo de días y horarios
+        type: Sequelize.STRING, 
         allowNull: true
       },
       duration: {
-        type: Sequelize.STRING, // Agrega el campo de duración
+        type: Sequelize.STRING, 
         allowNull: true
       },
       price: {
-        type: Sequelize.INTEGER, // Agrega el campo de precio
+        type: Sequelize.INTEGER, 
         allowNull: true
       },
       imageUrl: {
-        type: Sequelize.STRING, // Agrega el campo de URL de imagen
+        type: Sequelize.STRING, 
         allowNull: true
       },
       isPublished: {
-        type: Sequelize.BOOLEAN, // Agrega el campo de publicación
+        type: Sequelize.BOOLEAN, 
         defaultValue: false
       },
       isDeleted: {
-        type: Sequelize.BOOLEAN, // Agrega el campo de eliminación
+        type: Sequelize.BOOLEAN, 
         defaultValue: false
       },
       createdAt: {

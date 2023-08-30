@@ -1,21 +1,42 @@
-const { Model } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
-  class UserTeacherCourse extends Model {
-    static associate(models) {
-      UserTeacherCourse.belongsTo(models.User, { foreignKey: 'UserId' });
-      UserTeacherCourse.belongsTo(models.Course, { foreignKey: 'CourseId' });
-    }
-  }
-  UserTeacherCourse.init(
-    {
-      UserId: DataTypes.INTEGER,
-      CourseId: DataTypes.INTEGER,
+  const UserTeacherCourse = sequelize.define('UserTeacherCourse', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-      sequelize,
-      modelName: 'UserTeacherCourse',
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-  );
+    TeacherCourseId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+  }, {
+    tableName: 'userteachercourse', // nombre real de la tabla
+  });
+
+  UserTeacherCourse.associate = (models) => {
+    UserTeacherCourse.belongsTo(models.Course, {
+      // foreignKey: 'CourseId',
+      foreignKey: 'TeacherCourseId',
+      onDelete: 'CASCADE',
+    });
+
+    UserTeacherCourse.belongsTo(models.User, {
+      foreignKey: 'UserId',
+      onDelete: 'CASCADE',
+    });
+  };
+
   return UserTeacherCourse;
 };
