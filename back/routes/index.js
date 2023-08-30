@@ -7,6 +7,7 @@ const errors = require('../middleware/error_handler.middleware');
 const loginRoute = require('./login-route');
 const courseRoute = require('./course-route');
 const userRoute = require('./user-route');
+const teacherRoute = require('./teacher-route');
 
 const router = Express();
 
@@ -14,6 +15,7 @@ const router = Express();
 router.use('/login', loginRoute);
 router.use('/courses', courseRoute);
 router.use('/user', userRoute);
+router.use('/teacher', teacherRoute);
 // use=
 router.use('/ping', (req, res) => {
   res.json({

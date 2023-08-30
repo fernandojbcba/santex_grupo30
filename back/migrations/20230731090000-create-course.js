@@ -7,27 +7,51 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       title: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       description: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+      },
+      daysAndHours: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      duration: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      price: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      imageUrl: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      isPublished: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      isDeleted: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Courses');
-  }
+  },
 };
