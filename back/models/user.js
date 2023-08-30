@@ -6,7 +6,16 @@ module.exports = (sequelize) => {
       // Define las asociaciones aquí
       User.belongsTo(models.Role, { foreignKey: 'RoleId', as: 'role' });
       User.belongsToMany(models.Course, {
-        through: 'UserCourse', foreignKey: 'UserId', otherKey: 'CourseId', as: 'courses',
+        through: 'UserCourse',
+        foreignKey: 'UserId',
+        otherKey: 'CourseId',
+        as: 'courses', // cursos y usuarios inscriptos
+      });
+      User.belongsToMany(models.Course, {
+        through: 'UserTeacherCourse',
+        foreignKey: 'UserId',
+        otherKey: 'TeacherCourseId',
+        as: 'TeacherCourses', // cursos en que el usuario es teacher
       });
     }
   }

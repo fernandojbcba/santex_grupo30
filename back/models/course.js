@@ -3,8 +3,19 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Course extends Model {
     static associate(models) {
-      // Define las asociaciones aquí
-      Course.belongsToMany(models.User, { through: 'UserCourse', foreignKey: 'CourseId', as: 'users' });
+      // Defino mis asociaciones
+      Course.belongsToMany(models.User, {
+        through: 'UserCourse',
+        foreignKey: 'CourseId',
+        as: 'users',
+      });// user inscriptos en cursos
+
+      Course.belongsToMany(models.User, {
+        through: 'UserTeacherCourse',
+        foreignKey: 'TeacherCourseId',
+        otherKey: 'UserId',
+        as: 'teachers',
+      });// Alias para relacion teacher que enseña el curso
     }
   }
 
