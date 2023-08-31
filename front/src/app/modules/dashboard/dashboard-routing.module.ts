@@ -6,6 +6,7 @@ import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserComponent } from './user/user.component';
 import { CourseComponent } from './course/course.component';
+import { TeacherComponent } from './teacher/teacher.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,7 +17,8 @@ const routes: Routes = [
       { path: 'my_courses', component: MyCoursesComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'useredit', component: UserComponent },
-      {path: 'courseedit', component:CourseComponent }
+      {path: 'courseedit', component:CourseComponent },
+      {path: 'teacher', component:TeacherComponent}
     ]
   }
 ];

@@ -1,4 +1,6 @@
-const { UserTeacherCourse, Course } = require('../models');
+const {
+  UserTeacherCourse, Course, User, UserCourse,
+} = require('../models');
 
 async function addCourse(userId, teacherCourseId) {
   try {
@@ -45,6 +47,27 @@ async function addTeacherCourse(userId, teacherCourseId) {
   }
 }
 
+async function getUsersInCourseForTeacher(teacherId, courseId) {
+  try {
+    const usersInCourse = await UserCourse.findAll({
+
+      where: { CourseId: courseId },
+      include: [
+        {
+          model: User,
+          as: 'User',
+        },
+      ],
+    });
+
+    return usersInCourse.map((userCourse) => userCourse.User);
+  } catch (error) {
+    throw new Error('Error fetching users in course for teacher');
+  }
+}
+
 module.exports = {
-  addTeacherCourse, getCoursesForTeacher,
+  addTeacherCourse,
+  getCoursesForTeacher,
+  getUsersInCourseForTeacher,
 };
