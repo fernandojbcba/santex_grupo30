@@ -1,4 +1,6 @@
-const { UserTeacherCourse, Course, User } = require('../models');
+const {
+  UserTeacherCourse, Course, User, UserCourse,
+} = require('../models');
 
 async function addCourse(userId, teacherCourseId) {
   try {
@@ -47,8 +49,9 @@ async function addTeacherCourse(userId, teacherCourseId) {
 
 async function getUsersInCourseForTeacher(teacherId, courseId) {
   try {
-    const usersInCourse = await UserTeacherCourse.findAll({
-      where: { UserId: teacherId, TeacherCourseId: courseId },
+    const usersInCourse = await UserCourse.findAll({
+
+      where: { CourseId: courseId },
       include: [
         {
           model: User,
