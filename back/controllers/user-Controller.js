@@ -122,6 +122,15 @@ const viewProfile = async (req, res) => {
   }
 };
 
+async function getAllTeachers(req, res) {
+  try {
+    const teachers = await userService.getAllTeachers();
+    res.json(teachers);
+  } catch (error) {
+    res.status(500).json({ error: 'Ocurrió un error al buscar profesores.' });
+  }
+}
+
 module.exports = {
-  createUser, updateUser, deleteUser, viewProfile, getAllUsers,
+  createUser, updateUser, deleteUser, viewProfile, getAllUsers, getAllTeachers,
 };

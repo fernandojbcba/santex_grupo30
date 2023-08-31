@@ -120,6 +120,18 @@ class UserService {
     });
     return UserProfile;
   }
+
+  async getAllTeachers() {
+    try {
+      const teachers = await User.findAll({
+        where: { role: 'teacher' },
+        attributes: ['id', 'firstName', 'lastName', 'userName', 'email'],
+      });
+      return teachers;
+    } catch (error) {
+      throw new Error('Ocurrió un error al buscar profesores.');
+    }
+  }
 }
 
 module.exports = UserService;
