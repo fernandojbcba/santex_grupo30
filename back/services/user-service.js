@@ -124,7 +124,14 @@ class UserService {
   async getAllTeachers() {
     try {
       const teachers = await User.findAll({
-        where: { role: 'teacher' },
+        include: [
+          {
+            model: Role,
+            as: 'role', // Especifica el alias 'role'
+            where: { roleName: 'teacher' },
+            attributes: [],
+          },
+        ],
         attributes: ['id', 'firstName', 'lastName', 'userName', 'email'],
       });
       return teachers;
