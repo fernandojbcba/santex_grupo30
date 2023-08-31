@@ -1,23 +1,33 @@
 <mat-toolbar color="primary" class="expanded-toolbar">
   <span>
-    <button mat-button routerLink="/">Hola,{{ user }}</button>
-    <button mat-button routerLink="/dashboard/profile">
-      <mat-icon>account_circle</mat-icon>perfil
-    </button>
-    <button mat-button routerLink="/dashboard/my_courses">
+    <!-- user -->
+    
+    <button *ngIf="!adminlog && !teacherlog" mat-button routerLink="/dashboard/my_courses">
       <mat-icon>description</mat-icon>Mis Cursos
     </button>
-    <button mat-button routerLink="/dashboard/courses_list">
+    <button *ngIf="!adminlog && !teacherlog" mat-button routerLink="/dashboard/courses_list">
       <mat-icon>list</mat-icon>Lista Cursos
     </button>
+    <!-- admin -->
     <button *ngIf="adminlog" mat-button routerLink="/dashboard/courseedit">
       <mat-icon>assignment</mat-icon>Cursos
     </button>
     <button *ngIf="adminlog" mat-button routerLink="/dashboard/useredit">
       <mat-icon>manage_accounts</mat-icon>Usuarios
     </button>
+    <button *ngIf="adminlog" mat-button routerLink="/dashboard/teacher">
+      <mat-icon>school</mat-icon>Teacher
+    </button>
+    <!-- teacher -->
+    <button *ngIf="teacherlog" mat-button routerLink="/dashboard/teacher">
+      <mat-icon>school</mat-icon>Teacher
+    </button>
   </span>
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <h2>Hola,{{ user }}</h2>
+    <button mat-button routerLink="/dashboard/profile">
+      <mat-icon>account_circle</mat-icon>perfil
+    </button>
     <button mat-button (click)="logout()">
       <mat-icon>exit_to_app</mat-icon>
       Logout
