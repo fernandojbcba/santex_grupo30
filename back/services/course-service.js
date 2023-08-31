@@ -17,7 +17,7 @@ class CourseService {
       include: [
         {
           model: Course,
-          as: 'teachers',
+          // as: 'teachers',
           where: { isDeleted: false }, // Filtrar por registros no borrados
         },
       ],

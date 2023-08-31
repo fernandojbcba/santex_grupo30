@@ -1,6 +1,7 @@
 const {
   addTeacherCourse,
   getCoursesForTeacher,
+  getUsersInCourseForTeacher,
 } = require('../services/teachercourse-service');
 
 async function addTeacherCourseController(req, res) {
@@ -39,7 +40,21 @@ async function getTeacherEnrolledCourses(req, res) {
   }
 }
 
+async function getUsersInCourse(req, res) {
+  const { teacher } = req; // Obtener profesor autenticado desde el middleware
+  const { courseId } = req.params;
+
+  try {
+    // Llama a la función para obtener usuarios inscritos en el curso
+    const usersInCourse = await getUsersInCourseForTeacher(teacher.id, courseId);
+    res.json(usersInCourse);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   addTeacherCourseController,
   getTeacherEnrolledCourses,
+  getUsersInCourse,
 };
