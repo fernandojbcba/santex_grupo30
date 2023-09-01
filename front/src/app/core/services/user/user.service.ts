@@ -75,4 +75,9 @@ export class UserService {
     return this.http.put<T>(url,body)
 
   }
+  public getStudents<T>(url: string, params?: HttpParams): Observable<T> {
+    
+    return this.http.get<T>(url);
+    
+  }
 }

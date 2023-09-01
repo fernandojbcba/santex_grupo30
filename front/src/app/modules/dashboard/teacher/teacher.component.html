@@ -1,1 +1,20 @@
-<h2>Mis Cursos</h2>
+<div class="container">
+  <div class="menu-courses-teacher">
+    <h2>Mis Cursos</h2>
+    <mat-card-content class="couses_list">
+      <div *ngFor="let coursen of myCourses; let i = index">
+        <button class="ButtonCourse"
+          mat-raised-button
+          color="accent"
+          (click)="showStudents(coursen.id)"
+        >
+          {{ coursen.title }}
+        </button>
+      </div>
+    </mat-card-content>
+  </div>
+  <div class="students-courses-teacher">
+    <app-students-course [idcourse]="selectedCourse"></app-students-course>
+  </div>
+  <div></div>
+</div>

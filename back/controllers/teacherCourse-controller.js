@@ -47,7 +47,6 @@ async function getUsersInCourse(req, res) {
   try {
     // Llama a la función para obtener usuarios inscritos en el curso
     const usersInCourse = await getUsersInCourseForTeacher(user.id, courseId);
-    console.log(`user${user.id}course${courseId}`);
     res.json(usersInCourse);
   } catch (error) {
     res.status(500).json({ error: error.message });

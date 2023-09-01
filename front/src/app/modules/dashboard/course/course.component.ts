@@ -16,7 +16,7 @@ import { Course } from 'src/app/core/interfaces/courses/course.interface';
 
 export class CourseComponent implements OnInit, AfterViewInit{
   dataSource = new MatTableDataSource<Course>();
-  
+  dataTeacher:any[] = [];
   displayedColumns: string[] = [ 'title', 'description', 'daysAndHours', 'duration', 'price', 'isPublished', 'button' ];
   @ViewChild(MatPaginator) paginator!: MatPaginator
   @ViewChild(MatSort) sort!: MatSort;
@@ -24,6 +24,7 @@ export class CourseComponent implements OnInit, AfterViewInit{
 
   ngOnInit(): void {
     this.loadCourses()
+    this.loadTeacher()
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -37,6 +38,16 @@ export class CourseComponent implements OnInit, AfterViewInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
     
   }
+  loadTeacher(){  this.courseService.get<any>('/user/teachers').subscribe(
+    (data: Course[]) => {
+      this.dataTeacher = data; 
+      console.log(this.dataTeacher)
+    },
+    error => {
+     
+    }
+  );}
+
   loadCourses(){
     this.courseService.get<any>('/courses/list').subscribe(
       (data: Course[]) => {

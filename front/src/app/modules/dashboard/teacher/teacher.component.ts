@@ -8,21 +8,27 @@ import { UserService } from '../../../core/services/user/user.service'
 export class TeacherComponent implements OnInit {
 
   myCourses: any[] = [];
-  displayedColumns: string[] = ['title', 'description', 'alumnos']; 
+  selectedCourse: number = 0 ;
 
   constructor(private http:UserService) { }
 
   ngOnInit(): void {
-    this.http.get<any>('teacher/enrolled/:id').subscribe(
-      data => {
-        this.myCourses=data;
-      },
-      error => {
-       
-      }
-    );
+    this.loadcourses();
     
   }
- 
+ public loadcourses(){
+  this.http.get<any>('/teacher/enrolled/:id').subscribe(
+    data => {
+      this.myCourses=data;
+    },
+    error => {
+    }
+  );
+ }
+
+
+  showStudents(coursenumber: number): void {
+    this.selectedCourse = coursenumber;
+  }
 }
 
