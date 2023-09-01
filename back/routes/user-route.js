@@ -12,7 +12,5 @@ router.get('/list', authenticateToken, isAdmin, userController.getAllUsers);
 router.get('/profile/:userId', authenticateToken, userController.viewProfile);
 
 router.get('/teachers', authenticateToken, isAdmin, userController.getAllTeachers);
-router.get('/teacher-list', authenticateToken, isAdmin, userController.getTeacherUsers);
-
 
 module.exports = router;
