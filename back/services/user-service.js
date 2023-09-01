@@ -132,7 +132,7 @@ class UserService {
             attributes: [],
           },
         ],
-        attributes: ['id', 'firstName', 'lastName', 'userName', 'email'],
+        attributes: ['id', 'userName'],
       });
       return teachers;
     } catch (error) {

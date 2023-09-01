@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit{
   @Input() idcourse: any = null;
-
+  course:boolean = false
   displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'button' ]; 
   dataSource = new MatTableDataSource<Users>();
 
@@ -23,12 +23,16 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
   ngOnInit(): void {
     // Se llama a la función inicialmente al cargar el componente
     this.getEstudiantes();
+
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     // Detectar cambios en la propiedad 'course' y llamar a la función si cambia
     if (changes["idcourse"] && !changes["idcourse"].firstChange) {
+
       this.getEstudiantes();
+      this.comprobaridcourse();
     }
   }
   ngAfterViewInit() {
@@ -37,6 +41,14 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
     if(this.dataSource.data.length > 0) {
       this.paginator._intl.itemsPerPageLabel = 'Items por pagina'
     }
+  }
+  comprobaridcourse(){
+if (this.idcourse == null || this.idcourse == 0 ){
+  this.course = false
+}else{
+  this.course = true
+}
+
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

@@ -10,17 +10,14 @@
     background-color: #FFF;
   
   }
-  .cards{
-    
-    
-  }
+  
   .menu-courses-teacher{
     width: 20%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    flex-wrap: wrap;
   }
   .students-courses-teacher{
     width: 80%;
@@ -30,4 +27,12 @@
     flex-direction: column;
     align-items: center;
     
+  }
+  .ButtonCourse{
+    width: 100%;
+    margin-top: 10px;
+
+  }
+  app-students-course{
+    width: 100%;
   }

@@ -3,7 +3,7 @@
     <h2>Mis Cursos</h2>
     <mat-card-content class="couses_list">
       <div *ngFor="let coursen of myCourses; let i = index">
-        <button
+        <button class="ButtonCourse"
           mat-raised-button
           color="accent"
           (click)="showStudents(coursen.id)"
