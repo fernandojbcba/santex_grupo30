@@ -41,7 +41,7 @@ export class CourseComponent implements OnInit, AfterViewInit{
   loadTeacher(){  this.courseService.get<any>('/user/teachers').subscribe(
     (data: Course[]) => {
       this.dataTeacher = data; 
-      console.log(this.dataTeacher)
+   
     },
     error => {
      
