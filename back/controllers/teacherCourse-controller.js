@@ -1,8 +1,8 @@
 const {
-  addTeacherCourse,
-  getCoursesForTeacher,
-  editTeacherCourse,
-  deleteTeacherCourseById,
+   addTeacherCourse,
+   getCoursesForTeacher,
+   editTeacherCourse,
+   deleteTeacherCourseById,
 } = require('../services/teachercourse-service');
 
 async function addTeacherCourseController(req, res) {
@@ -75,9 +75,23 @@ async function deleteTeacherCourseController(req, res) {
   return null;
 }
 
+async function getUsersInCourse(req, res) {
+  const { user } = req; // Obtener profesor autenticado desde el middleware
+  const { courseId } = req.params;
+
+  try {
+    // Llama a la función para obtener usuarios inscritos en el curso
+    const usersInCourse = await getUsersInCourseForTeacher(user.id, courseId);
+    res.json(usersInCourse);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
-  addTeacherCourseController,
-  getTeacherEnrolledCourses,
-  editTeacherCourseController,
-  deleteTeacherCourseController,
+addTeacherCourseController,
+   getTeacherEnrolledCourses,
+   editTeacherCourseController,
+   deleteTeacherCourseController,
+
 };

@@ -1,4 +1,6 @@
-const { UserTeacherCourse, Course } = require('../models');
+const {
+  UserTeacherCourse, Course, User, UserCourse,
+} = require('../models');
 
 async function addCourse(userId, teacherCourseId) {
   try {
@@ -84,7 +86,6 @@ async function editTeacherCourse(userId, teacherCourseId, newData) {
     // Por ejemplo, podrías actualizar campos específicos aquí
     userTeacherCourse.someField = newData.someField; // Actualiza los campos necesarios
     await userTeacherCourse.save();
-
     return userTeacherCourse;
   } catch (error) {
     throw new Error('Error al editar la asignación de curso');
@@ -119,4 +120,5 @@ module.exports = {
   getCoursesForTeacher,
   editTeacherCourse,
   deleteTeacherCourseById,
+
 };
