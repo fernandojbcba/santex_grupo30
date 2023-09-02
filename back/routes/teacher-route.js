@@ -8,4 +8,5 @@ const isTeacher = require('../middleware/isTeacherMiddleware');
 
 router.get('/enrolled/:teacherId', authenticateToken, isTeacher, teacherController.getTeacherEnrolledCourses);
 router.post('/enrolled/teachercourse', authenticateToken, isAdmin, teacherController.addTeacherCourseController);
+router.delete('/delete-teachercourse/:id', authenticateToken, isAdmin, teacherController.deleteTeacherCourseController);// id model UserTeacherCourse
 module.exports = router;
