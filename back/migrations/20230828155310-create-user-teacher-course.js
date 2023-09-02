@@ -33,6 +33,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      isDeleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     });
   },
 
