@@ -2,6 +2,7 @@
   <div class="menu-courses-teacher">
     <h2>Mis Cursos</h2>
     <mat-card-content class="couses_list">
+      <div class="scrollable-container">
       <div *ngFor="let coursen of myCourses; let i = index">
         <button class="ButtonCourse"
           mat-raised-button
@@ -11,6 +12,7 @@
           {{ coursen.title }}
         </button>
       </div>
+    </div>
     </mat-card-content>
   </div>
   <div class="students-courses-teacher">

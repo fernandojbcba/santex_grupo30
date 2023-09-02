@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
   }
   .students-courses-teacher{
     width: 80%;
@@ -36,3 +36,15 @@
   app-students-course{
     width: 100%;
   }
+  .scrollable-container {
+    max-height: 90%; /* Ajusta la altura máxima según tus necesidades */
+    overflow-y: auto; /* Agrega la barra de desplazamiento vertical cuando sea necesario */
+  }
+  .couses_list{
+    height: 100%;
+  }
+  
+  
+  
+  
+  
