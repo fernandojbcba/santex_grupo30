@@ -76,6 +76,7 @@ async function deleteTeacherCourseController(req, res) {
   return null;
 }
 
+
 async function getUsersInCourse(req, res) {
   const { user } = req; // Obtener profesor autenticado desde el middleware
   const { courseId } = req.params;
@@ -88,6 +89,7 @@ async function getUsersInCourse(req, res) {
     res.status(500).json({ error: error.message });
   }
 }
+
 
 module.exports = {
   addTeacherCourseController,
