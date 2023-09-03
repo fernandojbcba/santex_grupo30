@@ -50,7 +50,7 @@ export class TeacherComponent implements OnInit {
         this.myCourses = data;
       },
       (error) => {
-        console.log(error);
+        console.log(error.error);
       }
     );
   }
