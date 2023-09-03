@@ -1,4 +1,6 @@
-const { UserTeacherCourse, Course } = require('../models');
+const {
+  UserTeacherCourse, Course, User, UserCourse,
+} = require('../models');
 
 async function addCourse(userId, teacherCourseId) {
   try {
@@ -85,6 +87,45 @@ async function editTeacherCourse(userId, teacherCourseId, newData) {
     userTeacherCourse.someField = newData.someField; // Actualiza los campos necesarios
     await userTeacherCourse.save();
 
+async function getUsersInCourseForTeacher(teacherId, courseId) {
+  try {
+    const usersInCourse = await UserCourse.findAll({
+      where: { CourseId: courseId },
+      include: [
+        {
+          model: User,
+          as: 'User',
+        },
+      ],
+    });
+
+    return usersInCourse.map((userCourse) => userCourse.User);
+  } catch (error) {
+    throw new Error('Error fetching users in course for teacher');
+  }
+}
+async function editTeacherCourse(userId, teacherCourseId, newData) {
+  try {
+    // Buscar la relación existente por ID
+    const userTeacherCourse = await UserTeacherCourse.findByPk(teacherCourseId);
+    if (!userTeacherCourse) {
+      throw new Error('No se encontró la asignación del teacher en el curso');
+    }
+
+    // Verificar si ya existe una relación con la misma combinación UserId y TeacherCourseId
+    const existingEnrollment = await UserTeacherCourse.findOne({
+      where: { UserId: userId, TeacherCourseId: teacherCourseId },
+    });
+
+    if (existingEnrollment && existingEnrollment.id !== userTeacherCourse.id) {
+      throw new Error('El teacher ya está inscripto en este curso');
+    }
+
+    // Realiza las actualizaciones según los nuevos datos (newData)
+    // Por ejemplo, podrías actualizar campos específicos aquí
+    userTeacherCourse.someField = newData.someField; // Actualiza los campos necesarios
+    await userTeacherCourse.save();
+
     return userTeacherCourse;
   } catch (error) {
     throw new Error('Error al editar la asignación de curso');
@@ -114,9 +155,12 @@ async function deleteTeacherCourseById(id) {
     throw error;
   }
 }
+
+
 module.exports = {
   addTeacherCourse,
   getCoursesForTeacher,
+  getUsersInCourseForTeacher,
   editTeacherCourse,
   deleteTeacherCourseById,
 };
