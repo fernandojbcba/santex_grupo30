@@ -75,7 +75,7 @@ export class CourseComponent implements OnInit, AfterViewInit{
   }
   openEditDialog(course: any) {
     const dialogRef = this.dialog.open(CourseEditDialogComponent, {
-      width: '400px', 
+      width: '800px', 
       data: course 
       });
 
