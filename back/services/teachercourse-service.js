@@ -132,10 +132,40 @@ async function getUsersInCourseForTeacher(teacherId, courseId) {
     throw new Error('Error fetching users in course for teacher');
   }
 }
+async function getTeacherbyCourse(teacherCourseId) {
+  try {
+    const userTeacherCourse = await UserTeacherCourse.findOne({
+      where: {
+        TeacherCourseId: teacherCourseId,
+        isDeleted: false,
+      },
+      include: {
+        model: User,
+        attributes: ['id', 'userName'], // Cambia 'id' por 'userName'
+      },
+    });
+    if (userTeacherCourse && userTeacherCourse.User) {
+      return {
+        id: userTeacherCourse.id,
+        UserId: userTeacherCourse.UserId,
+        TeacherCourseId: userTeacherCourse.TeacherCourseId,
+        User: {
+          id: userTeacherCourse.User.id,
+          UserName: userTeacherCourse.User.userName,
+        },
+      };
+    }
+    return null; // TeacherCourseId no encontrado
+  } catch (error) {
+    console.error('Error al obtener el UserId:', error);
+    throw error;
+  }
+}
 module.exports = {
   addTeacherCourse,
   getCoursesForTeacher,
   editTeacherCourse,
   deleteTeacherCourseById,
   getUsersInCourseForTeacher,
+  getTeacherbyCourse,
 };

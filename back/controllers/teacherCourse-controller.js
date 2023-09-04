@@ -4,6 +4,7 @@ const {
   editTeacherCourse,
   deleteTeacherCourseById,
   getUsersInCourseForTeacher,
+  getTeacherbyCourse,
 } = require('../services/teachercourse-service');
 
 async function addTeacherCourseController(req, res) {
@@ -94,6 +95,17 @@ async function getUsersInCourse(req, res) {
     res.status(500).json({ error: error.message });
   }
 }
+async function getTeacher(req, res) {
+  const { courseId } = req.params;
+
+  try {
+    //
+    const usersInCourse = await getTeacherbyCourse(courseId);
+    res.json(usersInCourse);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 
 module.exports = {
   addTeacherCourseController,
@@ -101,4 +113,5 @@ module.exports = {
   editTeacherCourseController,
   deleteTeacherCourseController,
   getUsersInCourse,
+  getTeacher,
 };
