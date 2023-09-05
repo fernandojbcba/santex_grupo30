@@ -10,6 +10,7 @@ import { TeacherService } from 'src/app/core/services/teacher/teacher.service';
   styleUrls: ['./course-edit-dialog.component.css'],
 })
 export class CourseEditDialogComponent implements OnInit {
+  
   dataTeacher: any[] = [];
   editForm: FormGroup;
   teacherForm: FormGroup;
@@ -43,13 +44,14 @@ export class CourseEditDialogComponent implements OnInit {
     private teacherService: TeacherService
   ) {
     this.coursein = course;
+    const initialIsPublishedValue = course.isPublished === true ? 'Publicar' : 'No_Publicar';
     this.editForm = this.formBuilder.group({
       title: [course.title, Validators.required],
       description: [course.description, Validators.required],
       daysAndHours: [course.daysAndHours, Validators.required],
       duration: [course.duration, Validators.required],
       price: [course.price],
-      isPublished: [course.isPublished],
+      isPublished: [initialIsPublishedValue],
     });
     this.teacherForm = this.formBuilder.group({
       teacherId: [''],
@@ -63,7 +65,6 @@ export class CourseEditDialogComponent implements OnInit {
     this.courseService.get<any>('/user/teachers').subscribe(
       (data: Course[]) => {
         this.dataTeacher = data;
-        console.log(this.dataTeacher);
       },
       (error) => {}
     );
@@ -75,7 +76,7 @@ export class CourseEditDialogComponent implements OnInit {
       (data) => {
        this.teacherData = data;
        this.teacherDataLog=true;
-      console.log(this.teacherData)
+      
       },
       (error) => {
      this.teacherDataLog=false;
