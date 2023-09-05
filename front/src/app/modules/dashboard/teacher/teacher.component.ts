@@ -43,8 +43,6 @@ export class TeacherComponent implements OnInit {
   }
   
  public loadcourses(){
-  console.log(this.adminlog)
-  console.log(this.teacherlog)
   if (this.adminlog) {
     this.courseService.get<any>('/courses/list').subscribe(
       (data) => {
@@ -59,8 +57,8 @@ export class TeacherComponent implements OnInit {
 
     this.http.get<any>('/teacher/enrolled/:id').subscribe(
       (data) => {
-        this.myCourses = data;
-        console.log(data);
+        const courses = data.map((item: { course: any; }) => item.course);
+        this.myCourses = courses;
       
       },
       (error) => {
