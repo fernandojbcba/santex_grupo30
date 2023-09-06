@@ -1,0 +1,48 @@
+const { Model, DataTypes } = require('sequelize');
+
+module.exports = (sequelize) => {
+  class Attendance extends Model {
+    static associate(models) {
+      // Define las asociaciones aquí
+      Attendance.belongsTo(models.User, { foreignKey: 'UserId', as: 'user' });
+      Attendance.belongsTo(models.Course, { foreignKey: 'CourseId', as: 'course' });
+      Attendance.belongsTo(models.Status, { foreignKey: 'StatusId', as: 'status' });
+    }
+  }
+
+  Attendance.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      UserId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      CourseId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      StatusId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      isDeleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: 'Attendance',
+    }
+  );
+
+  return Attendance;
+};

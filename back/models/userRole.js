@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    // Define las claves foráneas para UserId y RoleId
+    // claves
     UserId: {
       type: DataTypes.INTEGER,
       allowNull: false,
