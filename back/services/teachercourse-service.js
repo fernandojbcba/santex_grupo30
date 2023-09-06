@@ -64,28 +64,6 @@ async function addTeacherCourse(userId, teacherCourseId) {
     throw new Error('Error al asignar al teacher al curso');
   }
 }
-async function editTeacherCourse(userId, teacherCourseId, newData) {
-  try {
-    // Buscar la relación existente por ID
-    const userTeacherCourse = await UserTeacherCourse.findByPk(teacherCourseId);
-
-    if (!userTeacherCourse) {
-      throw new Error('No se encontró la asignación del teacher en el curso');
-    }
-
-    // Verificar si ya existe una relación con la misma combinación UserId y TeacherCourseId
-    const existingEnrollment = await UserTeacherCourse.findOne({
-      where: { UserId: userId, TeacherCourseId: teacherCourseId },
-    });
-
-    if (existingEnrollment && existingEnrollment.id !== userTeacherCourse.id) {
-      throw new Error('El teacher ya está inscripto en este curso');
-    }
-
-    // Realiza las actualizaciones según los nuevos datos (newData)
-    // Por ejemplo, podrías actualizar campos específicos aquí
-    userTeacherCourse.someField = newData.someField; // Actualiza los campos necesarios
-    await userTeacherCourse.save();
 
 async function getUsersInCourseForTeacher(teacherId, courseId) {
   try {
@@ -155,7 +133,6 @@ async function deleteTeacherCourseById(id) {
     throw error;
   }
 }
-
 
 module.exports = {
   addTeacherCourse,
