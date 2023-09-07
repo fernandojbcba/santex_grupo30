@@ -33,15 +33,11 @@ module.exports = (sequelize) => {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      isDeleted: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
     },
     {
       sequelize,
       modelName: 'Attendance',
-    }
+    },
   );
 
   return Attendance;

@@ -10,14 +10,26 @@ module.exports = {
       },
       UserId: {
         type: Sequelize.INTEGER,
+        references: {
+            model: 'Users',
+            key: 'id',
+          },
         allowNull: false,
       },
       CourseId: {
         type: Sequelize.INTEGER,
+        references: {
+            model: 'Courses',
+            key: 'id'
+          },
         allowNull: false,
       },
       StatusId: {
         type: Sequelize.INTEGER,
+        references: {
+            model: 'Status',
+            key: 'id'
+          },
         allowNull: false,
       },
       date: {
