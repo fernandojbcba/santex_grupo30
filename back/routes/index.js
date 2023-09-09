@@ -8,6 +8,7 @@ const loginRoute = require('./login-route');
 const courseRoute = require('./course-route');
 const userRoute = require('./user-route');
 const teacherRoute = require('./teacher-route');
+const attendanceRoute = require('./attendance-route');
 
 const router = Express();
 
@@ -16,12 +17,8 @@ router.use('/login', loginRoute);
 router.use('/courses', courseRoute);
 router.use('/user', userRoute);
 router.use('/teacher', teacherRoute);
-// use=
-router.use('/ping', (req, res) => {
-  res.json({
-    response: 'pong!',
-  });
-});
+router.use('/attendance', attendanceRoute);
+// use
 router.use('/', rootPath.handler);
 router.use(rootPath.setHeaders);
 router.use(errors.handler);

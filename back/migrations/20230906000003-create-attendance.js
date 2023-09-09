@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Attendance', {
+    await queryInterface.createTable('attendance', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -33,7 +33,8 @@ module.exports = {
         allowNull: false,
       },
       date: {
-        type: Sequelize.DATE,
+        //type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
       },
       isDeleted: {
@@ -41,17 +42,17 @@ module.exports = {
         defaultValue: false,
       },
       createdAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
       },
       updatedAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
       },
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Attendance');
+    await queryInterface.dropTable('attendance');
   },
 };

@@ -22,7 +22,10 @@ module.exports = (sequelize) => {
     {
       sequelize,
       modelName: 'Status',
+      freezeTableName: true,
+      tableName: 'status', // Nombre real de la tabla en tu base de datos (en singular)
     },
+
   );
 
   return Status;
