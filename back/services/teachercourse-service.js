@@ -65,27 +65,13 @@ async function addTeacherCourse(userId, teacherCourseId) {
   }
 }
 
-async function getUsersInCourseForTeacher(teacherId, courseId) {
-  try {
-    const usersInCourse = await UserCourse.findAll({
-      where: { CourseId: courseId },
-      include: [
-        {
-          model: User,
-          as: 'User',
-        },
-      ],
-    });
 
-    return usersInCourse.map((userCourse) => userCourse.User);
-  } catch (error) {
-    throw new Error('Error fetching users in course for teacher');
-  }
-}
+
 async function editTeacherCourse(userId, teacherCourseId, newData) {
   try {
     // Buscar la relación existente por ID
     const userTeacherCourse = await UserTeacherCourse.findByPk(teacherCourseId);
+
     if (!userTeacherCourse) {
       throw new Error('No se encontró la asignación del teacher en el curso');
     }
@@ -134,10 +120,60 @@ async function deleteTeacherCourseById(id) {
   }
 }
 
+async function getUsersInCourseForTeacher(teacherId, courseId) {
+  try {
+    const usersInCourse = await UserCourse.findAll({
+      where: { CourseId: courseId },
+      include: [
+        {
+          model: User,
+          as: 'User',
+        },
+      ],
+    });
+    return usersInCourse.map((userCourse) => userCourse.User);
+  } catch (error) {
+    throw new Error('Error fetching users in course for teacher');
+  }
+}
+
+
+
+async function getTeacherbyCourse(teacherCourseId) {
+  try {
+    const userTeacherCourse = await UserTeacherCourse.findOne({
+      where: {
+        TeacherCourseId: teacherCourseId,
+        isDeleted: false,
+      },
+      include: {
+        model: User,
+        attributes: ['id', 'userName'], // Cambia 'id' por 'userName'
+      },
+    });
+    if (userTeacherCourse && userTeacherCourse.User) {
+      return {
+        id: userTeacherCourse.id,
+        UserId: userTeacherCourse.UserId,
+        TeacherCourseId: userTeacherCourse.TeacherCourseId,
+        User: {
+          id: userTeacherCourse.User.id,
+          UserName: userTeacherCourse.User.userName,
+        },
+      };
+    }
+    return null; // TeacherCourseId no encontrado
+  } catch (error) {
+    console.error('Error al obtener el UserId:', error);
+    throw error;
+  }
+}
+
 module.exports = {
   addTeacherCourse,
   getCoursesForTeacher,
-  getUsersInCourseForTeacher,
   editTeacherCourse,
   deleteTeacherCourseById,
+  getUsersInCourseForTeacher,
+  getTeacherbyCourse,
 };

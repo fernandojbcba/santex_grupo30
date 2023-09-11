@@ -1,29 +1,56 @@
 <h2 mat-dialog-title>Edit Course</h2>
 <div mat-dialog-content [formGroup]="editForm">
   <mat-form-field>
-    <input matInput placeholder="Title" formControlName="title">
+    <input matInput placeholder="Titulo" formControlName="title">
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput placeholder="Description" formControlName="description"></textarea>
+    <textarea matInput placeholder="Descripcion" formControlName="description"></textarea>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Days and Hours" formControlName="daysAndHours">
+    <input matInput placeholder="Dias y horas" formControlName="daysAndHours">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Duration" formControlName="duration">
+    <input matInput placeholder="Duracion" formControlName="duration">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Price" formControlName="price">
+    <input matInput placeholder="Precio" formControlName="price">
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Publication Status</mat-label>
+    <mat-label>Estado de Publicacion</mat-label>
     <mat-select formControlName="isPublished">
-      <mat-option *ngFor="let option of publicarOptions" [value]="option">
+      <mat-option *ngFor="let option of publicarOptions" [value]="option" >
         {{ option }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
+<div *ngIf="teacherData" class="teachername">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title><h3>El profesor asignado es: </h3> <h4>"" {{ teacherData.User.UserName | uppercase }} ""</h4></mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="deleteTeacherCourse()">Borrar profesor</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<form *ngIf="!teacherData" [formGroup]="teacherForm" (ngSubmit)="addTeacherCourse()">
+  <mat-card>
+    <mat-card-content>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Selecciona un profesor:</mat-label>
+          <mat-select formControlName="teacherId" id="teacherId">
+            <mat-option *ngFor="let teacher of dataTeacher" [value]="teacher.id">{{ teacher.userName | uppercase }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Asignar profesor</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
 <div mat-dialog-actions>
   <button mat-button (click)="dialogRef.close()">Cancel</button>
   <button mat-button color="primary" (click)="editCourse()">Save</button>

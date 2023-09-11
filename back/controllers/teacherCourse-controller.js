@@ -1,9 +1,10 @@
 const {
   addTeacherCourse,
   getCoursesForTeacher,
-  getUsersInCourseForTeacher,
   editTeacherCourse,
   deleteTeacherCourseById,
+  getUsersInCourseForTeacher,
+  getTeacherbyCourse,
 } = require('../services/teachercourse-service');
 
 async function addTeacherCourseController(req, res) {
@@ -48,7 +49,11 @@ async function editTeacherCourseController(req, res) {
 
   try {
     if (user.role === 'admin') {
-      const editedTeacherCourse = await editTeacherCourse(userId, teacherCourseId, newData);
+      const editedTeacherCourse = await editTeacherCourse(
+        userId,
+        teacherCourseId,
+        newData,
+      );
       res.status(200).json(editedTeacherCourse);
     } else {
       res.status(403).json({ error: 'Acceso no autorizado' });
@@ -66,7 +71,9 @@ async function deleteTeacherCourseController(req, res) {
     const deletedTeacherCourse = await deleteTeacherCourseById(id);
 
     if (!deletedTeacherCourse) {
-      return res.status(404).json({ error: 'Asignación de curso no encontrada' });
+      return res
+        .status(404)
+        .json({ error: 'Asignación de curso no encontrada' });
     }
 
     return res.status(204).end();
@@ -75,7 +82,6 @@ async function deleteTeacherCourseController(req, res) {
   }
   return null;
 }
-
 
 async function getUsersInCourse(req, res) {
   const { user } = req; // Obtener profesor autenticado desde el middleware
@@ -89,12 +95,23 @@ async function getUsersInCourse(req, res) {
     res.status(500).json({ error: error.message });
   }
 }
+async function getTeacher(req, res) {
+  const { courseId } = req.params;
 
+  try {
+    //
+    const usersInCourse = await getTeacherbyCourse(courseId);
+    res.json(usersInCourse);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 
 module.exports = {
   addTeacherCourseController,
   getTeacherEnrolledCourses,
-  getUsersInCourse,
   editTeacherCourseController,
   deleteTeacherCourseController,
+  getUsersInCourse,
+  getTeacher,
 };
