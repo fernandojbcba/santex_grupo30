@@ -12,7 +12,7 @@ module.exports = {
         firstName: 'my',
         lastName: 'Admin',
         userName: 'admin',
-        password: 'admin',
+        password: 'Password1',
         email: 'admin@example.com',
         RoleId: adminRole[0].id, // Le asigno role admin
         createdAt: new Date(),
