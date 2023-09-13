@@ -104,6 +104,42 @@ class AttendanceService {
       throw new Error(`Error checking duplicate attendance: ${error.message}`);
     }
   }
+
+  async getAttendanceByDateRangeWithStatus(startDate, endDate, statusId) {
+    try {
+      const utcStartDate = new Date(`${startDate}T00:00:00.000Z`).toISOString();
+      const utcEndDate = new Date(`${endDate}T23:59:59.999Z`).toISOString();
+      const attendances = await Attendance.findAll({
+        where: {
+          date: {
+            [Op.between]: [utcStartDate, utcEndDate],
+          },
+          StatusId: statusId,
+        },
+        include: [
+          {
+            model: Course,
+            as: 'course',
+            attributes: ['title'],
+          },
+          {
+            model: User,
+            as: 'user',
+            attributes: ['firstName', 'LastName'],
+          },
+          {
+            model: Status,
+            as: 'status',
+            attributes: ['name'],
+          },
+        ],
+      });
+
+      return attendances;
+    } catch (error) {
+      throw new Error(`Error fetching attendance: ${error.message}`);
+    }
+  }
 }
 
 module.exports = AttendanceService;

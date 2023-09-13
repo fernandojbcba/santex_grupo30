@@ -51,6 +51,67 @@ async function getAttendanceByDateRange(req, res) {
   }
 }
 
+async function getPresentsByDateRange(req, res) {
+  try {
+    const { startDate, endDate } = req.query;
+    const attendance = await attendanceService.getAttendanceByDateRangeWithStatus(
+      startDate,
+      endDate,
+      1, // 1 para estado "Presente"
+    );
+
+    if (attendance.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No hay asistencias presentes para el rango de fechas especificado.' });
+    }
+
+    return res.status(200).json({ attendance });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
+async function getAbsentAttendanceByDateRange(req, res) {
+  try {
+    const { startDate, endDate } = req.query;
+    const attendance = await attendanceService.getAttendanceByDateRangeWithStatus(
+      startDate,
+      endDate,
+      2, // 2 para estado "Ausente"
+    );
+
+    if (attendance.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No hay asistencias ausentes para el rango de fechas especificado.' });
+    }
+
+    return res.status(200).json({ attendance });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+async function getLateAttendanceByDateRange(req, res) {
+  try {
+    const { startDate, endDate } = req.query;
+    const attendance = await attendanceService.getAttendanceByDateRangeWithStatus(
+      startDate,
+      endDate,
+      3, // 3 para estado "Llegada tarde"
+    );
+
+    if (attendance.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No hay asistencias con llegada tarde para el rango de fechas especificado.' });
+    }
+
+    return res.status(200).json({ attendance });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
 async function getAttendanceByDateAndCourse(req, res) {
   try {
     const { date, courseId } = req.query;
@@ -80,6 +141,9 @@ async function updateAttendance(req, res) {
 
 module.exports = {
   createAttendance,
+  getPresentsByDateRange,
+  getAbsentAttendanceByDateRange,
+  getLateAttendanceByDateRange,
   getAttendanceByDateAndCourse,
   getAttendanceByDateRange,
   updateAttendance,
