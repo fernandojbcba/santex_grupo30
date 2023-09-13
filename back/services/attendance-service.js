@@ -89,6 +89,21 @@ class AttendanceService {
       throw new Error(`Error updating attendance: ${error.message}`);
     }
   }
+
+  async checkDuplicateAttendance(userId, courseId, date) {
+    try {
+      const existingAttendance = await Attendance.findOne({
+        where: {
+          UserId: userId,
+          CourseId: courseId,
+          date,
+        },
+      });
+      return !!existingAttendance;// Devuelve true si existe ya la asistencia
+    } catch (error) {
+      throw new Error(`Error checking duplicate attendance: ${error.message}`);
+    }
+  }
 }
 
 module.exports = AttendanceService;

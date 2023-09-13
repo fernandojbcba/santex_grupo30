@@ -7,17 +7,30 @@ async function createAttendance(req, res) {
     const {
       userId, courseId, statusId, date,
     } = req.body;
+    // verifico si la asistencia está duplicada
+    const isDuplicate = await attendanceService.checkDuplicateAttendance(
+      userId,
+      courseId,
+      date,
+    );
+    if (isDuplicate) {
+      // si existe una asistencia para este usuario, curso y fecha
+      return res.status(400).json({ message: 'La asistencia ya ha sido registrada para este usuario y curso en la misma fecha.' });
+    }
+    // si no existe la creo
     const attendance = await attendanceService.createAttendance(
       userId,
       courseId,
       statusId,
       date,
     );
-    res.status(201).json({ attendance });
+    res.status(201).json({ message: 'Asistencia registrada con éxito', attendance });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+  return { message: 'No se pudo realizar la operación', error: 'Error desconocido' };
 }
+
 async function getAttendanceByDateRange(req, res) {
   try {
     const { startDate, endDate } = req.query;
