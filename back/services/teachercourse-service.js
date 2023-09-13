@@ -64,6 +64,7 @@ async function addTeacherCourse(userId, teacherCourseId) {
     throw new Error('Error al asignar al teacher al curso');
   }
 }
+
 async function editTeacherCourse(userId, teacherCourseId, newData) {
   try {
     // Buscar la relación existente por ID
@@ -115,6 +116,7 @@ async function deleteTeacherCourseById(id) {
     throw error;
   }
 }
+
 async function getUsersInCourseForTeacher(teacherId, courseId) {
   try {
     const usersInCourse = await UserCourse.findAll({
@@ -126,12 +128,12 @@ async function getUsersInCourseForTeacher(teacherId, courseId) {
         },
       ],
     });
-
     return usersInCourse.map((userCourse) => userCourse.User);
   } catch (error) {
     throw new Error('Error fetching users in course for teacher');
   }
 }
+
 async function getTeacherbyCourse(teacherCourseId) {
   try {
     const userTeacherCourse = await UserTeacherCourse.findOne({

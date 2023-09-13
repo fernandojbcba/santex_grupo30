@@ -17,6 +17,10 @@ module.exports = (sequelize) => {
         otherKey: 'TeacherCourseId',
         as: 'TeacherCourses', // cursos en que el usuario es teacher
       });
+      User.hasMany(models.Attendance, {
+        foreignKey: 'UserId',
+        as: 'attendance', // Alias para la relación de asistencia del usuario
+      });
     }
   }
 
