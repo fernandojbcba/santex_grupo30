@@ -72,3 +72,30 @@ h2 {
     display: flex;
     justify-content: center;
   }
+  .present{
+    color:green;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+  }
+  .absent{
+    color:red;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+  }
+  .tardy{
+    color:orange;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+  }
+  .present:hover{
+    font-size: 26px;
+    
+  }
+  .absent:hover{
+    font-size: 26px;
+
+  }
+  .tardy:hover{
+    font-size: 26px;
+   
+  }

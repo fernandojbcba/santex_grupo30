@@ -4,7 +4,9 @@ import { Users } from 'src/app/core/interfaces/users/user.interface';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { AttendanceService } from 'src/app/core/services/attendance/attendance.service';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-students-course',
   templateUrl: './students-course.component.html',
@@ -18,7 +20,7 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private http:UserService) { }
+  constructor(private http:UserService, private attendance:AttendanceService, private toastService:ToastService  ) { }
 
   ngOnInit(): void {
     // Se llama a la función inicialmente al cargar el componente
@@ -66,9 +68,27 @@ if (this.idcourse == null || this.idcourse == 0 ){
        console.log(error)
       }
     );
+       
+  }
+  attendanceFunction(userId:any, courseId:any, statusId:any){
+    const date = new Date();
+    const url= `/attendance/`
+    const body = { "userId": userId, "courseId": courseId,"statusId":statusId,"date":date.toISOString() }
     
-   
-   
+    this.attendance.post<any>(url,body).subscribe(
+      (data:any) => {
+        const attendance = data; 
+        console.log(attendance)
+      },
+      (err) => {
+        const { error } = err.error;
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 409) {
+            this.toastService.presentToast(error);
+          }
+        }
+      }
+    );
   }
 }
 

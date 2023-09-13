@@ -6,15 +6,35 @@ const {
 class AttendanceService {
   async createAttendance(userId, courseId, statusId, date) {
     try {
+      // Verificar si ya existe una asistencia con los mismos valores de userId, courseId y date
+      const existingAttendance = await Attendance.findOne({
+        where: {
+          UserId: userId,
+          CourseId: courseId,
+          date: new Date(date).toISOString().slice(0, 10), // Normalizar a UTC
+        },
+      });
+
+      // Si ya existe una asistencia, maneja la situación de acuerdo a tus necesidades
+      if (existingAttendance) {
+        // Puedes lanzar una excepción
+        throw new Error(
+          'La asistencia ya existe para este usuario.',
+        );
+        // O puedes devolver un mensaje de error o realizar cualquier otra acción
+      }
+
+      // Si no existe una asistencia, crea una nueva
       const attendance = await Attendance.create({
         UserId: userId,
         CourseId: courseId,
         StatusId: statusId,
-        date: new Date(date).toISOString().slice(0, 10), // Tomo solo fecha, Normalizar a UTC
+        date: new Date(date).toISOString().slice(0, 10), // Normalizar a UTC
       });
+
       return attendance;
     } catch (error) {
-      throw new Error(`Error creating attendance: ${error.message}`);
+      throw new Error(`Error de asistencia: ${error.message}`);
     }
   }
 
@@ -80,7 +100,9 @@ class AttendanceService {
 
       // Normalizar la fecha a UTC si es necesario antes de actualizar
       if (updatedData.date) {
-        updatedData.date = new Date(updatedData.date).toISOString().slice(0, 10);
+        updatedData.date = new Date(updatedData.date)
+          .toISOString()
+          .slice(0, 10);
       }
 
       await attendance.update(updatedData);

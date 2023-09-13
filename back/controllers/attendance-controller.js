@@ -15,7 +15,7 @@ async function createAttendance(req, res) {
     );
     res.status(201).json({ attendance });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(409).json({ error: error.message });
   }
 }
 async function getAttendanceByDateRange(req, res) {
