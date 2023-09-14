@@ -23,7 +23,7 @@ module.exports = {
         firstName: 'Teacher',
         lastName: 'TeacherLastName',
         userName: 'teacher',
-        password: hashedPassword,
+        password: 'teacher',
         email: 'teacher@example.com',
         RoleId: teacherRole[0].id,
         createdAt: new Date(),
