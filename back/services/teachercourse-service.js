@@ -65,8 +65,6 @@ async function addTeacherCourse(userId, teacherCourseId) {
   }
 }
 
-
-
 async function editTeacherCourse(userId, teacherCourseId, newData) {
   try {
     // Buscar la relación existente por ID
@@ -89,7 +87,6 @@ async function editTeacherCourse(userId, teacherCourseId, newData) {
     // Por ejemplo, podrías actualizar campos específicos aquí
     userTeacherCourse.someField = newData.someField; // Actualiza los campos necesarios
     await userTeacherCourse.save();
-
     return userTeacherCourse;
   } catch (error) {
     throw new Error('Error al editar la asignación de curso');
@@ -137,8 +134,6 @@ async function getUsersInCourseForTeacher(teacherId, courseId) {
   }
 }
 
-
-
 async function getTeacherbyCourse(teacherCourseId) {
   try {
     const userTeacherCourse = await UserTeacherCourse.findOne({
@@ -168,7 +163,6 @@ async function getTeacherbyCourse(teacherCourseId) {
     throw error;
   }
 }
-
 module.exports = {
   addTeacherCourse,
   getCoursesForTeacher,
