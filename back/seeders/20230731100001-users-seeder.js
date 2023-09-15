@@ -1,9 +1,8 @@
 'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const [adminRole, userRole] = await queryInterface.sequelize.query(
-      'SELECT id FROM Roles WHERE roleName IN ('admin', 'user');'
+      'SELECT id FROM Roles WHERE roleName IN ("admin", "user");'
     );
 
     await queryInterface.bulkInsert('Users', [
