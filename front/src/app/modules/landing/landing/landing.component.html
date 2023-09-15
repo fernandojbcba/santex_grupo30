@@ -1,0 +1,29 @@
+<mat-toolbar color="primary" class="expanded-toolbar-login">
+  <div>
+    <mat-card-header>Acceso a Usuarios</mat-card-header>
+  </div>
+  <div class="button-login">
+    <button mat-raised-button color="accent" routerLink="/auth/login">
+      <mat-icon>login</mat-icon>Login
+    </button>
+  </div>
+</mat-toolbar>
+<div class="landing-page">
+  <div class="images-div">
+    <mat-card *ngFor="let image of images" class="card">
+    
+        <div class="card-image-container">
+          <img class="card-image" [src]="image" alt="Card Image" />
+        </div>
+      
+    </mat-card>
+  </div>
+
+  <div class="video-div">
+    <mat-card class="div-video">
+      <video class="video" autoplay muted loop>
+        <source src="../../../../assets/videos/video.mp4" type="video/mp4" />
+      </video>
+    </mat-card>
+  </div>
+</div>

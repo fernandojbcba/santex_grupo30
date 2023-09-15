@@ -10,13 +10,18 @@ const routes: Routes = [
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
   },
   {
+    path: 'home',
+    canActivate: [NotLoggedInGuard],
+    loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingModule),
+  },
+  {
     path: 'dashboard',
     canActivate: [LoggedInGuard],
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   {
     path: '**',
-    redirectTo: 'auth/login'
+    redirectTo: 'home/landing'
   }
 ];
 
