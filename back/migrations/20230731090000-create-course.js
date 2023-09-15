@@ -33,6 +33,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      vacancies: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      startDate: {
+        type: Sequelize.DATEONLY,
+        allowNull: false,
+      },
       isPublished: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,

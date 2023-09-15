@@ -51,6 +51,14 @@ module.exports = (sequelize) => {
       imageUrl: {
         type: DataTypes.STRING,
       },
+      vacancies: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      startDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
       isPublished: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
