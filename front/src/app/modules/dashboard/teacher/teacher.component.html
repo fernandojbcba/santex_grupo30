@@ -3,20 +3,32 @@
     <h2>Mis Cursos</h2>
     <mat-card-content class="couses_list">
       <div class="scrollable-container">
-      <div *ngFor="let coursen of myCourses; let i = index">
-        <button class="ButtonCourse"
-          mat-raised-button
-          color="accent"
-          (click)="showStudents(coursen.id)"
-        >
-          {{ coursen.title }}
-        </button>
+        <table>
+          <thead>
+            <tr>
+              <th>Título del Curso</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let coursen of myCourses; let i = index">
+              <td>{{ coursen.title }}</td>
+              <td>
+                <button class="ButtonCourse"
+                  mat-raised-button
+                  color="accent"
+                  (click)="Students(coursen.id)"
+                  
+                >
+                  Ver Estudiantes
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
     </mat-card-content>
   </div>
-  <div class="students-courses-teacher">
-    <app-students-course [idcourse]="selectedCourse"></app-students-course>
-  </div>
-  <div></div>
+  
+
 </div>

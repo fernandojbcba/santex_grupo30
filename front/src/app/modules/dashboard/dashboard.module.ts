@@ -32,7 +32,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSidenavModule} from '@angular/material/sidenav'
 import { TeacherComponent } from './teacher/teacher.component';
-import { StudentsCourseComponent } from './teacher/students-course/students-course.component';
+import { StudentsCourseComponent } from './students-course/students-course.component';
 import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
