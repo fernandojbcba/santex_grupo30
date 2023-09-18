@@ -7,35 +7,35 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AttendanceService } from 'src/app/core/services/attendance/attendance.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-students-course',
   templateUrl: './students-course.component.html',
   styleUrls: ['./students-course.component.css']
 })
 export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit{
-  @Input() idcourse: any = null;
+  courseId?: number;
   course:boolean = false
   displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'button' ]; 
   dataSource = new MatTableDataSource<Users>();
-
+  courseDate: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private http:UserService, private attendance:AttendanceService, private toastService:ToastService  ) { }
+  constructor(private http:UserService, private attendance:AttendanceService, private toastService:ToastService,private route: ActivatedRoute  ) { }
 
   ngOnInit(): void {
-    // Se llama a la función inicialmente al cargar el componente
+    this.route.params.subscribe(params => {
+      this.courseId = parseInt(params['courseId']);
+      
+    this.getcourse(this.courseId)
     this.getEstudiantes();
-
+    
+  });
 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // Detectar cambios en la propiedad 'course' y llamar a la función si cambia
-    if (changes["idcourse"] && !changes["idcourse"].firstChange) {
-
-      this.getEstudiantes();
-      this.comprobaridcourse();
-    }
+    
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -44,14 +44,9 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
       this.paginator._intl.itemsPerPageLabel = 'Items por pagina'
     }
   }
-  comprobaridcourse(){
-if (this.idcourse == null || this.idcourse == 0 ){
-  this.course = false
-}else{
-  this.course = true
-}
+  
 
-  }
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -59,7 +54,7 @@ if (this.idcourse == null || this.idcourse == 0 ){
   }
   getEstudiantes(): void {
 
-    const url= `/courses/${this.idcourse}/users`
+    const url= `/courses/${this.courseId}/users`
     this.http.getStudents<any>(url).subscribe(
       (data: Users[]) => {
         this.dataSource.data = data; 
@@ -70,6 +65,23 @@ if (this.idcourse == null || this.idcourse == 0 ){
     );
        
   }
+  getcourse(courseId:number): void {
+    const url= `/courses/${courseId}`
+   
+    this.http.getStudents<any>(url).subscribe(
+      (data) => {
+        this.courseDate = data; 
+        console.log(this.courseDate)
+        
+      
+      },
+      error => {
+       console.log(error)
+      }
+    );
+  
+  }
+
   attendanceFunction(userId:any, courseId:any, statusId:any){
     const date = new Date();
     const url= `/attendance/`

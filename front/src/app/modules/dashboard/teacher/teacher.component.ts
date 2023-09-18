@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../core/services/user/user.service'
 import { CourseService } from 'src/app/core/services/course/course.service';
 import {AuthService} from 'src/app/core/services/auth/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-teacher',
   templateUrl: './teacher.component.html',
@@ -17,7 +18,7 @@ export class TeacherComponent implements OnInit {
   id: any;
   user: any;
   role: any;
-  constructor(private http:UserService, private courseService:CourseService, private authService:AuthService) { }
+  constructor(private http:UserService, private courseService:CourseService, private authService:AuthService,private router: Router, ) { }
 
   ngOnInit(): void {
     this.loadrol();
@@ -66,10 +67,13 @@ export class TeacherComponent implements OnInit {
       }
     );}
  }
-
-
-  showStudents(coursenumber: number): void {
-    this.selectedCourse = coursenumber;
-  }
+ Students(courseId: number): void {
+  const url = `/dashboard/students/${courseId}`;
+  this.router.navigate([url]);
 }
+
+ 
+ 
+}
+
 

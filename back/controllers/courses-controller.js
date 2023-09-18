@@ -57,7 +57,17 @@ async function deleteCourse(req, res) {
     res.status(500).json({ error: 'An error occurred while deleting the course.' });
   }
 }
+async function courseById(req, res) {
+  const { courseId } = req.params;
+  try {
+    const course = await courseService.getCourseById(courseId);
+    res.json(course);
+  } catch (error) {
+    // console.error('Error in CourseById:', error.message);
+    res.status(500).json({ error: 'An error occurred while fetching the course.' });
+  }
+}
 
 module.exports = {
-  getAllCourses, getEnrolledCourses, createCourse, updateCourse, deleteCourse,
+  getAllCourses, getEnrolledCourses, createCourse, updateCourse, deleteCourse, courseById,
 };
