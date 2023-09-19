@@ -71,7 +71,6 @@ export class TeacherComponent implements OnInit, AfterViewInit {
   if (this.adminlog) {
     this.courseService.get<any>('/courses/list').subscribe(
       (data) => {
-        console.log(data)
         this.dataSource.data = data;
       },
       (error) => {

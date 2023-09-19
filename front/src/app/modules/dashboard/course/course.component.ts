@@ -50,8 +50,9 @@ export class CourseComponent implements OnInit, AfterViewInit{
 
   loadCourses(){
     this.courseService.get<any>('/courses/list').subscribe(
-      (data: Course[]) => {
+      (data) => {
         this.dataSource.data = data; 
+        console.log(data)
       },
       error => {
        

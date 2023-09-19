@@ -58,19 +58,6 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const getTeacherUsers = async (req, res) => {
-  try {
-    const users = await userService.getAllUsers();
-
-    // Filtrar solo los usuarios con roleName "teacher"
-    const teacherUsers = users.filter((user) => user.role.roleName === 'teacher');
-
-    return res.status(200).json(teacherUsers);
-  } catch (error) {
-    return res.status(500).json({ message: 'Error retrieving users' });
-  }
-};
-
 const updateUser = async (req, res) => {
   try {
     const { userId } = req.params;

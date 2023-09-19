@@ -127,7 +127,7 @@ class UserService {
         include: [
           {
             model: Role,
-            as: 'role', // Especifica el alias 'role'
+            as: 'role',
             where: { roleName: 'teacher' },
             attributes: [],
           },
