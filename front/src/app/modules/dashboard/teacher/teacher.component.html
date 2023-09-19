@@ -1,34 +1,55 @@
 <div class="container">
   <div class="menu-courses-teacher">
-    <h2>Mis Cursos</h2>
-    <mat-card-content class="couses_list">
+    <h2>Cursos</h2>
+    <mat-form-field class="buscar" appearance="standard">
+      <mat-label>Buscar cursos</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Buscar"
+        #input
+        autocomplete="off"
+      />
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-card-content class="courses_list">
       <div class="scrollable-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Título del Curso</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let coursen of myCourses; let i = index">
-              <td>{{ coursen.title }}</td>
-              <td>
-                <button class="ButtonCourse"
-                  mat-raised-button
-                  color="accent"
-                  (click)="Students(coursen.id)"
-                  
-                >
-                  Ver Estudiantes
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Título del Curso</mat-header-cell>
+            <mat-cell *matCellDef="let course">{{ course.title }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="start">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Inicio curso</mat-header-cell>
+            <mat-cell *matCellDef="let course">18/09/2023</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="end">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Fin curso</mat-header-cell>
+            <mat-cell *matCellDef="let course"></mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Estado de curso</mat-header-cell>
+            <mat-cell *matCellDef="let course">en curso</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="students">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad estudiantes</mat-header-cell>
+            <mat-cell *matCellDef="let course">25</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell *matCellDef="let course">
+              <button class="ButtonCourse" mat-raised-button color="accent" (click)="Students(course.id)">
+                Ver Estudiantes
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let course; columns: displayedColumns"></mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
       </div>
     </mat-card-content>
   </div>
-  
-
 </div>

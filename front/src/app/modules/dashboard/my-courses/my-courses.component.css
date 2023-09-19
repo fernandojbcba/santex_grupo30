@@ -1,12 +1,23 @@
 h2 {
   text-align: center;
-  color: #fff;
+  color: #060606;
 }
 .tabla {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-
+  align-items: center;
+background-color: #fff;
+border-radius: 15px;
+padding: 10px;
+margin: 15px;
  
+}
+.mat-header-cell {
+  padding: 10px 15px;
+  text-align: center;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
 }
 .column-title {
   width: 30%;

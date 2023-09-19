@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit{
   courseId?: number;
   course:boolean = false
-  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'button' ]; 
+  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'asistencia', 'calificacion' ]; 
   dataSource = new MatTableDataSource<Users>();
   courseDate: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator
@@ -71,9 +71,6 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
     this.http.getStudents<any>(url).subscribe(
       (data) => {
         this.courseDate = data; 
-        console.log(this.courseDate)
-        
-      
       },
       error => {
        console.log(error)
@@ -90,7 +87,6 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
     this.attendance.post<any>(url,body).subscribe(
       (data:any) => {
         const attendance = data; 
-        console.log(attendance)
       },
       (err) => {
         const { error } = err.error;

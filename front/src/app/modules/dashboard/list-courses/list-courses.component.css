@@ -1,24 +1,34 @@
+.container_full{
+  background-color: #f0f0f0;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 15px;
+
+
+}
 h2{
   text-align: center;
-  color: #fff;
+  color: #000000;
 }
-.couses_list{
+.courses_list{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly
 }
 .cards {
-    max-width: 400px;  
+    width: 350px; 
+    height: 350px; 
     margin-bottom: 20px;
+    box-shadow: 10px 5px 5px rgb(125, 125, 125);
 
   }
   
 
   
-mat-card-header{
+mat-card-header p{
 justify-content: center;
   }
-mat-card-content{
+mat-card-content p{
     justify-content: center;
       }
 mat-card-actions{

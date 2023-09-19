@@ -8,8 +8,8 @@ const teacherCourseController = require('../controllers/teacherCourse-controller
 const isAdmin = require('../middleware/isAdminMiddleware');
 const isTeacher = require('../middleware/isTeacherMiddleware'); // Importa el middleware de profesor
 
-router.get('/:courseId', courseController.courseById);
 router.get('/list', courseController.getAllCourses);
+router.get('/:courseId', courseController.courseById);
 router.get('/enrolled/:userId', authenticateToken, courseController.getEnrolledCourses);
 router.post('/enrolled/usercourse', authenticateToken, userCourseController.addUserCourseController);
 router.get('/:courseId/users', authenticateToken, isTeacher, teacherCourseController.getUsersInCourse);
