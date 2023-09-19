@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit{
   courseId?: number;
   course:boolean = false
-  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'button' ]; 
+  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'asistencia', 'calificacion' ]; 
   dataSource = new MatTableDataSource<Users>();
   courseDate: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator
