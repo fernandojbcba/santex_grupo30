@@ -29,6 +29,16 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
+      ApprovalStatusId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'approvalStatus',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
