@@ -52,7 +52,6 @@ export class CourseComponent implements OnInit, AfterViewInit{
     this.courseService.get<any>('/courses/list').subscribe(
       (data) => {
         this.dataSource.data = data; 
-        console.log(data)
       },
       error => {
        

@@ -1,6 +1,9 @@
 
 <div class="tabla">
-  <h2>Estudiantes del curso de "{{courseDate.title}}"</h2>
+  <div *ngIf="courseDate">
+    <h2>Estudiantes del curso de "{{courseDate.title}}"</h2>
+  </div>
+  
     <mat-form-field  class="buscar" appearance="standard">
       <mat-label>Filtro</mat-label>
       <input

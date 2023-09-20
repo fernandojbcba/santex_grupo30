@@ -1,72 +1,41 @@
 <mat-card class="profile-card" *ngIf="profileData">
-  <mat-card class="cards">
-    <mat-card-header>
-      <img
-        mat-card-lg-image
-        src="https://img2.freepng.es/20180413/ccw/kisspng-computer-icons-user-profile-person-5ad0a067829640.8878511915236219915349.jpg"
-      />
-      <mat-card-title>{{ profileData.userName }}</mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content>
+  <form [formGroup]="profileForm" class="profile-form">
+    <mat-card class="cards">
+      <mat-card-header>
+        <img
+          mat-card-lg-image
+          src="https://img2.freepng.es/20180413/ccw/kisspng-computer-icons-user-profile-person-5ad0a067829640.8878511915236219915349.jpg"
+        />
+        <mat-card-title>{{ profileData.userName }}</mat-card-title>
+      </mat-card-header>
       <div>
         <label for="newEmail">Nuevo Email:</label>
-        <input
-          formControlName="newEmail"
-          id="newEmail"
-          placeholder="Nuevo Email"
-        />
+        <input formControlName="newEmail" id="newEmail" placeholder="Nuevo Email" />
       </div>
 
       <div>
         <label for="confirmEmail">Confirmar Email:</label>
-        <input
-          formControlName="confirmEmail"
-          id="confirmEmail"
-          placeholder="Confirmar Email"
-        />
-        <div
-          *ngIf="
-            profileForm?.hasError('emailsNotMatch') &&
-            profileForm?.get('confirmEmail')?.touched
-          "
-          class="error-message"
-        >
+        <input formControlName="confirmEmail" id="confirmEmail" placeholder="Confirmar Email" />
+        <div *ngIf="profileForm?.hasError('emailsNotMatch') && profileForm?.get('confirmEmail')?.touched" class="error-message">
           Los emails no coinciden.
         </div>
       </div>
 
       <div>
         <label for="newPassword">Nueva Contraseña:</label>
-        <input
-          formControlName="newPassword"
-          type="password"
-          id="newPassword"
-          placeholder="Nueva Contraseña"
-        />
+        <input formControlName="newPassword" type="password" id="newPassword" placeholder="Nueva Contraseña" />
       </div>
 
       <div>
         <label for="confirmPassword">Confirmar Contraseña:</label>
-        <input
-          formControlName="confirmPassword"
-          type="password"
-          id="confirmPassword"
-          placeholder="Confirmar Contraseña"
-        />
-        <div
-          *ngIf="
-            profileForm?.hasError('passwordsNotMatch') &&
-            profileForm?.get('confirmPassword')?.touched
-          "
-          class="error-message"
-        >
+        <input formControlName="confirmPassword" type="password" id="confirmPassword" placeholder="Confirmar Contraseña" />
+        <div *ngIf="profileForm?.hasError('passwordsNotMatch') && profileForm?.get('confirmPassword')?.touched" class="error-message">
           Las contraseñas no coinciden.
         </div>
       </div>
 
       <mat-divider></mat-divider>
-    </mat-card-content>
+   
   </mat-card>
 
   <mat-card-actions>
@@ -74,4 +43,5 @@
       Guardar Cambios
     </button>
   </mat-card-actions>
+  </form>
 </mat-card>

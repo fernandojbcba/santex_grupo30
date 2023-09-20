@@ -8,6 +8,7 @@ import { AttendanceService } from 'src/app/core/services/attendance/attendance.s
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Course } from 'src/app/core/interfaces/courses/course.interface';
 @Component({
   selector: 'app-students-course',
   templateUrl: './students-course.component.html',
@@ -18,7 +19,7 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
   course:boolean = false
   displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'asistencia', 'calificacion' ]; 
   dataSource = new MatTableDataSource<Users>();
-  courseDate: any;
+  courseDate:any ={};
   @ViewChild(MatPaginator) paginator!: MatPaginator
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private http:UserService, private attendance:AttendanceService, private toastService:ToastService,private route: ActivatedRoute  ) { }
@@ -69,8 +70,9 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
     const url= `/courses/${courseId}`
    
     this.http.getStudents<any>(url).subscribe(
-      (data) => {
+      (data: Course) => {
         this.courseDate = data; 
+       
       },
       error => {
        console.log(error)
