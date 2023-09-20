@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    approvalStatusId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -22,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {
-    tableName: 'usercourse', // Aquí especificas el nombre real de la tabla
+    tableName: 'usercourse', // nombre real de la tabla
   });
 
   UserCourse.associate = (models) => {
@@ -34,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     UserCourse.belongsTo(models.User, {
       foreignKey: 'UserId',
       onDelete: 'CASCADE',
+    });
+    UserCourse.belongsTo(models.ApprovalStatus, {
+      foreignKey: 'approvalStatusId',
+      as: 'approvalStatus',
     });
   };
 
