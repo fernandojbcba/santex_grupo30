@@ -42,4 +42,14 @@ export class CourseService {
     const url = `/courses/${courseId}`;
     return this.http.delete<T>(url);
   }
+
+  public calificacionUsuarioEnCurso<T>(userId: number, courseId: number, approvalStatusId: number): Observable<T> {
+    const body = {
+      userId,
+      courseId,
+      approvalStatusId
+    };
+    return this.http.put<T>('/courses/enrolled/status', body);
+  }
+
 }

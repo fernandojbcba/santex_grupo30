@@ -26,7 +26,17 @@ async function addUserCourse(userId, courseId, approvalStatusId) {
     return addCourse(userId, courseId, approvalStatusId);
   }
 }
-
+async function putUserCourseStatus(userId, courseId, approvalStatusId) {
+  try {
+    const newUserCourse = await UserCourse.update(
+      { approvalStatusId },
+      { where: { UserId: userId, CourseId: courseId } },
+    );
+    return newUserCourse;
+  } catch (error) {
+    throw new Error('Error al actualizar el estado del usuario y el curso');
+  }
+}
 module.exports = {
-  addUserCourse,
+  addUserCourse, putUserCourseStatus,
 };

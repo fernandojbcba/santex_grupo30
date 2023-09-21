@@ -119,16 +119,22 @@ async function deleteTeacherCourseById(id) {
 
 async function getUsersInCourseForTeacher(teacherId, courseId) {
   try {
-    const usersInCourse = await UserCourse.findAll({
+    const userCourses = await UserCourse.findAll({
       where: { CourseId: courseId },
       include: [
         {
           model: User,
           as: 'User',
+          attributes: ['id', 'firstName', 'lastName', 'userName', 'email'],
         },
       ],
     });
-    return usersInCourse.map((userCourse) => userCourse.User);
+
+    return userCourses.map((userCourse) => ({
+      user: userCourse.User,
+      approvalStatusId: userCourse.approvalStatusId,
+
+    }));
   } catch (error) {
     throw new Error('Error fetching users in course for teacher');
   }
