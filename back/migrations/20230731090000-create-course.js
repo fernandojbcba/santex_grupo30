@@ -41,13 +41,23 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
+      courseStateId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'CourseState', 
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
     });
   },

@@ -1,8 +1,41 @@
 'use strict';
 const currentDate = new Date();
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Courses', [
+    const courseStates = await queryInterface.sequelize.query(
+      'SELECT id, name FROM CourseState;'
+    );
+
+    console.log('Course States:', courseStates);
+
+    /*const noIniciadoStateId = courseStates.find(
+      (state) => state.name === 'No Iniciado'
+    )?.id;   
+    console.log('No Iniciado State ID:', noIniciadoStateId); 
+
+    const enCursoStateId = courseStates.find(
+      (state) => state.name === 'En Curso'
+    )?.id;
+
+    const finalizadoStateId = courseStates.find(
+      (state) => state.name === 'Finalizado'
+    )?.id;*/
+    const getStateId = (courseStates, stateName) => {
+      const state = courseStates.find((state) => state.name === stateName);
+      return state ? state.id : null;      
+    };
+    
+    const noIniciadoStateId = getStateId(courseStates, 'No Iniciado');
+    const enCursoStateId = getStateId(courseStates, 'En Curso');
+    const finalizadoStateId = getStateId(courseStates, 'Finalizado');
+    
+    console.log('No Iniciado State ID:', noIniciadoStateId);
+    console.log('En Curso State ID:', enCursoStateId);
+    console.log('Finalizado State ID:', finalizadoStateId);
+    
+
+    const courses = [
       {
         title: 'Curso de Soldadura Industrial',
         description:
@@ -11,8 +44,10 @@ module.exports = {
         duration: '2 meses',
         price: 1500,
         isPublished: true,
+        isDeleted: false,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: noIniciadoStateId, // Asigna el estado deseado aquí        
       },
       {
         title: 'Taller de Carpintería en Madera',
@@ -22,8 +57,10 @@ module.exports = {
         duration: '3 meses',
         price: 1200,
         isPublished: true,
+        isDeleted: false,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: noIniciadoStateId,
       },
       {
         title: 'Curso de Fontanería Residencial',
@@ -33,8 +70,10 @@ module.exports = {
         duration: '2 meses',
         price: 1000,
         isPublished: true,
+        isDeleted: false,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: noIniciadoStateId,
       },
       {
         title: 'Taller de Panadería y Pastelería',
@@ -46,6 +85,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: noIniciadoStateId,
       },
       {
         title: 'Curso de Electricidad Doméstica',
@@ -57,6 +97,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: noIniciadoStateId,
       },
       {
         title: 'Taller de Jardinería y Paisajismo',
@@ -68,6 +109,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: noIniciadoStateId,
       },
       {
         title: 'Curso de Reparación de Computadoras',
@@ -78,6 +120,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: noIniciadoStateId,
       },
       {
         title: 'Taller de Costura y Confección',
@@ -89,6 +132,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: noIniciadoStateId,
       },
       {
         title: 'Curso de Cocina Internacional',
@@ -100,6 +144,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: noIniciadoStateId,
       },
       {
         title: 'Taller de Maquillaje Profesional',
@@ -111,8 +156,12 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
-      },
-    ]);
+        courseStateId: noIniciadoStateId,
+        
+      },      
+    ];
+
+    await queryInterface.bulkInsert('Courses', courses);
   },
 
   down: async (queryInterface, Sequelize) => {
