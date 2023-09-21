@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit , Input, SimpleChanges, OnChanges,  ViewChild} from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
-import { Users } from 'src/app/core/interfaces/users/user.interface';
+import { UserWithApprovalStatus } from 'src/app/core/interfaces/users/user.interface';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,6 +9,13 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/core/interfaces/courses/course.interface';
+import { CourseService } from 'src/app/core/services/course/course.service';
+enum ApprovalStatus {
+  Inscripto = 1,
+  EnCurso = 2,
+  Aprobado = 3,
+  Desaprobado = 4
+}
 @Component({
   selector: 'app-students-course',
   templateUrl: './students-course.component.html',
@@ -17,12 +24,18 @@ import { Course } from 'src/app/core/interfaces/courses/course.interface';
 export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit{
   courseId?: number;
   course:boolean = false
-  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'asistencia', 'calificacion' ]; 
-  dataSource = new MatTableDataSource<Users>();
+  displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'asistencia', 'calificar','calificacion' ]; 
+  dataSource = new MatTableDataSource<UserWithApprovalStatus>();
   courseDate:any ={};
   @ViewChild(MatPaginator) paginator!: MatPaginator
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private http:UserService, private attendance:AttendanceService, private toastService:ToastService,private route: ActivatedRoute  ) { }
+  approvalStatuses = [
+    { value: ApprovalStatus.Inscripto, label: 'Inscripto' },
+    { value: ApprovalStatus.EnCurso, label: 'En Curso' },
+    { value: ApprovalStatus.Aprobado, label: 'Aprobado' },
+    { value: ApprovalStatus.Desaprobado, label: 'Desaprobado' }
+  ];
+  constructor(private http:UserService, private attendance:AttendanceService, private toastService:ToastService,private route: ActivatedRoute, private courseService:CourseService ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -57,7 +70,7 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
 
     const url= `/courses/${this.courseId}/users`
     this.http.getStudents<any>(url).subscribe(
-      (data: Users[]) => {
+      (data: UserWithApprovalStatus[]) => {
         this.dataSource.data = data; 
       },
       error => {
@@ -99,6 +112,24 @@ export class StudentsCourseComponent implements OnInit, OnChanges ,AfterViewInit
         }
       }
     );
+  }
+  calificar(userId: number, courseId: number, approvalStatus: ApprovalStatus) {
+  
+    this.courseService.calificacionUsuarioEnCurso<any>(userId, courseId, approvalStatus)
+      .subscribe(
+        (response) => {
+          console.log('calificacion exitosamente:', response);
+          this.getEstudiantes();
+        },
+        (error) => {
+          console.error('Error al calificar al usuario:', error);
+          
+        }
+      );
+  }
+  getApprovalStatusLabel(approvalStatusId: number): string {
+    const status = this.approvalStatuses.find(item => item.value === approvalStatusId);
+    return status ? status.label : '';
   }
 }
 

@@ -32,6 +32,7 @@ async function getTeacherEnrolledCourses(req, res) {
       user.role === 'admin' || (user.role === 'teacher' && user.id === parseInt(teacherId, 10))
     ) {
       const getCourses = await getCoursesForTeacher(teacherId);
+
       res.json(getCourses);
     } else {
       res.status(403).json({ error: 'Access denied' });

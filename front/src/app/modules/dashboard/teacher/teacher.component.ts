@@ -72,6 +72,7 @@ export class TeacherComponent implements OnInit, AfterViewInit {
     this.courseService.get<any>('/courses/list').subscribe(
       (data) => {
         this.dataSource.data = data;
+       
       },
       (error) => {
         console.log(error);
@@ -84,7 +85,7 @@ export class TeacherComponent implements OnInit, AfterViewInit {
       (data) => {
         const courses = data.map((item: { course: any; }) => item.course);
         this.dataSource.data = courses;
-      
+        
       },
       (error) => {
         // Manejar el error

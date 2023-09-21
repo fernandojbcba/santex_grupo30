@@ -12,9 +12,11 @@ router.get('/list', courseController.getAllCourses);
 router.get('/:courseId', courseController.courseById);
 router.get('/enrolled/:userId', authenticateToken, courseController.getEnrolledCourses);
 router.post('/enrolled/usercourse', authenticateToken, userCourseController.addUserCourseController);
+router.put('/enrolled/status', authenticateToken, isTeacher, userCourseController.putUserCourseController);
 router.get('/:courseId/users', authenticateToken, isTeacher, teacherCourseController.getUsersInCourse);
 router.post('/', authenticateToken, isAdmin, courseController.createCourse);
 router.put('/:courseId', authenticateToken, isAdmin, courseController.updateCourse);
+
 router.delete('/:courseId', authenticateToken, isAdmin, courseController.deleteCourse);
 
 module.exports = router;
