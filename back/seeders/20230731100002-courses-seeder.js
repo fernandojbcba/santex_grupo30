@@ -8,22 +8,10 @@ module.exports = {
     );
 
     console.log('Course States:', courseStates);
-
-    /*const noIniciadoStateId = courseStates.find(
-      (state) => state.name === 'No Iniciado'
-    )?.id;   
-    console.log('No Iniciado State ID:', noIniciadoStateId); 
-
-    const enCursoStateId = courseStates.find(
-      (state) => state.name === 'En Curso'
-    )?.id;
-
-    const finalizadoStateId = courseStates.find(
-      (state) => state.name === 'Finalizado'
-    )?.id;*/
-    const getStateId = (courseStates, stateName) => {
-      const state = courseStates.find((state) => state.name === stateName);
-      return state ? state.id : null;      
+    
+    /*const getStateId = (courseStates, stateName) => {
+    const state = courseStates.find((state) => state.name === stateName);
+    return state ? state.id : null;      
     };
     
     const noIniciadoStateId = getStateId(courseStates, 'No Iniciado');
@@ -32,7 +20,7 @@ module.exports = {
     
     console.log('No Iniciado State ID:', noIniciadoStateId);
     console.log('En Curso State ID:', enCursoStateId);
-    console.log('Finalizado State ID:', finalizadoStateId);
+    console.log('Finalizado State ID:', finalizadoStateId);*/
     
 
     const courses = [
@@ -47,7 +35,8 @@ module.exports = {
         isDeleted: false,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId, // Asigna el estado deseado aquí        
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId, // Asigna el estado deseado aquí        
       },
       {
         title: 'Taller de Carpintería en Madera',
@@ -60,7 +49,8 @@ module.exports = {
         isDeleted: false,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId,
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId,
       },
       {
         title: 'Curso de Fontanería Residencial',
@@ -73,7 +63,8 @@ module.exports = {
         isDeleted: false,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId,
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId,
       },
       {
         title: 'Taller de Panadería y Pastelería',
@@ -85,7 +76,8 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId,
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId,
       },
       {
         title: 'Curso de Electricidad Doméstica',
@@ -97,7 +89,8 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId,
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId,
       },
       {
         title: 'Taller de Jardinería y Paisajismo',
@@ -109,7 +102,8 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId,
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId,
       },
       {
         title: 'Curso de Reparación de Computadoras',
@@ -120,7 +114,8 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId,
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId,
       },
       {
         title: 'Taller de Costura y Confección',
@@ -132,7 +127,8 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId,
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId,
       },
       {
         title: 'Curso de Cocina Internacional',
@@ -144,7 +140,8 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId,
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId,
       },
       {
         title: 'Taller de Maquillaje Profesional',
@@ -156,7 +153,8 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
-        courseStateId: noIniciadoStateId,
+        courseStateId: '1',
+        //courseStateId: noIniciadoStateId,
         
       },      
     ];
