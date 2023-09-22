@@ -41,7 +41,7 @@ const UserTeacherCourse = require('./UserTeacherCourse')(sequelize, Sequelize.Da
 const Attendance = require('./attendance')(sequelize, Sequelize.DataTypes, db);
 const Status = require('./status')(sequelize, Sequelize.DataTypes, db);
 const ApprovalStatus = require('./approvalStatus')(sequelize, Sequelize.DataTypes, db);
-
+const CourseState = require('./courseState')(sequelize, Sequelize.DataTypes, db);
 // Asociar los modelos Course, Role y User al objeto db
 db.Role = Role;
 db.User = User;
@@ -52,6 +52,7 @@ db.UserTeacherCourse = UserTeacherCourse;
 db.Attendance = Attendance;
 db.Status = Status;
 db.ApprovalStatus = ApprovalStatus;
+db.CourseState = CourseState;
 // Asociaciones entre Role, User y UserRole
 Role.associate(db);
 User.associate(db);
@@ -61,6 +62,7 @@ UserTeacherCourse.associate(db);
 Attendance.associate(db);
 Status.associate(db);
 ApprovalStatus.associate(db);
+CourseState.associate(db);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

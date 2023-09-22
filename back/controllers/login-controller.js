@@ -17,7 +17,7 @@ async function loginController(req, res, next) {
       token: userResponse.accessToken,
     });
   } catch (error) {
-    const { statusCode } = error;
+    const statusCode = error.statusCode || 400; // Usar 400 como valor predeterminado
     res.status(statusCode).json({ message: error.message });
     next(error);
   }

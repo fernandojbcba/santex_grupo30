@@ -51,5 +51,19 @@ export class CourseService {
     };
     return this.http.put<T>('/courses/enrolled/status', body);
   }
+  public StartCourse<T>(courseId: number, startDate: any): Observable<T> {
+    const url = `/courses/start/${courseId}`;
+    const body = startDate;
+    return this.http.put<T>(url, body);
+  }
 
+  public EndCourse<T>(courseId: number, endDate: any): Observable<T> {
+  const url = `/courses/end/${courseId}`;
+    const body = endDate;
+    return this.http.put<T>(url, body);
+}
+public courseStatus<T>(): Observable<T> {
+  const url = `/courses/status`;
+  return this.http.get<T>(url);
+}
 }

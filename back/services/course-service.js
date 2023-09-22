@@ -1,4 +1,4 @@
-const { Course, UserCourse } = require('../models');
+const { Course, UserCourse, CourseState } = require('../models');
 
 class CourseService {
   async getAllCourses() {
@@ -18,7 +18,7 @@ class CourseService {
         {
           model: Course,
           // as: 'teachers',
-          where: { isDeleted: false }, // Filtrar por registros no borrados
+          where: { isDeleted: false },
         },
       ],
     });
@@ -65,6 +65,48 @@ class CourseService {
       return course;
     } catch (error) {
       throw new Error('Error fetching course by ID');
+    }
+  }
+
+  async updateCourseStart(courseId, startCourse) {
+    const course = await Course.findByPk(courseId);
+    if (!course) {
+      throw new Error('Course not found');
+    }
+
+    await course.update({
+      startCourse,
+      courseStateId: 2,
+    });
+
+    return course;
+  }
+
+  async updateCourseEnd(courseId, endCourse) {
+    const course = await Course.findByPk(courseId);
+    if (!course) {
+      throw new Error('Course not found');
+    }
+
+    await course.update({
+      endCourse,
+      courseStateId: 3,
+    });
+
+    return course;
+  }
+
+  async getAllStatusNames() {
+    try {
+      const courseStatuses = await CourseState.findAll();
+      const statusNames = courseStatuses.map((status) => ({
+        id: status.id,
+        name: status.name,
+      }));
+      return statusNames;
+    } catch (error) {
+      console.log(error);
+      throw new Error('Unable to fetch course status names.');
     }
   }
 }
