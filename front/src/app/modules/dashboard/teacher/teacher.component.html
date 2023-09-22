@@ -21,11 +21,11 @@
           </ng-container>
           <ng-container matColumnDef="start">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Inicio curso</mat-header-cell>
-            <mat-cell *matCellDef="let course">18/09/2023</mat-cell>
+            <mat-cell *matCellDef="let course">{{course.startCourse}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="end">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Fin curso</mat-header-cell>
-            <mat-cell *matCellDef="let course"></mat-cell>
+            <mat-cell *matCellDef="let course">{{course.endCourse}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Estado de curso</mat-header-cell>
@@ -36,10 +36,21 @@
             <mat-cell *matCellDef="let course">25</mat-cell>
           </ng-container>
           <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Estudiantes</mat-header-cell>
             <mat-cell *matCellDef="let course">
               <button class="ButtonCourse" mat-raised-button color="accent" (click)="Students(course.id)">
                 Ver Estudiantes
+              </button>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="initEndCourse">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell  *matCellDef="let course">
+              <button *ngIf="(course.courseStateId == 1)" class="ButtonCourse" mat-raised-button color="accent" >
+                Iniciar Curso
+              </button>
+              <button *ngIf="(course.courseStateId == 2)" class="ButtonCourse" mat-raised-button color="accent" >
+                Finalizar Curso
               </button>
             </mat-cell>
           </ng-container>
