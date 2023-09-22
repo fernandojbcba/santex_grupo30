@@ -13,6 +13,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
       {
         title: 'Taller de Carpintería en Madera',
@@ -24,6 +25,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
       {
         title: 'Curso de Fontanería Residencial',
@@ -35,6 +37,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
       {
         title: 'Taller de Panadería y Pastelería',
@@ -46,6 +49,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
       {
         title: 'Curso de Electricidad Doméstica',
@@ -57,6 +61,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
       {
         title: 'Taller de Jardinería y Paisajismo',
@@ -68,6 +73,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
       {
         title: 'Curso de Reparación de Computadoras',
@@ -78,6 +84,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
       {
         title: 'Taller de Costura y Confección',
@@ -89,6 +96,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
       {
         title: 'Curso de Cocina Internacional',
@@ -100,6 +108,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
       {
         title: 'Taller de Maquillaje Profesional',
@@ -111,6 +120,7 @@ module.exports = {
         isPublished: true,
         createdAt: currentDate,
         updatedAt: currentDate,
+        courseStateId: '1',
       },
     ]);
   },

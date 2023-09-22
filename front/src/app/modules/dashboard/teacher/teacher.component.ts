@@ -23,7 +23,7 @@ export class TeacherComponent implements OnInit, AfterViewInit {
   user: any;
   role: any;
    // Definir las columnas a mostrar en la tabla
-   displayedColumns: string[] = ['title', 'start', 'end', 'status', 'students', 'actions'];
+   displayedColumns: string[] = ['title', 'start', 'end', 'status', 'students', 'actions', 'initEndCourse'];
 
    // Fuente de datos para la tabla
    dataSource= new MatTableDataSource<Course>();
@@ -72,7 +72,7 @@ export class TeacherComponent implements OnInit, AfterViewInit {
     this.courseService.get<any>('/courses/list').subscribe(
       (data) => {
         this.dataSource.data = data;
-       
+      console.log(data)
       },
       (error) => {
         console.log(error);

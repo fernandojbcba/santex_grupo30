@@ -7,6 +7,7 @@ class CourseService {
         isDeleted: false,
         // isPublished: true,
       },
+
     });
     return courses;
   }

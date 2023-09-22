@@ -21,6 +21,10 @@ module.exports = (sequelize) => {
         foreignKey: 'CourseId',
         as: 'attendance', // Alias para la relación de asistencia del curso
       });
+      Course.belongsTo(models.CourseState, {
+        foreignKey: 'courseStateId', // Agrega una columna courseStateId a la tabla Course
+        as: 'courseState', // Alias para la relación
+      });
     }
   }
 
@@ -58,6 +62,19 @@ module.exports = (sequelize) => {
       isDeleted: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+      },
+      courseStateId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      startCourse: {
+        type: DataTypes.DATEONLY,
+        allowNull: true, // Puede ser nulo si el curso aún no ha comenzado
+      },
+
+      endCourse: {
+        type: DataTypes.DATEONLY,
+        allowNull: true, // Puede ser nulo si el curso aún no ha finalizado
       },
     },
     {
