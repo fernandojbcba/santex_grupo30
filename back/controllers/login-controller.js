@@ -16,8 +16,14 @@ async function loginController(req, res, next) {
       },
       token: userResponse.accessToken,
     });
-  } catch (error) {
+    // error login con campos incorrectos !!!importante
+  /* } catch (error) {
     const { statusCode } = error;
+    res.status(statusCode).json({ message: error.message });
+    next(error);
+  } */
+  } catch (error) {
+    const statusCode = error.statusCode || 400; // Usar 400 como valor predeterminado
     res.status(statusCode).json({ message: error.message });
     next(error);
   }
