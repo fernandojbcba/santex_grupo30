@@ -5,6 +5,7 @@ const {
   deleteTeacherCourseById,
   getUsersInCourseForTeacher,
   getTeacherbyCourse,
+  changeCourseState,
 } = require('../services/teachercourse-service');
 
 async function addTeacherCourseController(req, res) {
@@ -107,6 +108,17 @@ async function getTeacher(req, res) {
     res.status(500).json({ error: error.message });
   }
 }
+async function changeCourseStateController(req, res) {
+  const { userId, courseId, newStateId } = req.body;
+
+  try {
+    const updatedCourse = await changeCourseState(userId, courseId, newStateId);
+
+    res.status(200).json(updatedCourse);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 
 module.exports = {
   addTeacherCourseController,
@@ -115,4 +127,5 @@ module.exports = {
   deleteTeacherCourseController,
   getUsersInCourse,
   getTeacher,
+  changeCourseStateController,
 };

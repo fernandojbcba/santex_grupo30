@@ -10,4 +10,6 @@ router.get('/enrolled/:teacherId', authenticateToken, isTeacher, teacherControll
 router.post('/enrolled/teachercourse', authenticateToken, isAdmin, teacherController.addTeacherCourseController);
 router.delete('/delete-teachercourse/:id', authenticateToken, isAdmin, teacherController.deleteTeacherCourseController);// id model UserTeacherCourse
 router.get('/getTeacher/:courseId', authenticateToken, isAdmin, teacherController.getTeacher);
+router.put('/change-course-state', authenticateToken, isTeacher, teacherController.changeCourseStateController);
+
 module.exports = router;

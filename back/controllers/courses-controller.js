@@ -68,6 +68,22 @@ async function courseById(req, res) {
   }
 }
 
+const courseStates = [
+  { id: '1', name: 'No Iniciado' },
+  { id: '2', name: 'En Curso' },
+  { id: '3', name: 'Finalizado' },
+];
+
+function listCourseStates(req, res) {
+  res.status(200).json(courseStates);
+}
+
 module.exports = {
-  getAllCourses, getEnrolledCourses, createCourse, updateCourse, deleteCourse, courseById,
+  getAllCourses,
+  getEnrolledCourses,
+  createCourse,
+  updateCourse,
+  deleteCourse,
+  courseById,
+  listCourseStates,
 };

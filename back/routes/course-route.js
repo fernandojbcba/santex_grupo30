@@ -18,5 +18,6 @@ router.post('/', authenticateToken, isAdmin, courseController.createCourse);
 router.put('/:courseId', authenticateToken, isAdmin, courseController.updateCourse);
 
 router.delete('/:courseId', authenticateToken, isAdmin, courseController.deleteCourse);
+router.get('/course-states', authenticateToken, isTeacher, courseController.listCourseStates);
 
 module.exports = router;

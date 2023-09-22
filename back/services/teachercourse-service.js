@@ -169,6 +169,36 @@ async function getTeacherbyCourse(teacherCourseId) {
     throw error;
   }
 }
+async function changeCourseState(userId, courseId, newStateId) {
+  try {
+    const user = await User.findByPk(userId);
+    if (!user || (user.role !== 'teacher' && user.role !== 'admin')) {
+      throw new Error('Acceso denegado: debes ser profesor o admin');
+    }
+
+    const course = await Course.findByPk(courseId);
+    if (!course) {
+      throw new Error('Curso no encontrado');
+    }
+
+    // Verifica si el nuevo estado es válido
+    const validStates = ['1', '2', '3']; // '1' "No Iniciado", '2' "En Curso", '3' "Finalizado"
+
+    if (!validStates.includes(newStateId)) {
+      throw new Error('Estado de curso no válido');
+    }
+
+    // Actualiza el campo `courseStateId` con el nuevo estado `newStateId`
+    course.courseStateId = newStateId;
+    await course.save();
+
+    // Retorna el curso actualizado después de cambiar el estado
+    return course;
+  } catch (error) {
+    throw new Error(`Error cambiando el estado del curso: ${error.message}`);
+  }
+}
+
 module.exports = {
   addTeacherCourse,
   getCoursesForTeacher,
@@ -176,4 +206,5 @@ module.exports = {
   deleteTeacherCourseById,
   getUsersInCourseForTeacher,
   getTeacherbyCourse,
+  changeCourseState,
 };
