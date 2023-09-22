@@ -13,7 +13,7 @@ import { Course } from 'src/app/core/interfaces/courses/course.interface';
   styleUrls: ['./teacher.component.css']
 })
 export class TeacherComponent implements OnInit, AfterViewInit {
- 
+  StatusCourse:any[] = [];
   myCourses: any[] = [];
   selectedCourse: number = 0 ;
   adminlog:boolean = false;
@@ -23,7 +23,7 @@ export class TeacherComponent implements OnInit, AfterViewInit {
   user: any;
   role: any;
    // Definir las columnas a mostrar en la tabla
-   displayedColumns: string[] = ['title', 'start', 'end', 'status', 'students', 'actions', 'initEndCourse'];
+   displayedColumns: string[] = ['title', 'start', 'end', 'status', 'actions', 'initEndCourse'];
 
    // Fuente de datos para la tabla
    dataSource= new MatTableDataSource<Course>();
@@ -36,9 +36,10 @@ export class TeacherComponent implements OnInit, AfterViewInit {
     
     this.loadrol();
     this.loadcourses();
-    
+   
   }
   ngAfterViewInit() {
+    this.getCourseStatuses();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     if(this.dataSource.data.length > 0) {
@@ -72,7 +73,7 @@ export class TeacherComponent implements OnInit, AfterViewInit {
     this.courseService.get<any>('/courses/list').subscribe(
       (data) => {
         this.dataSource.data = data;
-      console.log(data)
+       
       },
       (error) => {
         console.log(error);
@@ -85,21 +86,73 @@ export class TeacherComponent implements OnInit, AfterViewInit {
       (data) => {
         const courses = data.map((item: { course: any; }) => item.course);
         this.dataSource.data = courses;
-        
+    
       },
       (error) => {
-        // Manejar el error
+        
       }
     );}
  }
  
- Students(courseId: number): void {
+ public Students(courseId: number): void {
   const url = `/dashboard/students/${courseId}`;
   this.router.navigate([url]);
 }
-
- 
- 
+public startCourse(courseId: number): void {
+  const currentDate = new Date();
+  const formattedDate = this.formatDateToDDMMYY(currentDate);
+  const data = {
+    startCourse: currentDate,
+  };
+  this.courseService.StartCourse<any>(courseId, data).subscribe(
+    (data) => {
+      this.loadcourses()
+      console.log('Course started successfully:', data);
+    },
+    (error) => {
+      console.error('Error starting course:', error);
+    }
+  );
 }
 
+public endCourse(courseId: number): void {
+  const currentDate = new Date();
+  const formattedDate = this.formatDateToDDMMYY(currentDate);
+  const data = {
+    endCourse: currentDate,
+  };
+  this.courseService.EndCourse<any>(courseId, data).subscribe(
+    (data) => {
+      this.loadcourses()
+    },
+    (error) => {
+      
+      console.error('Error ending course:', error);
+    }
+  );
+}
 
+public getCourseStatuses(): void {
+  this.courseService.courseStatus<any>().subscribe(
+    (data) => {
+      this.StatusCourse= data
+    },
+    (error) => {
+      console.error('Error getting course statuses:', error);
+    }
+  );
+}
+
+public formatDateToDDMMYY(date:any) {
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
+  const year = date.getFullYear().toString().slice(-2); 
+
+  return `${day}/${month}/${year}`;
+}
+getStatusCourseName(statuscourseId: number): string {
+  // console.log(this.StatusCourse)
+  const status = this.StatusCourse.find(status => status.id === statuscourseId);
+  return status ? status.name : 'Desconocido';
+}
+}

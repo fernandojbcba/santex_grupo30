@@ -27,14 +27,16 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header>Fin curso</mat-header-cell>
             <mat-cell *matCellDef="let course">{{course.endCourse}}</mat-cell>
           </ng-container>
-          <ng-container matColumnDef="status">
+          <<ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Estado de curso</mat-header-cell>
-            <mat-cell *matCellDef="let course">en curso</mat-cell>
+            <mat-cell *matCellDef="let course">
+              {{ getStatusCourseName(course.courseStateId) }}
+            </mat-cell>
           </ng-container>
-          <ng-container matColumnDef="students">
+          <!-- <ng-container matColumnDef="students">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad estudiantes</mat-header-cell>
             <mat-cell *matCellDef="let course">25</mat-cell>
-          </ng-container>
+          </ng-container> -->
           <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef>Estudiantes</mat-header-cell>
             <mat-cell *matCellDef="let course">
@@ -46,11 +48,14 @@
           <ng-container matColumnDef="initEndCourse">
             <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
             <mat-cell  *matCellDef="let course">
-              <button *ngIf="(course.courseStateId == 1)" class="ButtonCourse" mat-raised-button color="accent" >
+              <button *ngIf="(course.courseStateId == 1)" class="ButtonCourse" mat-raised-button color="accent"(click)="startCourse(course.id)" >
                 Iniciar Curso
               </button>
-              <button *ngIf="(course.courseStateId == 2)" class="ButtonCourse" mat-raised-button color="accent" >
+              <button *ngIf="(course.courseStateId == 2)" class="ButtonCourse" mat-raised-button color="accent" (click)="endCourse(course.id)">
                 Finalizar Curso
+              </button>
+              <button *ngIf="(course.courseStateId == 3)" class="ButtonCourse" mat-raised-button disabled>
+                Finalizado
               </button>
             </mat-cell>
           </ng-container>

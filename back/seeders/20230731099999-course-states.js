@@ -4,7 +4,7 @@ const currentDate = new Date();
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('CourseState', [
+    await queryInterface.bulkInsert('coursestates', [
       {
         name: 'No Iniciado',
         createdAt: currentDate,
