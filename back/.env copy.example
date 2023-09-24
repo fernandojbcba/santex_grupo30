@@ -12,3 +12,4 @@ LOG_LEVEL=debug
 SESSION_SECRET=secret
 SECRET_KEY=miClaveSecreta123
 CORS=http://localhost:4200
+MERCADOPAGO_ACCESS_TOKEN=poner acá tu token de la cuenta de prueba de mercadopago
