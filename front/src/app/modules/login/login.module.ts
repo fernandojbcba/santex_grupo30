@@ -16,7 +16,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LoginRoutingModule } from './login-routing.module';
-
+import { HeaderComponent } from '../components/header/header.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 
@@ -24,7 +24,8 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 @NgModule({
   declarations: [
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    HeaderComponent 
   ],
   imports: [
     CommonModule,

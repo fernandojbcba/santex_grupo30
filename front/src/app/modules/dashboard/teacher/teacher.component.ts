@@ -151,7 +151,7 @@ public formatDateToDDMMYY(date:any) {
   return `${day}/${month}/${year}`;
 }
 getStatusCourseName(statuscourseId: number): string {
-  // console.log(this.StatusCourse)
+
   const status = this.StatusCourse.find(status => status.id === statuscourseId);
   return status ? status.name : 'Desconocido';
 }
