@@ -66,6 +66,7 @@ module.exports = (sequelize) => {
       courseStateId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 1,
       },
       startCourse: {
         type: DataTypes.DATEONLY,

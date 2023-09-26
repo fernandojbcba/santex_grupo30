@@ -1,20 +1,66 @@
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  z-index: 9999; 
+}
+
+.footer-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+}
+
+.links {
+  text-decoration: none;
+  color: antiquewhite;
+}
+
+/* Establece un margen en el cuerpo para evitar que el contenido se solape con el footer */
+body {
+  margin-bottom: 40px; /* Igual al alto del footer para crear espacio en la parte inferior */
+}
+@media (max-width: 400px) {
+  .footer {
+    font-size: 12px;
   }
   
+  .footer {
+    position: fixed;
+    height: 120px;
+   
+  }
   .footer-content {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
-    padding: 0 16px;
+    flex-direction: column;
+     justify-content:center;
+     height: 120px;
+ 
+   }
+}
+
+/* 401px a 768px */
+@media (min-width: 401px) and (max-width: 768px) {
+  .footer {
+    font-size: 14px;
   }
-  .links{
-    text-decoration: none;
-    color: antiquewhite;
+  
+}
+
+/* 769px a 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer {
+    font-size: 16px;
   }
+}
+
+/* 1025px a 1920px */
+@media (min-width: 1025px) and (max-width: 1920px) {
+  .footer {
+    font-size: 18px;
+  }
+}

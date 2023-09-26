@@ -1,4 +1,19 @@
 .expanded-toolbar {
     justify-content: space-between;
     align-items: center;
+    height: 90px;
+  }
+  .logo{
+    display: flex;
+    align-items: center;
+  
+  }
+  .logo img {
+    height: 80px;
+  }
+  
+  .company-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 16px;
   }

@@ -2,19 +2,54 @@
   height: 80px;
 }
 
+.logo {
+  display: flex;
+}
+
 .company-name {
   font-size: 24px;
   font-weight: bold;
   margin-left: 16px;
 }
-.custom-toolbar{
-  height: 100px;
+
+.custom-toolbar {
+  height: 90px;
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 }
+
 .toolbar-row {
   display: flex;
   align-items: center;
-  
+}
+
+/* Estilos responsivos para diferentes tamaños de pantalla */
+
+/* 400px y menos */
+@media (max-width: 400px) {
+  .company-name {
+    font-size: 18px;
+  }
+}
+
+/* 401px a 768px */
+@media (min-width: 401px) and (max-width: 768px) {
+  .company-name {
+    font-size: 20px;
+  }
+}
+
+/* 769px a 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .company-name {
+    font-size: 22px;
+  }
+}
+
+/* 1025px a 1920px */
+@media (min-width: 1025px) and (max-width: 1920px) {
+  .company-name {
+    font-size: 24px;
+  }
 }
