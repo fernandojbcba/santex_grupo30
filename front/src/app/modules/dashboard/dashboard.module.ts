@@ -34,6 +34,7 @@ import {MatSidenavModule} from '@angular/material/sidenav'
 import { TeacherComponent } from './teacher/teacher.component';
 import { StudentsCourseComponent } from './students-course/students-course.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { MatListModule } from '@angular/material/list'; 
 
 @NgModule({
   declarations: [DashboardPageComponent, ListCoursesComponent, MyCoursesComponent, ProfileComponent, UserComponent, UserEditDialogComponent, UserCreateDialogComponent, CourseComponent, CourseCreateDialogComponent, CourseEditDialogComponent, TeacherComponent, StudentsCourseComponent],
@@ -66,6 +67,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTooltipModule,
     MatSidenavModule,
     MatChipsModule,
+    MatListModule,
   ],
   exports: [
     DashboardPageComponent
