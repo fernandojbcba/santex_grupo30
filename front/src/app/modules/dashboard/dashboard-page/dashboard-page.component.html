@@ -61,14 +61,14 @@
             <span>Hola, {{user}}</span>
         </mat-list-item>
 
-        <mat-list-item *ngIf="!adminlog && !teacherlog">
+        <mat-list-item *ngIf="!adminlog && !teacherlog" (click)="sidenav.close()">
           <a matLine routerLink="/dashboard/my_courses">
             <mat-icon>description</mat-icon>
             <span>Mis Cursos</span>
           </a>
         </mat-list-item>
 
-        <mat-list-item *ngIf="!adminlog && !teacherlog">
+        <mat-list-item *ngIf="!adminlog && !teacherlog" (click)="sidenav.close()">
           <a matLine routerLink="/dashboard/courses_list">
             <mat-icon>list</mat-icon>
             <span>Lista Cursos</span>
@@ -76,51 +76,37 @@
         </mat-list-item>
 
         <!-- admin -->
-        <mat-list-item *ngIf="adminlog">
+        <mat-list-item *ngIf="adminlog" (click)="sidenav.close()">
           <a matLine routerLink="/dashboard/courseedit">
             <mat-icon>assignment</mat-icon>
             <span>Cursos</span>
           </a>
         </mat-list-item>
-        <mat-list-item *ngIf="adminlog">
+        <mat-list-item *ngIf="adminlog" (click)="sidenav.close()">
           <a matLine routerLink="/dashboard/useredit">
             <mat-icon>manage_accounts</mat-icon>
             <span>Usuarios</span>
           </a>
         </mat-list-item>
-        <mat-list-item *ngIf="adminlog">
+        <mat-list-item *ngIf="adminlog" (click)="sidenav.close()">
           <a matLine routerLink="/dashboard/teacher">
             <mat-icon>school</mat-icon>
             <span>Teacher</span>
           </a>
         </mat-list-item>
         <!-- teacher -->
-        <mat-list-item *ngIf="teacherlog">
+        <mat-list-item *ngIf="teacherlog" (click)="sidenav.close()">
           <a matLine routerLink="/dashboard/teacher">
             <mat-icon>school</mat-icon>
             <span>Teacher</span>
           </a>
         </mat-list-item>
-        <mat-list-item (click)="logout()">
+        <mat-list-item (click)="logout()" (click)="sidenav.close()">
           <mat-icon>exit_to_app</mat-icon>
           <span>Logout</span>
         </mat-list-item>
         
       </div>
-
-
-
-      <!--<div fxLayout="column" fxShow="true" fxShow.gt-sm fxLayoutAlign="center start">
-      <h3>{{ user }}</h3>
-      <button mat-button routerLink="/dashboard/profile">
-        <mat-icon>account_circle</mat-icon>perfil
-      </button>
-      <button mat-button (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
-        Logout
-      </button>
-    </div>-->
-
 
     </mat-sidenav>
 

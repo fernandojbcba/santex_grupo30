@@ -62,5 +62,8 @@ export class DashboardPageComponent implements  OnInit{
    toggleSidenav() {
     this.sidenav.toggle();
   }
+  closeSidenav() {
+    this.sidenav.close();
+  }
 
 }
