@@ -1,3 +1,6 @@
+.dashboard-content{
+  width: fit-content;
+}
 .expanded-toolbar {
     justify-content: space-between;
     align-items: center;
@@ -43,7 +46,7 @@
   .menu-items-container {
     display: flex;
     flex-direction: column; /* Establece la dirección vertical */
-    gap: 16px; /* Espacio entre elementos (ajusta según sea necesario) */
+    gap: 16px; /* Espacio entre elementos */
   }
   .mat-icon{
     vertical-align: bottom;
