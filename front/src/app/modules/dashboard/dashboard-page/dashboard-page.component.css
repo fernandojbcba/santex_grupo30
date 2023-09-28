@@ -1,6 +1,9 @@
 .dashboard-content{
   width: fit-content;
 }
+.footer{
+  position: inherit;
+  }
 .expanded-toolbar {
     justify-content: space-between;
     align-items: center;
