@@ -17,3 +17,43 @@
     font-weight: bold;
     margin-left: 16px;
   }
+  .menu-items-container {
+    display: flex;
+    flex-direction: column; /* Establece la dirección vertical */
+    gap: 16px; /* Espacio entre elementos (ajusta según sea necesario) */
+  }
+ 
+  /* Estilos para dispositivos con ancho menor a 1050px */
+@media screen and (max-width: 1050px) {
+  
+  .sidenav-container {
+    height: 100%;
+  }
+  .sidenav {
+    width: 80%; /* Ancho del menú hamburguesa */
+    background-color: #fff; /* Color de fondo del menú */
+  }
+  
+  .company-name{
+    display: none; /* Oculta el título en dispositivos móviles */
+  }
+  .oculto{
+    visibility: hidden;
+  }
+  .menu-items-container {
+    display: flex;
+    flex-direction: column; /* Establece la dirección vertical */
+    gap: 16px; /* Espacio entre elementos (ajusta según sea necesario) */
+  }
+  .mat-icon{
+    vertical-align: bottom;
+  }
+  .material-icons{
+    font-size: 3em;
+    padding: 0.2em 0.7em 0.5em 0.1em;
+    vertical-align: middle;
+  }
+  .mat-list-item:first-child {
+    padding-top: 1em;
+  }
+}

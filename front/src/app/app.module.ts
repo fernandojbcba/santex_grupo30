@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterComponent } from './modules/components/footer/footer.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FooterComponent } from './modules/components/footer/footer.component';
     AppRoutingModule,
     CoreModule,
     MatToolbarModule,
+    MatListModule,
 
     
   ],
