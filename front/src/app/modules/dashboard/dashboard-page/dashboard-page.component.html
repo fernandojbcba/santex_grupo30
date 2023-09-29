@@ -1,49 +1,118 @@
-<mat-toolbar color="primary" class="expanded-toolbar">
-  <div class="logo">
-    <img src="../../../../assets/img/incubadoranoccirculo.png" alt="Logo" />
-    <div class="company-name">Incubadora del N.O.C</div>
-  </div>
-  
+<div class="dashboard-container">
+  <mat-toolbar color="primary" class="expanded-toolbar">
+    <div class="logo">
+      <img src="../../../../assets/img/incubadoranoccirculo.png" alt="Logo" />
+      <div class="company-name">Incubadora del N.O.C</div>
 
-  <span>
-    <!-- user -->
+
+    </div>
+
+    <button mat-button *ngIf="isMobile" (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="oculto">
+    <span>
+      <!-- user -->
+      <button *ngIf="!adminlog && !teacherlog" mat-button routerLink="/dashboard/my_courses">
+        <mat-icon>description</mat-icon>Mis Cursos
+      </button>
+      <button *ngIf="!adminlog && !teacherlog" mat-button routerLink="/dashboard/courses_list">
+        <mat-icon>list</mat-icon>Lista Cursos
+      </button>
+      <!-- admin -->
+      <button *ngIf="adminlog" mat-button routerLink="/dashboard/courseedit">
+        <mat-icon>assignment</mat-icon>Cursos
+      </button>
+      <button *ngIf="adminlog" mat-button routerLink="/dashboard/useredit">
+        <mat-icon>manage_accounts</mat-icon>Usuarios
+      </button>
+      <button *ngIf="adminlog" mat-button routerLink="/dashboard/teacher">
+        <mat-icon>school</mat-icon>Teacher
+      </button>
+      <!-- teacher -->
+      <button *ngIf="teacherlog" mat-button routerLink="/dashboard/teacher">
+        <mat-icon>school</mat-icon>Teacher
+      </button>
+    </span>
+    </div>
+      <div class="oculto" fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <h2>Hola, {{ user }}</h2>
+        <button mat-button routerLink="/dashboard/profile">
+          <mat-icon>account_circle</mat-icon>perfil
+        </button>
+        <button mat-button (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+        </button>
+      </div>
     
-    <button *ngIf="!adminlog && !teacherlog" mat-button routerLink="/dashboard/my_courses">
-      <mat-icon>description</mat-icon>Mis Cursos
-    </button>
-    <button *ngIf="!adminlog && !teacherlog" mat-button routerLink="/dashboard/courses_list">
-      <mat-icon>list</mat-icon>Lista Cursos
-    </button>
-    <!-- admin -->
-    <button *ngIf="adminlog" mat-button routerLink="/dashboard/courseedit">
-      <mat-icon>assignment</mat-icon>Cursos
-    </button>
-    <button *ngIf="adminlog" mat-button routerLink="/dashboard/useredit">
-      <mat-icon>manage_accounts</mat-icon>Usuarios
-    </button>
-    <button *ngIf="adminlog" mat-button routerLink="/dashboard/teacher">
-      <mat-icon>school</mat-icon>Teacher
-    </button>
-    <!-- teacher -->
-    <button *ngIf="teacherlog" mat-button routerLink="/dashboard/teacher">
-      <mat-icon>school</mat-icon>Teacher
-    </button>
-  </span>
-  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-    <h2>Hola,{{ user }}</h2>
-    <button mat-button routerLink="/dashboard/profile">
-      <mat-icon>account_circle</mat-icon>perfil
-    </button>
-    <button mat-button (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
-      Logout
-    </button>
-  </div>
-</mat-toolbar>
-<mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item (click)="logout()">
-    <mat-icon>exit_to_app</mat-icon>
-    Logout
-  </button>
-</mat-menu>
-<router-outlet></router-outlet>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav class="sidenav" [mode]="isMobile ? 'over' : 'side'">
+      <!-- Define el contenido del menú lateral aquí -->
+      <!-- user -->
+      <div class="menu-items-container">
+
+        <mat-list-item>
+            <mat-icon>account_circle</mat-icon>
+            <span>Hola, {{user}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="!adminlog && !teacherlog" (click)="sidenav.close()">
+          <a matLine routerLink="/dashboard/my_courses">
+            <mat-icon>description</mat-icon>
+            <span>Mis Cursos</span>
+          </a>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="!adminlog && !teacherlog" (click)="sidenav.close()">
+          <a matLine routerLink="/dashboard/courses_list">
+            <mat-icon>list</mat-icon>
+            <span>Lista Cursos</span>
+          </a>
+        </mat-list-item>
+
+        <!-- admin -->
+        <mat-list-item *ngIf="adminlog" (click)="sidenav.close()">
+          <a matLine routerLink="/dashboard/courseedit">
+            <mat-icon>assignment</mat-icon>
+            <span>Cursos</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item *ngIf="adminlog" (click)="sidenav.close()">
+          <a matLine routerLink="/dashboard/useredit">
+            <mat-icon>manage_accounts</mat-icon>
+            <span>Usuarios</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item *ngIf="adminlog" (click)="sidenav.close()">
+          <a matLine routerLink="/dashboard/teacher">
+            <mat-icon>school</mat-icon>
+            <span>Teacher</span>
+          </a>
+        </mat-list-item>
+        <!-- teacher -->
+        <mat-list-item *ngIf="teacherlog" (click)="sidenav.close()">
+          <a matLine routerLink="/dashboard/teacher">
+            <mat-icon>school</mat-icon>
+            <span>Teacher</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item (click)="logout()" (click)="sidenav.close()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </mat-list-item>
+        
+      </div>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!-- Aquí se mostrará el contenido principal de tu página -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
