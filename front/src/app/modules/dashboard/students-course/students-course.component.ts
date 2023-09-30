@@ -87,6 +87,7 @@ export class StudentsCourseComponent
     this.http.getStudents<any>(url).subscribe(
       (data: UserWithApprovalStatus[]) => {
         this.dataSource.data = data;
+        console.log(data)
       },
       (error) => {
         console.log(error);
