@@ -1,5 +1,7 @@
 import {Component, OnInit, AfterViewInit } from '@angular/core';
 import { MatToolbar } from '@angular/material/toolbar';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -16,16 +18,18 @@ export class LandingComponent implements OnInit {
     '../../../../assets/img/slide3/2.jpeg',
     '../../../../assets/img/slide3/3.jpeg',
     '../../../../assets/img/slide3/4.jpeg',
-    '../../../../assets/img/slide3/5.jpg',
+    '../../../../assets/img/slide3/5.jpeg',
     '../../../../assets/img/slide3/6.jpeg',
  
   ];
-  constructor() { }
+  constructor(private router:Router) { }
   ngAfterViewInit(): void {
 
   }
   ngOnInit(): void {
 
   }
-  
+  redirectToLogin() {
+    this.router.navigate(['/auth/login']);
+  }
 }
