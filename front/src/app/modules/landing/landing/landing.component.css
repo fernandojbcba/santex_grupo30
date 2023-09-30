@@ -197,6 +197,7 @@ button {
   }
   .card {
     width: 400px;
+    
   }
   .logo img {
     height: 55px;
@@ -209,7 +210,12 @@ button {
     font-weight: bold;
     margin-left: 16px;
   }
-
+  .card-image {
+    cursor: pointer; 
+  }
+  .card-image:hover {
+    opacity: 0.8;
+  }
   
   .video-div {
     
