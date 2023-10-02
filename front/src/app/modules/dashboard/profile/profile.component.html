@@ -1,47 +1,34 @@
 <mat-card class="profile-card" *ngIf="profileData">
-  <form [formGroup]="profileForm" class="profile-form">
-    <mat-card class="cards">
-      <mat-card-header>
-        <img
-          mat-card-lg-image
-          src="https://img2.freepng.es/20180413/ccw/kisspng-computer-icons-user-profile-person-5ad0a067829640.8878511915236219915349.jpg"
-        />
-        <mat-card-title>{{ profileData.userName }}</mat-card-title>
-      </mat-card-header>
-      <div>
-        <label for="newEmail">Nuevo Email:</label>
-        <input formControlName="newEmail" id="newEmail" placeholder="Nuevo Email" />
-      </div>
+  <mat-card class="cards">
+    <mat-card-header>
+      <img
+        mat-card-lg-image
+        src="https://img2.freepng.es/20180413/ccw/kisspng-computer-icons-user-profile-person-5ad0a067829640.8878511915236219915349.jpg"
+      />
+      <mat-card-title>{{ profileData.userName }}</mat-card-title>
+    </mat-card-header>
 
-      <div>
-        <label for="confirmEmail">Confirmar Email:</label>
-        <input formControlName="confirmEmail" id="confirmEmail" placeholder="Confirmar Email" />
-        <div *ngIf="profileForm?.hasError('emailsNotMatch') && profileForm?.get('confirmEmail')?.touched" class="error-message">
-          Los emails no coinciden.
-        </div>
-      </div>
+    <div>
+      <label>Nombre:</label>
+      <span>{{ profileData.firstName }}</span>
+    </div>
 
-      <div>
-        <label for="newPassword">Nueva Contraseña:</label>
-        <input formControlName="newPassword" type="password" id="newPassword" placeholder="Nueva Contraseña" />
-      </div>
+    <div>
+      <label>Apellido:</label>
+      <span>{{ profileData.lastName }}</span>
+    </div>
 
-      <div>
-        <label for="confirmPassword">Confirmar Contraseña:</label>
-        <input formControlName="confirmPassword" type="password" id="confirmPassword" placeholder="Confirmar Contraseña" />
-        <div *ngIf="profileForm?.hasError('passwordsNotMatch') && profileForm?.get('confirmPassword')?.touched" class="error-message">
-          Las contraseñas no coinciden.
-        </div>
-      </div>
+    <div>
+      <label>Email:</label>
+      <span>{{ profileData.email }}</span>
+    </div>
 
-      <mat-divider></mat-divider>
-   
+    <mat-divider></mat-divider>
   </mat-card>
 
   <mat-card-actions>
-    <button mat-button color="primary" (click)="updateProfile()">
-      Guardar Cambios
+    <button mat-button color="primary">
+      Modificar Perfil
     </button>
   </mat-card-actions>
-  </form>
 </mat-card>

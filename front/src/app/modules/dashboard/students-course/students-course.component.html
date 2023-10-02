@@ -85,6 +85,25 @@
           class="absent"
           fontIcon="close"
         ></mat-icon>
+
+      </td>
+    </ng-container>
+    <ng-container *ngIf="courseDate.courseStateId != 2" matColumnDef="presentismo">
+      <th mat-header-cell *matHeaderCellDef class="column-presentismo">
+        Presentismo
+      </th>
+      <td mat-cell *matCellDef="let user" class="column-presentismo">
+        ----
+      </td>
+    </ng-container>
+    <ng-container *ngIf="courseDate.courseStateId === 2" matColumnDef="presentismo">
+      <th mat-header-cell *matHeaderCellDef class="column-presentismo">
+        Presentismo
+      </th>
+      <td mat-cell *matCellDef="let user" class="column-presentismo">
+       <p>presente: {{user.presentCount}}</p>
+       <p>ausente: {{user.absentCount}}</p>
+
       </td>
     </ng-container>
     <ng-container *ngIf="courseDate.courseStateId !=1 " matColumnDef="calificar">
@@ -101,7 +120,7 @@
           <mat-label>Elegir Estado</mat-label>
           <mat-select [(value)]="user.user.selectedApprovalStatus">
             <mat-option
-              *ngFor="let status of approvalStatuses"
+              *ngFor="let status of approvalStatusesSelect"
               [value]="status.value"
             >
               {{ status.label }}

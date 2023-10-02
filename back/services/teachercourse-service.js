@@ -1,5 +1,6 @@
+const { Op } = require('sequelize');
 const {
-  UserTeacherCourse, Course, User, UserCourse,
+  UserTeacherCourse, Course, User, UserCourse, Attendance,
 } = require('../models');
 
 async function addCourse(userId, teacherCourseId) {
@@ -117,8 +118,31 @@ async function deleteTeacherCourseById(id) {
   }
 }
 
+// async function getUsersInCourseForTeacher(teacherId, courseId) {
+//   try {
+//     const userCourses = await UserCourse.findAll({
+//       where: { CourseId: courseId },
+//       include: [
+//         {
+//           model: User,
+//           as: 'User',
+//           attributes: ['id', 'firstName', 'lastName', 'userName', 'email'],
+//         },
+//       ],
+//     });
+
+//     return userCourses.map((userCourse) => ({
+//       user: userCourse.User,
+//       approvalStatusId: userCourse.approvalStatusId,
+
+//     }));
+//   } catch (error) {
+//     throw new Error('Error fetching users in course for teacher');
+//   }
+// }
 async function getUsersInCourseForTeacher(teacherId, courseId) {
   try {
+    const currentDate = new Date(); // Obtén la fecha actual
     const userCourses = await UserCourse.findAll({
       where: { CourseId: courseId },
       include: [
@@ -130,16 +154,50 @@ async function getUsersInCourseForTeacher(teacherId, courseId) {
       ],
     });
 
-    return userCourses.map((userCourse) => ({
-      user: userCourse.User,
-      approvalStatusId: userCourse.approvalStatusId,
+    // Obtén la fecha de inicio del curso
+    const course = await Course.findOne({ where: { id: courseId } });
+    const courseStartDate = course.startCourse;
 
-    }));
+    // Filtra las asistencias hasta la fecha actual
+    const attendancePromises = userCourses.map(async (userCourse) => {
+      const presentCount = await Attendance.count({
+        where: {
+          UserId: userCourse.UserId,
+          CourseId: courseId,
+          StatusId: 1, // ID de presente
+          date: {
+            [Op.gte]: courseStartDate, // Asistencias después de la fecha de inicio del curso
+            [Op.lte]: currentDate, // Asistencias hasta la fecha actual
+          },
+        },
+      });
+
+      const absentCount = await Attendance.count({
+        where: {
+          UserId: userCourse.UserId,
+          CourseId: courseId,
+          StatusId: 2, // ID de ausente
+          date: {
+            [Op.gte]: courseStartDate, // Asistencias después de la fecha de inicio del curso
+            [Op.lte]: currentDate, // Asistencias hasta la fecha actual
+          },
+        },
+      });
+
+      return {
+        user: userCourse.User,
+        presentCount,
+        absentCount,
+        approvalStatusId: userCourse.approvalStatusId,
+      };
+    });
+
+    const usersWithAttendances = await Promise.all(attendancePromises);
+    return usersWithAttendances;
   } catch (error) {
-    throw new Error('Error fetching users in course for teacher');
+    throw new Error('Error fetching users and attendances for the course');
   }
 }
-
 async function getTeacherbyCourse(teacherCourseId) {
   try {
     const userTeacherCourse = await UserTeacherCourse.findOne({
@@ -172,8 +230,8 @@ async function getTeacherbyCourse(teacherCourseId) {
 module.exports = {
   addTeacherCourse,
   getCoursesForTeacher,
+  getUsersInCourseForTeacher,
   editTeacherCourse,
   deleteTeacherCourseById,
-  getUsersInCourseForTeacher,
   getTeacherbyCourse,
 };
