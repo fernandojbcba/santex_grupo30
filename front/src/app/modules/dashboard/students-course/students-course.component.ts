@@ -40,6 +40,7 @@ export class StudentsCourseComponent
     'username',
     'email',
     'asistencia',
+    'presentismo',
     'calificar',
     'calificacion',
   ];
@@ -48,6 +49,12 @@ export class StudentsCourseComponent
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   approvalStatuses = [
+    { value: ApprovalStatus.Inscripto, label: 'Inscripto' },
+    { value: ApprovalStatus.EnCurso, label: 'En Curso' },
+    { value: ApprovalStatus.Aprobado, label: 'Aprobado' },
+    { value: ApprovalStatus.Desaprobado, label: 'Desaprobado' },
+  ];
+  approvalStatusesSelect = [
     { value: ApprovalStatus.EnCurso, label: 'En Curso' },
     { value: ApprovalStatus.Aprobado, label: 'Aprobado' },
     { value: ApprovalStatus.Desaprobado, label: 'Desaprobado' },
@@ -87,7 +94,7 @@ export class StudentsCourseComponent
     this.http.getStudents<any>(url).subscribe(
       (data: UserWithApprovalStatus[]) => {
         this.dataSource.data = data;
-        console.log(data)
+        console.log(this.dataSource.data)
       },
       (error) => {
         console.log(error);
@@ -120,6 +127,7 @@ export class StudentsCourseComponent
       this.attendance.post<any>(url, body).subscribe(
         (data: any) => {
           const attendance = data;
+          this.getEstudiantes();
         },
         (err) => {
           const { error } = err.error;
