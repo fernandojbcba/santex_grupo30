@@ -5,56 +5,30 @@
 
   <mat-form-field class="buscar" appearance="standard">
     <mat-label>Filtro</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Buscar"
-      #input
-      autocomplete="off"
-    />
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input autocomplete="off" />
   </mat-form-field>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="firstname">
-      <th
-        mat-header-cell
-        *matHeaderCellDef
-        mat-sort-header
-        class="column-firstname"
-      >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-firstname">
         Nombre
       </th>
       <td mat-cell *matCellDef="let user">{{ user.user.firstName }}</td>
     </ng-container>
 
     <ng-container matColumnDef="lastname">
-      <th
-        mat-header-cell
-        *matHeaderCellDef
-        mat-sort-header
-        class="column-lastnamen"
-      >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-lastnamen">
         Apellido
       </th>
       <td mat-cell *matCellDef="let user">{{ user.user.lastName }}</td>
     </ng-container>
     <ng-container matColumnDef="username">
-      <th
-        mat-header-cell
-        *matHeaderCellDef
-        mat-sort-header
-        class="column-username"
-      >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-username">
         Nombre de usuario
       </th>
       <td mat-cell *matCellDef="let user">{{ user.user.userName }}</td>
     </ng-container>
     <ng-container matColumnDef="email">
-      <th
-        mat-header-cell
-        *matHeaderCellDef
-        mat-sort-header
-        class="column-email"
-      >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-email">
         email
       </th>
       <td mat-cell *matCellDef="let user">{{ user.user.email }}</td>
@@ -73,18 +47,10 @@
         Asistencia
       </th>
       <td mat-cell *matCellDef="let user" class="column-botton">
-        <mat-icon 
-          (click)="attendanceFunction(user.user.id, courseId, 1)"
-          matTooltip="presente"
-          class="present"
-          fontIcon="done"
-        ></mat-icon>
-        <mat-icon
-          (click)="attendanceFunction(user.user.id, courseId, 2)"
-          matTooltip="ausente"
-          class="absent"
-          fontIcon="close"
-        ></mat-icon>
+        <mat-icon (click)="attendanceFunction(user.user.id, courseId, 1)" matTooltip="presente" class="present"
+          fontIcon="done"></mat-icon>
+        <mat-icon (click)="attendanceFunction(user.user.id, courseId, 2)" matTooltip="ausente" class="absent"
+          fontIcon="close"></mat-icon>
 
       </td>
     </ng-container>
@@ -101,63 +67,41 @@
         Presentismo
       </th>
       <td mat-cell *matCellDef="let user" class="column-presentismo">
-       <p>presente: {{user.presentCount}}</p>
-       <p>ausente: {{user.absentCount}}</p>
+        <p>presente: {{user.presentCount}}</p>
+        <p>ausente: {{user.absentCount}}</p>
 
       </td>
     </ng-container>
     <ng-container *ngIf="courseDate.courseStateId !=1 " matColumnDef="calificar">
-      <th
-        mat-header-cell
-        *matHeaderCellDef
-        mat-sort-header
-        class="column-calificar"
-      >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-calificar">
         Calificación
       </th>
       <td mat-cell *matCellDef="let user" class="matcelcalificar">
         <mat-form-field>
           <mat-label>Elegir Estado</mat-label>
           <mat-select [(value)]="user.user.selectedApprovalStatus">
-            <mat-option
-              *ngFor="let status of approvalStatusesSelect"
-              [value]="status.value"
-            >
+            <mat-option *ngFor="let status of approvalStatusesSelect" [value]="status.value">
               {{ status.label }}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        
-        <mat-icon
-          (click)="calificar(user.user.id, courseDate.id, user.user.selectedApprovalStatus)"
-          matTooltip="calificar"
-          class="calificar"
-          fontIcon="add"
-        ></mat-icon>
-        
+
+        <mat-icon (click)="calificar(user.user.id, courseDate.id, user.user.selectedApprovalStatus)"
+          matTooltip="calificar" class="calificar" fontIcon="add"></mat-icon>
+
       </td>
     </ng-container>
     <ng-container *ngIf="courseDate.courseStateId == 1 " matColumnDef="calificar">
-      <th
-        mat-header-cell
-        *matHeaderCellDef
-        mat-sort-header
-        class="column-calificar"
-      >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-calificar">
         Calificar
       </th>
       <td mat-cell *matCellDef="let user" class="matcelcalificar">
-     ----
+        ----
       </td>
     </ng-container>
 
     <ng-container matColumnDef="calificacion">
-      <th
-        mat-header-cell
-        *matHeaderCellDef
-        mat-sort-header
-        class="column-calificacion"
-      >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-calificacion">
         Estado
       </th>
       <td mat-cell *matCellDef="let user">{{ getApprovalStatusLabel(user.approvalStatusId) }}</td>
@@ -166,10 +110,64 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-    aria-label="Select page of periodic elements"
-  >
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
   </mat-paginator>
+</div>
+<div class="cards-mobile">
+  <div *ngIf="courseDate">
+    <h2>Estudiantes del curso de "{{ courseDate.title }}"</h2>
+  </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input autocomplete="off" />
+  </mat-form-field>
+
+  <div class="card-container">
+    <mat-card *ngFor="let user of  pagedData" class="mat-card">
+      <mat-card-content>
+        <h3>Nombre: {{ user.user.firstName }} {{ user.user.lastName }}</h3>
+        <p>Nombre de usuario: {{ user.user.userName }}</p>
+        <p>Email: {{ user.user.email }}</p>
+
+        <div *ngIf="courseDate.courseStateId === 2" class="asistencia">
+          <p>Asistencia:</p>
+          <mat-icon (click)="attendanceFunction(user.user.id, courseId, 1)" matTooltip="Presente" class="present"
+            fontIcon="done"></mat-icon>
+          <mat-icon (click)="attendanceFunction(user.user.id, courseId, 2)" matTooltip="Ausente" class="absent"
+            fontIcon="close"></mat-icon>
+        </div>
+
+        <div *ngIf="courseDate.courseStateId === 2" class="presentismo">
+          <p>Presentismo:</p>
+          <div class="presAus">
+            <p>Presente: {{user.presentCount}}</p>
+            <p>Ausente: {{user.absentCount}}</p>
+          </div>
+         
+        </div>
+
+        <div *ngIf="courseDate.courseStateId !== 1">
+          <mat-form-field>
+            <mat-label>Elegir Estado</mat-label>
+            <mat-select [(value)]="user.user.selectedApprovalStatus">
+              <mat-option *ngFor="let status of approvalStatusesSelect" [value]="status.value">
+                {{ status.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-icon (click)="calificar(user.user.id, courseDate.id, user.user.selectedApprovalStatus)"
+            matTooltip="Calificar" class="calificar" fontIcon="add"></mat-icon>
+        </div>
+
+        <div *ngIf="courseDate.courseStateId === 1">
+          <p>Calificar: ----</p>
+        </div>
+
+        <p>Estado: {{ getApprovalStatusLabel(user.approvalStatusId) }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
 </div>

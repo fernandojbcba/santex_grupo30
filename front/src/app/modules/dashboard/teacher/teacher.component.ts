@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Course } from 'src/app/core/interfaces/courses/course.interface';
+import { Coursed } from 'src/app/core/interfaces/courses/course.interface';
 @Component({
   selector: 'app-teacher',
   templateUrl: './teacher.component.html',
@@ -22,11 +22,12 @@ export class TeacherComponent implements OnInit, AfterViewInit {
   id: any;
   user: any;
   role: any;
-   // Definir las columnas a mostrar en la tabla
+  
    displayedColumns: string[] = ['title', 'start', 'end', 'status', 'actions', 'initEndCourse'];
 
-   // Fuente de datos para la tabla
-   dataSource= new MatTableDataSource<Course>();
+   dataSource= new MatTableDataSource<Coursed>();
+   pagedData: Coursed[] = [];
+
 
    @ViewChild(MatPaginator) paginator!: MatPaginator;
    @ViewChild(MatSort) sort!: MatSort;
@@ -49,6 +50,11 @@ export class TeacherComponent implements OnInit, AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.pagedData = this.dataSource.data.filter(course => {
+     
+      return course.title.toLowerCase().includes(filterValue) || 
+             course.description.toLowerCase().includes(filterValue);
+    });
   }
   public loadrol(){
     this.dateUser = this.authService.loadUser2();
@@ -73,7 +79,7 @@ export class TeacherComponent implements OnInit, AfterViewInit {
     this.courseService.get<any>('/courses/list').subscribe(
       (data) => {
         this.dataSource.data = data;
-       
+        this.pagedData = this.dataSource.data
       },
       (error) => {
         console.log(error);
@@ -86,6 +92,7 @@ export class TeacherComponent implements OnInit, AfterViewInit {
       (data) => {
         const courses = data.map((item: { course: any; }) => item.course);
         this.dataSource.data = courses;
+        this.pagedData = this.dataSource.data
     
       },
       (error) => {

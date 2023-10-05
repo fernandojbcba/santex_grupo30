@@ -1,4 +1,123 @@
-h2 {
+.tabla {
+  display: none;
+}
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.mat-card {
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cards-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+
+
+
+.mat-card-title {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.mat-card-subtitle {
+  font-size: 1em;
+}
+
+.mat-card-content {
+  font-size: 0.9em;
+}
+
+.mat-card-actions button {
+  margin-right: 10px;
+}
+
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.div-button{
+  margin: 5px;
+}
+
+.present{
+  color:green;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  cursor: pointer;
+}
+.absent{
+  color:red;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  cursor: pointer;
+}
+.tardy{
+  color:orange;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  cursor: pointer;
+}
+.present:hover{
+  font-size: 26px;
+  
+}
+.absent:hover{
+  font-size: 26px;
+
+}
+.tardy:hover{
+  font-size: 26px;
+ 
+}
+.column-calificar {
+  text-align: center;
+}
+.calificar {
+  cursor: pointer;
+}
+.asistencia{
+display: flex;
+align-items: center;
+justify-content: left;
+}
+.asistencia p{
+  margin: 0;
+  align-items: center;
+justify-content: center;
+  }
+  .presentismo{
+    display: flex;
+align-items: center;
+justify-content: left;
+  }
+.presAus{
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.presAus p{
+  margin: 0;
+  align-items: center;
+justify-content: center;
+}
+@media (min-width: 900px) {
+  .cards-mobile {
+    display: none;
+    
+  }
+  h2 {
     text-align: center;
     margin-top: 20px;
     font-family: 'arialRounder', sans-serif;
@@ -117,4 +236,5 @@ h2 {
 .column-presentismo p{
 font-size: 12px;
 margin: 0 auto;
+}
 }

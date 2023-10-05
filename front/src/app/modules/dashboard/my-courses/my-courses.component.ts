@@ -9,7 +9,7 @@ import { UserService } from '../../../core/services/user/user.service'
 })
 export class MyCoursesComponent implements OnInit {
   myCourses: any[] = [];
-  displayedColumns: string[] = ['title', 'description','daysandhr','duration', 'cancel']; 
+  displayedColumns: string[] = ['title', 'description','daysandhr','duration','estado', 'cancel']; 
   constructor(private http:UserService) { }
 
   ngOnInit(): void {

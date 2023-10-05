@@ -7,7 +7,7 @@ import { UserCreateDialogComponent } from './user-create-dialog/user-create-dial
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Users } from 'src/app/core/interfaces/users/user.interface';
+import { User, Users } from 'src/app/core/interfaces/users/user.interface';
 import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-user',
@@ -17,7 +17,7 @@ import { MatIcon } from '@angular/material/icon';
 export class UserComponent implements OnInit ,AfterViewInit{
   displayedColumns: string[] = ['firstname', 'lastname', 'username', 'email', 'rol', 'button' ]; 
   dataSource = new MatTableDataSource<Users>();
-
+  pagedData: Users[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private userService:UserService, private toastService:ToastService, private dialog: MatDialog,) { }
@@ -28,7 +28,8 @@ export class UserComponent implements OnInit ,AfterViewInit{
   loadUsers() {
     this.userService.get<any>('/user/list').subscribe(
       (data: Users[]) => {
-        this.dataSource.data = data; // Assign the array of users to the data source
+        this.dataSource.data = data; 
+        this.pagedData =  this.dataSource.data
       },
       error => {
         // Handle error if needed
@@ -45,7 +46,12 @@ export class UserComponent implements OnInit ,AfterViewInit{
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    
+    this.pagedData = this.dataSource.data.filter(user => {
+     
+      return user.firstName.toLowerCase().includes(filterValue) || 
+             user.lastName.toLowerCase().includes(filterValue)|| 
+             user.email.toLowerCase().includes(filterValue);
+    });
   }
   delete(userId:number){
     if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {

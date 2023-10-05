@@ -15,6 +15,7 @@ export interface Users {
   updatedAt: string;
   roleName: string;
   }
+ 
   export interface UserWithApprovalStatus {
     user: {
       id: number;
@@ -22,10 +23,12 @@ export interface Users {
       lastName: string;
       userName: string;
       email: string;
+      selectedApprovalStatus:number;
     };
     approvalStatusId: number;
+    presentCount:number;
+    absentCount:number;
   }
-  
   
   export const MIN_USERNAME_LENGTH: number = 5;
   export const MAX_USERNAME_LENGTH: number = 60;
