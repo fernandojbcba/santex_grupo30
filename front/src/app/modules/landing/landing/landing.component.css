@@ -1,63 +1,233 @@
+.expanded-toolbar-login {
+  display: flex;
+  flex-direction: row;
+  height: 90px;
+  justify-content: space-between;
+}
 
-  .expanded-toolbar-login{
-justify-content: end;
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 80px;
+}
+
+.company-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 16px;
+}
+
+.button-login {
+  display: flex;
+}
+
+button {
+  margin-left: 10px;
+  width: 100px;
+  height: 30px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.landing-page {
+  display: flex;
+  justify-content: center;
+}
+
+.images-div {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+.card {
+  width: 28%;
+  margin: 10px;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.card-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.card-image-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.video-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.div-video {
+  width: 360px;
+  height: 360px;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 400px) {
+  .expanded-toolbar-login {
+    height: 60px;
   }
-  .button-login{
-padding-left: 15px;
+  .logo img {
+    height: 55px;
   }
-  button{
-    width:100px;
-    height: 30px;
-font-size: 18px;
-    display: flex;
-    align-items: center; 
+  .button-login button {
+    width: 80px;
+  }
+  .company-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 16px;
+  }
+  mat-card-header{
+    display: none;
+  }
+  .video-div {
     
+    padding:0;
   }
   .landing-page{
-    display:flex;
-    justify-content: center;
+    flex-direction: column-reverse;
+    margin-bottom: 120px;
   }
   .images-div{
-    display:flex;
-    flex-wrap: wrap;
-    width: 70%;
+    flex-direction:wrap;
+    width: 100%;
   }
   .card {
-    width: 28%;
-    margin: 10px;
-   padding: 2px;
-    overflow: hidden;
+    width: 95%;
   }
 
-  
-  .card-image-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+@media (min-width: 401px) and (max-width: 768px) {
+  .expanded-toolbar-login {
+    height: 70px;
+  }
+  .card {
+    width: 400px;
+  }
+  .logo img {
+    height: 55px;
+  }
+  .button-login button {
+    width: 80px;
+  }
+  .company-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 16px;
+  }
+  mat-card-header{
+    display: none;
+  }
+  .video-div {
+    
+    padding:0;
+  }
+  .landing-page{
+    flex-direction: column-reverse;
+    margin-bottom: 120px;
+  }
+  .images-div{
+    flex-direction:wrap;
     width: 100%;
-    padding: 0;
-margin: 0;
-  }
-  .card-image-container img {
-    width: 100%;
-    height: 100%;
-  }
-  .video-div{
-    display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 10px;
   }
-  .div-video {
-    width: 360px;
-    height: 360px;
-    border-radius: 5px;
-    overflow: hidden;
-    padding: 0; 
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .expanded-toolbar-login {
+    height: 80px;
+  }
+  .card {
+    width: 400px;
+  }
+  .logo img {
+    height: 55px;
+  }
+  .button-login button {
+    width: 80px;
+  }
+  .company-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 16px;
+  }
+ 
+  .video-div {
+    
+    padding:0;
+  }
+  .landing-page{
+    flex-direction: column-reverse;
+    margin-bottom: 120px;
+  }
+  .images-div{
+    flex-direction:wrap;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1920px) {
+  .expanded-toolbar-login {
+    height: 90px;
+  }
+  .card {
+    width: 400px;
     
   }
-  
-  .video {
-    width: 100%; /* Ajusta el ancho al 100% del contenedor */
-    height: 100%; /* Ajusta la altura al 100% del contenedor */
+  .logo img {
+    height: 55px;
   }
+  .button-login button {
+    width: 80px;
+  }
+  .company-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 16px;
+  }
+  .card-image {
+    cursor: pointer; 
+  }
+  .card-image:hover {
+    opacity: 0.8;
+  }
+  
+  .video-div {
+    
+    padding:0;
+  }
+  .landing-page{
+    flex-direction: column;
+    margin-bottom: 120px;
+  }
+  .images-div{
+    flex-direction:wrap;
+    width: 100%;
+    justify-content: center;
+  }
+}

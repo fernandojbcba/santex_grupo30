@@ -1,4 +1,71 @@
+.dashboard-content{
+  width: fit-content;
+}
 .expanded-toolbar {
     justify-content: space-between;
     align-items: center;
+    height: 90px;
   }
+  .logo{
+    display: flex;
+    align-items: center;
+  
+  }
+  .logo img {
+    height: 80px;
+  }
+  
+  .company-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 16px;
+  }
+  .menu-items-container {
+    display: flex;
+    flex-direction: column; /* Establece la dirección vertical */
+    gap: 16px; /* Espacio entre elementos */
+  }
+ 
+  /* Estilos para dispositivos con ancho menor a 1050px */
+@media screen and (max-width: 1050px) {
+
+  .footer {
+    visibility: hidden;
+  }
+
+  .sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    width: 80%; /* Ancho del menú hamburguesa */
+    background-color: #fff; /* Color de fondo del menú */
+  }
+  
+  .company-name{
+    display: none; /* Oculta el título en dispositivos móviles */
+  }
+
+  .oculto{
+    visibility: hidden;
+  }
+
+  .menu-items-container {
+    display: flex;
+    flex-direction: column; /* Establece la dirección vertical */
+    gap: 16px; /* Espacio entre elementos */
+  }
+
+  .mat-icon{
+    vertical-align: bottom;
+  }
+
+  .material-icons{
+    font-size: 3em;
+    padding: 0.2em 0.7em 0.5em 0.1em;
+    vertical-align: middle;
+  }
+  .mat-list-item:first-child {
+    padding-top: 1em;
+  }
+}
