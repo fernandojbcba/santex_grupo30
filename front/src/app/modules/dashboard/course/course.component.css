@@ -2,9 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   width: 300px;
   margin: 10px;
   padding: 15px;
@@ -12,12 +15,27 @@
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  text-align: center;
-}
-
+  }
+  .card-title {
+    background-color: #f0f0f0; /* color titulo*/
+    color: #414040; /* color del texto */
+    padding: 8px; /* espacio alrededor  del título */
+    border-bottom: 2px solid #ddd; /* Agrega una línea inferior */
+  }
+  .title-column {
+    flex: 1; /* 50% del espacio disponible en altura */
+  }
+  .data-column {
+    flex: 1; /* Ocupa el 50% del espacio disponible en altura */
+    text-align: left;
+    padding: 0px 7px;
+  }
 .card h3 {
   font-size: 20px;
   margin-bottom: 10px;
+  text-align: center;/* Centra el título horizontalmente */
+  border-radius: 10px 10px 0 0; /*borde h3*/
+  margin: -15px -15px 16px;
 }
 
 .card-buttons {
@@ -37,4 +55,7 @@
 .titulo{
   margin: 19px 0px 8px;
   text-align-last: center;
+}
+.centered-text {
+  text-align: center;
 }

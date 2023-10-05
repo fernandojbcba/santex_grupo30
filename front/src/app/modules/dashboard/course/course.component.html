@@ -94,12 +94,16 @@
 
   <div class="card-container">
     <div class="card" *ngFor="let course of filteredDataSource">
-      <h3>{{ course.title }}</h3>
-      <p>{{ course.description }}</p>
-      <p>Días y Horas: {{ course.daysAndHours }}</p>
-      <p>Duración: {{ course.duration }}</p>
-      <p>Precio: {{ course.price }}</p>
-      <p>Publicado: {{ course.isPublished ? "Si" : "No" }}</p>
+      <div class="title-column">
+        <h3 class="card-title">{{ course.title }}</h3>
+      </div>
+      <div class="data-column">
+        <p class="centered-text">{{ course.description }}</p>
+        <p>Días y Horas: {{ course.daysAndHours }}</p>
+        <p>Duración: {{ course.duration }}</p>
+        <p>Precio: {{ course.price }}</p>
+        <p>Publicado: {{ course.isPublished ? "Si" : "No" }}</p>
+      </div>
       <div class="card-buttons">
         <button mat-raised-button color="primary" (click)="openEditDialog(course)">Editar</button>
         <button mat-raised-button color="warn" (click)="delete(course.id)">Eliminar</button>
