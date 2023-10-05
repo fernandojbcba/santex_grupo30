@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL: 'hthttps://academy-final.onrender.com'
+  //API_URL: 'https://academy-final.onrender.com'
+  API_URL: 'http://localhost:3000'
 };
 
 /*

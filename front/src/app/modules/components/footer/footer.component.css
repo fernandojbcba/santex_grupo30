@@ -64,3 +64,9 @@ body {
     font-size: 18px;
   }
 }
+@media screen and (max-height: 700px) {
+  /* Ocultar el footer cuando la altura de la ventana es menor que 700px */
+  .footer {
+    display: none;
+  }
+}
