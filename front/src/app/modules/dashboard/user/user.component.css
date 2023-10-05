@@ -6,6 +6,17 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  
+}
+.div-button{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+h2 {
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'arialRounder', sans-serif;
 }
 
 .cards-container {
@@ -43,9 +54,7 @@ mat-form-field {
   width: 100%;
   margin-bottom: 20px;
 }
-.div-button{
-  margin: 5px;
-}
+
 
 
 
@@ -62,14 +71,15 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin:10px 10%;
+  width: 100%;
   background-color: #fff;
   border-radius: 20px;
+  margin: 2px;
+  
 }
 .mat-elevation-z8 {
   width: 90%;
-  border-collapse: collapse;
+  border-collapse:collapse;
   border-spacing: 0;
 }
 .buscar {

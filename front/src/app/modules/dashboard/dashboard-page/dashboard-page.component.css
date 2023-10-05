@@ -1,53 +1,76 @@
-.dashboard-content{
-  width: fit-content;
+.dashboard-container {
+  width: 100%;
 }
 .expanded-toolbar {
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
-  }
-  .logo{
-    display: flex;
-    align-items: center;
-  
-  }
-  .logo img {
-    height: 80px;
-  }
-  
-  .company-name {
-    font-size: 24px;
-    font-weight: bold;
-    margin-left: 16px;
-  }
-  .menu-items-container {
-    display: flex;
-    flex-direction: column; /* Establece la dirección vertical */
-    gap: 16px; /* Espacio entre elementos */
-  }
- 
-  /* Estilos para dispositivos con ancho menor a 1050px */
-@media screen and (max-width: 1050px) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  height: 80px;
+}
 
-  .footer {
-    visibility: hidden;
+.company-name {
+  font-size: 18px;
+  
+  margin-left: 16px;
+}
+.menu-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.menu-burger {
+  display: none;
+}
+
+.oculto {
+  display: flex;
+}
+.menu-button {
+  display: flex;
+  flex-direction: column;
+}
+.menu-button1 {
+  display: flex;
+}
+.menu-button2 {
+  display: flex;
+}
+@media screen and (min-width: 900px) {
+  .menu-button {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .menu-burger {
+    display: block;
   }
 
   .sidenav-container {
     height: 100%;
   }
-  
+
   .sidenav {
     width: 80%; /* Ancho del menú hamburguesa */
     background-color: #fff; /* Color de fondo del menú */
   }
-  
-  .company-name{
-    display: none; /* Oculta el título en dispositivos móviles */
-  }
 
-  .oculto{
-    visibility: hidden;
+  
+  .company-name {
+    font-size: 12px;
+    
+    margin-left: 12px;
+  }
+  .oculto {
+    display: none;
   }
 
   .menu-items-container {
@@ -56,11 +79,11 @@
     gap: 16px; /* Espacio entre elementos */
   }
 
-  .mat-icon{
+  .mat-icon {
     vertical-align: bottom;
   }
 
-  .material-icons{
+  .material-icons {
     font-size: 3em;
     padding: 0.2em 0.7em 0.5em 0.1em;
     vertical-align: middle;

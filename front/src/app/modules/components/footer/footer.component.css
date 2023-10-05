@@ -1,19 +1,21 @@
 .footer {
-  position: fixed;
   bottom: 0;
-  width: 100%;
   background-color: #333;
   color: white;
   z-index: 9999; 
+  font-size: 12px;
+  height: 120px;
 }
 
 .footer-content {
   display: flex;
   width: 100%;
-  justify-content: space-between;
   align-items: center;
-  height: 40px;
+
   padding: 0 16px;
+  flex-direction: column;
+     justify-content:center;
+     height: 120px;
 }
 
 .links {
@@ -25,15 +27,12 @@
 body {
   margin-bottom: 40px; /* Igual al alto del footer para crear espacio en la parte inferior */
 }
-@media (max-width: 400px) {
+
+/* 401px a 768px */
+@media (min-width: 401px) and (max-width: 768px) {
   .footer {
-    font-size: 12px;
-  }
-  
-  .footer {
-    position: fixed;
+    font-size: 14px;
     height: 120px;
-   
   }
   .footer-content {
     flex-direction: column;
@@ -41,14 +40,6 @@ body {
      height: 120px;
  
    }
-}
-
-/* 401px a 768px */
-@media (min-width: 401px) and (max-width: 768px) {
-  .footer {
-    font-size: 14px;
-  }
-  
 }
 
 /* 769px a 1024px */
@@ -66,7 +57,5 @@ body {
 }
 @media screen and (max-height: 700px) {
   /* Ocultar el footer cuando la altura de la ventana es menor que 700px */
-  .footer {
-    display: none;
-  }
+  
 }

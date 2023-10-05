@@ -96,7 +96,10 @@
 </div>
 <div class="card-mobile">
   <h2>Usuarios Registrados</h2>
-
+  <div class="div-button"><button mat-raised-button color="accent" (click)="openCreateDialog()">
+    Crear Usuario
+    <mat-icon>person_add</mat-icon>
+  </button></div>
   <mat-form-field appearance="fill">
     <mat-label>Filtro</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input autocomplete="off" />
@@ -112,10 +115,7 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-raised-button color="accent" (click)="openCreateDialog()">
-          Crear Usuario
-          <mat-icon>person_add</mat-icon>
-        </button>
+        
         <button mat-icon-button (click)="openEditDialog(user)" matTooltip="Editar">
           <mat-icon fontIcon="edit"></mat-icon>
         </button>
