@@ -1,37 +1,37 @@
-.container_full{
+.container_full {
   background-color: #f0f0f0;
   margin: 15px;
   padding: 15px;
   border-radius: 15px;
-
-
 }
-h2{
+
+h2 {
   text-align: center;
   color: #000000;
 }
-.courses_list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly
+
+.courses_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
+
 .cards {
-    width: 350px; 
-    height: 350px; 
-    margin-bottom: 20px;
-    box-shadow: 10px 5px 5px rgb(125, 125, 125);
-
-  }
-  
-
-  
-mat-card-header p{
-justify-content: center;
-  }
-mat-card-content p{
-    justify-content: center;
-      }
-mat-card-actions{
-    display:flex;
-    justify-content: center;
+  width: 300px; /* Ajustar ancho al 100% para ocupar todo el contenedor */
+  margin-bottom: 20px;
+  box-shadow: 10px 5px 5px rgb(125, 125, 125);
 }
+
+mat-card-header p {
+  text-align: center; /* Alinear texto al centro */
+}
+
+mat-card-content p {
+  text-align: center; /* Alinear texto al centro */
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+

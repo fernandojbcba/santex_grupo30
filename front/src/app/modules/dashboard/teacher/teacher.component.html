@@ -16,42 +16,74 @@
       <div class="scrollable-container">
         <mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="title">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Título del Curso</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header
+              >Título del Curso</mat-header-cell
+            >
             <mat-cell *matCellDef="let course">{{ course.title }}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="start">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Inicio curso</mat-header-cell>
-            <mat-cell *matCellDef="let course">{{course.startCourse}}</mat-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header
+              >Inicio curso</mat-header-cell
+            >
+            <mat-cell *matCellDef="let course">{{
+              course.startCourse
+            }}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="end">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Fin curso</mat-header-cell>
-            <mat-cell *matCellDef="let course">{{course.endCourse}}</mat-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header
+              >Fin curso</mat-header-cell
+            >
+            <mat-cell *matCellDef="let course">{{ course.endCourse }}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Estado de curso</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header
+              >Estado de curso</mat-header-cell
+            >
             <mat-cell *matCellDef="let course">
               {{ getStatusCourseName(course.courseStateId) }}
             </mat-cell>
           </ng-container>
-          
+
           <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef>Estudiantes</mat-header-cell>
             <mat-cell *matCellDef="let course">
-              <button class="ButtonCourse" mat-raised-button color="accent" (click)="Students(course.id)">
+              <button
+                class="ButtonCourse"
+                mat-raised-button
+                color="accent"
+                (click)="Students(course.id)"
+              >
                 Ver Estudiantes
               </button>
             </mat-cell>
           </ng-container>
           <ng-container matColumnDef="initEndCourse">
             <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-            <mat-cell  *matCellDef="let course">
-              <button *ngIf="(course.courseStateId == 1)" class="ButtonCourse" mat-raised-button color="accent"(click)="startCourse(course.id)" >
+            <mat-cell *matCellDef="let course">
+              <button
+                *ngIf="course.courseStateId == 1"
+                class="ButtonCourse"
+                mat-raised-button
+                color="accent"
+                (click)="startCourse(course.id)"
+              >
                 Iniciar Curso
               </button>
-              <button *ngIf="(course.courseStateId == 2)" class="ButtonCourse" mat-raised-button color="accent" (click)="endCourse(course.id)">
+              <button
+                *ngIf="course.courseStateId == 2"
+                class="ButtonCourse"
+                mat-raised-button
+                color="accent"
+                (click)="endCourse(course.id)"
+              >
                 Finalizar Curso
               </button>
-              <button *ngIf="(course.courseStateId == 3)" class="ButtonCourse" mat-raised-button disabled>
+              <button
+                *ngIf="course.courseStateId == 3"
+                class="ButtonCourse"
+                mat-raised-button
+                disabled
+              >
                 Finalizado
               </button>
             </mat-cell>
@@ -61,58 +93,77 @@
           <mat-row *matRowDef="let course; columns: displayedColumns"></mat-row>
         </mat-table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
       </div>
     </mat-card-content>
   </div>
 </div>
 <div class="cards-mobile">
+  <h2>Cursos</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Buscar cursos</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Buscar"
+      #input
+      autocomplete="off"
+    />
+  </mat-form-field>
 
-    <h2>Cursos</h2>
-    <mat-form-field appearance="fill">
-      <mat-label>Buscar cursos</mat-label>
-      <input
-        matInput
-        (keyup)="applyFilter($event)"
-        placeholder="Buscar"
-        #input
-        autocomplete="off"
-      />
-    </mat-form-field>
-  
-    
-    <div class="cards-container">
-        <div *ngFor="let course of pagedData" class="mat-card">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>{{ course.title }}</mat-card-title>
-              <mat-card-subtitle>{{ course.description }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <p><strong>Inicio curso:</strong> {{ course.startCourse }}</p>
-              <p><strong>Fin curso:</strong> {{ course.endCourse }}</p>
-              <p><strong>Estado de curso:</strong> {{ getStatusCourseName(course.courseStateId) }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button class="ButtonCourse" mat-raised-button color="accent" (click)="Students(course.id)">
-                Ver Estudiantes
-              </button>
-              <button *ngIf="(course.courseStateId == 1)" class="ButtonCourse" mat-raised-button color="accent" (click)="startCourse(course.id)">
-                Iniciar Curso
-              </button>
-              <button *ngIf="(course.courseStateId == 2)" class="ButtonCourse" mat-raised-button color="accent" (click)="endCourse(course.id)">
-                Finalizar Curso
-              </button>
-              <button *ngIf="(course.courseStateId == 3)" class="ButtonCourse" mat-raised-button disabled>
-                Finalizado
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-      </div>
-    </div>
-
-   
-
-
-
+  <div class="cards-container">
+    <mat-card *ngFor="let course of pagedData">
+      <mat-card-header>
+        <mat-card-title>{{ course.title }}</mat-card-title>
+        <mat-card-subtitle>{{ course.description }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Inicio curso:</strong> {{ course.startCourse }}</p>
+        <p><strong>Fin curso:</strong> {{ course.endCourse }}</p>
+        <p>
+          <strong>Estado de curso:</strong>
+          {{ getStatusCourseName(course.courseStateId) }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          class="ButtonCourse"
+          mat-raised-button
+          color="accent"
+          (click)="Students(course.id)"
+        >
+          Ver Estudiantes
+        </button>
+        <button
+          *ngIf="course.courseStateId == 1"
+          class="ButtonCourse"
+          mat-raised-button
+          color="accent"
+          (click)="startCourse(course.id)"
+        >
+          Iniciar Curso
+        </button>
+        <button
+          *ngIf="course.courseStateId == 2"
+          class="ButtonCourse"
+          mat-raised-button
+          color="accent"
+          (click)="endCourse(course.id)"
+        >
+          Finalizar Curso
+        </button>
+        <button
+          *ngIf="course.courseStateId == 3"
+          class="ButtonCourse"
+          mat-raised-button
+          disabled
+        >
+          Finalizado
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

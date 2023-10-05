@@ -2,8 +2,8 @@
   <div class="container_listcourse">
     <h2>Listado de Cursos</h2>
     <mat-card-content class="courses_list">
-      <div *ngFor="let coursen of courses">
-        <mat-card class="cards">
+      
+        <mat-card *ngFor="let coursen of courses" class="cards">
           <mat-card-header>
             <mat-card-title>{{ coursen.title }}</mat-card-title>
           </mat-card-header>
@@ -33,7 +33,7 @@
             </button>
           </mat-card-actions>
         </mat-card>
-      </div>
+      
     </mat-card-content>
   </div>
 </div>
