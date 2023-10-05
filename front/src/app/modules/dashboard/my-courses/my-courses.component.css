@@ -1,3 +1,71 @@
+.tabla{
+  display: none;
+}
+.card-container-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  width: 90%;
+}
+
+.cards-mobile {
+  width: 90%;
+}
+
+.mat-card-mobile {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.card-title-mobile {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.card-description-mobile {
+  font-size: 1em;
+}
+
+.card-details-mobile {
+  font-size: 0.9em;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Additional styles for the button */
+.mat-card-actions button {
+  font-size: 0.9em;
+}
+
+/* Add padding to the button */
+.mat-card-actions button {
+  padding: 8px 16px;
+}
+
+/* Adjust button color */
+.mat-card-actions button {
+  background-color: #ff4081; /* Adjust to your desired color */
+  color: #fff; /* Adjust to your desired text color */
+}
+
+/* Hover effect for the button */
+.mat-card-actions button:hover {
+  background-color: #f50057; /* Adjust to your desired hover color */
+}
+
+/* Add margin between cards */
+.mat-card-mobile {
+  margin-bottom: 15px;
+}
+@media (min-width: 650px) {
+  .card-container-mobile {
+    display: none;
+    
+  }
 h2 {
   text-align: center;
   color: #060606;
@@ -32,4 +100,5 @@ margin: 15px;
   width: 10%;
   justify-content: center;
   text-align: center;
+}
 }

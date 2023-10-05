@@ -77,3 +77,41 @@
   >
   </mat-paginator>
 </div>
+<div class="cards-mobile">
+  <div class="div-button"><button
+          mat-raised-button
+          color="primary"
+          (click)="openCreateDialog()"
+        >Crear Curso</button></div>
+<mat-form-field appearance="fill">
+  <mat-label>Buscar cursos</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" />
+</mat-form-field>
+
+<div class="cards-container">
+  <mat-card *ngFor="let course of pagedData">
+    <mat-card-header>
+      
+      <mat-card-title>{{ course.title }}</mat-card-title>
+      <mat-card-subtitle>{{ course.description }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Días y Horas:</strong> {{ course.daysAndHours }}</p>
+      <p><strong>Duración:</strong> {{ course.duration }}</p>
+      <p><strong>Precio:</strong> {{ course.price }}</p>
+      <p><strong>Publicado:</strong> {{ course.isPublished ? "Sí" : "No" }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="openEditDialog(course)">
+        Editar
+      </button>
+      <button mat-raised-button color="warn" (click)="delete(course.id)">
+        Eliminar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+
+
+</div>

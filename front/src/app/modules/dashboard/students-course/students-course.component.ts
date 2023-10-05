@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { UserWithApprovalStatus } from 'src/app/core/interfaces/users/user.interface';
+
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -45,6 +46,7 @@ export class StudentsCourseComponent
     'calificacion',
   ];
   dataSource = new MatTableDataSource<UserWithApprovalStatus>();
+  pagedData: UserWithApprovalStatus[] = [];
   courseDate: any = {};
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -88,13 +90,20 @@ export class StudentsCourseComponent
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.pagedData = this.dataSource.data.filter(user => {
+     
+      return user.user.firstName.toLowerCase().includes(filterValue) || 
+             user.user.lastName.toLowerCase().includes(filterValue)|| 
+             user.user.email.toLowerCase().includes(filterValue);
+    });
   }
   getEstudiantes(): void {
     const url = `/courses/${this.courseId}/users`;
     this.http.getStudents<any>(url).subscribe(
       (data: UserWithApprovalStatus[]) => {
         this.dataSource.data = data;
-        console.log(this.dataSource.data)
+        this.pagedData = this.dataSource.data
+        
       },
       (error) => {
         console.log(error);

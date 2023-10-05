@@ -1,3 +1,58 @@
+/* Estilos para dispositivos móviles */
+.container {
+  display: none;
+}
+.cards-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.cards-container {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+  width: 100%;
+}
+
+.mat-card {
+  margin-bottom: 20px;
+  width: 80%; 
+  box-sizing: border-box;
+}
+
+.mat-card-title {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.mat-card-subtitle {
+  font-size: 1em;
+}
+
+.mat-card-content {
+  font-size: 0.9em;
+}
+
+.mat-card-actions button {
+  margin-right: 10px;
+}
+
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.div-button{
+  margin: 5px;
+}
+
+
+@media (min-width: 650px) {
+  .container-mobile{
+   display: none;
+  }
 .container {
   width: 80%;
   margin: 15px auto;
@@ -56,6 +111,6 @@
 
   
   
-  
+}
   
   

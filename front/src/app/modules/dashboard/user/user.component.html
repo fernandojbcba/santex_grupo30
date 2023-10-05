@@ -94,3 +94,35 @@
   >
   </mat-paginator>
 </div>
+<div class="card-mobile">
+  <h2>Usuarios Registrados</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input autocomplete="off" />
+  </mat-form-field>
+
+  <div class="cards-container">
+    <mat-card *ngFor="let user of pagedData" class="mat-card">
+      <mat-card-content>
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+        <p>Nombre de usuario: {{ user.userName }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Rol: {{ user.roleName }}</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="openCreateDialog()">
+          Crear Usuario
+          <mat-icon>person_add</mat-icon>
+        </button>
+        <button mat-icon-button (click)="openEditDialog(user)" matTooltip="Editar">
+          <mat-icon fontIcon="edit"></mat-icon>
+        </button>
+        <button mat-icon-button (click)="delete(user.id)" matTooltip="Eliminar">
+          <mat-icon fontIcon="delete"></mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -16,6 +16,7 @@ import { Course } from 'src/app/core/interfaces/courses/course.interface';
 
 export class CourseComponent implements OnInit, AfterViewInit{
   dataSource = new MatTableDataSource<Course>();
+  pagedData: Course[] = [];
   dataTeacher:any[] = [];
   displayedColumns: string[] = [ 'title', 'description', 'daysAndHours', 'duration', 'price', 'isPublished', 'button' ];
   @ViewChild(MatPaginator) paginator!: MatPaginator
@@ -36,7 +37,11 @@ export class CourseComponent implements OnInit, AfterViewInit{
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    
+    this.pagedData = this.dataSource.data.filter(course => {
+     
+      return course.title.toLowerCase().includes(filterValue) || 
+             course.description.toLowerCase().includes(filterValue);
+    });
   }
   loadTeacher(){  this.courseService.get<any>('/user/teachers').subscribe(
     (data: Course[]) => {
@@ -52,6 +57,8 @@ export class CourseComponent implements OnInit, AfterViewInit{
     this.courseService.get<any>('/courses/list').subscribe(
       (data) => {
         this.dataSource.data = data; 
+        this.pagedData = this.dataSource.data
+       
       },
       error => {
        
@@ -99,4 +106,5 @@ export class CourseComponent implements OnInit, AfterViewInit{
       }
     });
   }
+ 
 }
