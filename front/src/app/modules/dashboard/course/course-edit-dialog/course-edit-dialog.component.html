@@ -1,3 +1,4 @@
+<div mat-dialog-content [formGroup]="editForm" class="scrollable-content">
 <h2 mat-dialog-title>Edit Course</h2>
 <div mat-dialog-content [formGroup]="editForm">
   <mat-form-field>
@@ -23,35 +24,36 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <div *ngIf="teacherData" class="teachername">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h3>El profesor asignado es: </h3> <h4>"" {{ teacherData.User.UserName | uppercase }} ""</h4></mat-card-title>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="deleteTeacherCourse()">Borrar profesor</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <form *ngIf="!teacherData" [formGroup]="teacherForm" (ngSubmit)="addTeacherCourse()">
+    <mat-card>
+      <mat-card-content>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Selecciona un profesor:</mat-label>
+            <mat-select formControlName="teacherId" id="teacherId">
+              <mat-option *ngFor="let teacher of dataTeacher" [value]="teacher.id">{{ teacher.userName | uppercase }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Asignar profesor</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close()">Cancel</button>
+    <button mat-button color="primary" (click)="editCourse()">Save</button>
+  </div>
 </div>
-<div *ngIf="teacherData" class="teachername">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title><h3>El profesor asignado es: </h3> <h4>"" {{ teacherData.User.UserName | uppercase }} ""</h4></mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="deleteTeacherCourse()">Borrar profesor</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-<form *ngIf="!teacherData" [formGroup]="teacherForm" (ngSubmit)="addTeacherCourse()">
-  <mat-card>
-    <mat-card-content>
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>Selecciona un profesor:</mat-label>
-          <mat-select formControlName="teacherId" id="teacherId">
-            <mat-option *ngFor="let teacher of dataTeacher" [value]="teacher.id">{{ teacher.userName | uppercase }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Asignar profesor</button>
-    </mat-card-actions>
-  </mat-card>
-</form>
-<div mat-dialog-actions>
-  <button mat-button (click)="dialogRef.close()">Cancel</button>
-  <button mat-button color="primary" (click)="editCourse()">Save</button>
 </div>
