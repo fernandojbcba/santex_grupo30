@@ -50,7 +50,7 @@
               <button
                 class="ButtonCourse"
                 mat-raised-button
-                color="accent"
+                color="basic"
                 (click)="Students(course.id)"
               >
                 Ver Estudiantes
@@ -64,7 +64,7 @@
                 *ngIf="course.courseStateId == 1"
                 class="ButtonCourse"
                 mat-raised-button
-                color="accent"
+                color="primary"
                 (click)="startCourse(course.id)"
               >
                 Iniciar Curso
@@ -73,7 +73,7 @@
                 *ngIf="course.courseStateId == 2"
                 class="ButtonCourse"
                 mat-raised-button
-                color="accent"
+                color="warn"
                 (click)="endCourse(course.id)"
               >
                 Finalizar Curso

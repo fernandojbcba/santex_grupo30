@@ -1,28 +1,30 @@
 /* Estilos para dispositivos móviles */
-.container {
-  display: none;
-}
+
 .cards-mobile {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
+
 .cards-mobile .mat-card-actions button {
   margin-right: 10px;
-  margin-bottom: 10px; /*Margen inferior separa botones verticalmente */
+  margin-bottom: 10px;
+  /*Margen inferior separa botones verticalmente */
   /* contenido en el centro */
   display: flex;
   justify-content: center;
   align-items: center;
-  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  white-space: nowrap;
+  /* Evita que el texto se divida en varias líneas */
   margin-right: 0;
   width: auto;
 }
+
 .cards-container {
- display: flex;
- flex-direction: column;
- align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
@@ -52,8 +54,9 @@
 .mat-card-actions button {
   margin-right: 0px;
   width: auto;
-  white-space: nowrap; 
-  margin-bottom: 10px; /*Margen inferior separa botones verticalmente */
+  white-space: nowrap;
+  margin-bottom: 10px;
+  /*Margen inferior separa botones verticalmente */
   /* contenido en el centro */
   display: flex;
   justify-content: center;
@@ -64,15 +67,10 @@
   width: 100%;
   margin-bottom: 20px;
 }
-.div-button{
+
+.div-button {
   margin: 5px;
 }
-
-
-@media (min-width: 650px) {
-  .container-mobile{
-   display: none;
-  }
 
 .container {
   width: 80%;
@@ -81,18 +79,22 @@
   display: flex;
   flex-direction: column;
   border-radius: 15px;
-  
+
 }
+
 .buscar {
-  
+
   width: 80%;
 }
+
 .menu-courses-teacher {
   padding: 20px;
 }
-.menu-courses-teacher h2{
+
+.menu-courses-teacher h2 {
   text-align: center;
 }
+
 .mat-card-content {
   padding: 0;
 }
@@ -115,12 +117,14 @@
 /* Estilos para los botones */
 .ButtonCourse {
   margin-right: 10px;
-  margin-bottom: 10px; /* Agrega margen inferior para separar los botones verticalmente */
-  /* Alinea el contenido verticalmente en el centro */
+  margin-bottom: 10px;
+  /* margen inferior separa botones verticalmente */
+  min-width: 110px;
+  /* Ancho mínimo de los botones */
   display: flex;
   justify-content: center;
   align-items: center;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 /* Estilos para el paginador */
@@ -136,12 +140,38 @@
   background-color: rgba(0, 0, 0, 0.04);
 }
 
-}
 @media (min-width: 650px) {
-  .cards-container, .cards-mobile {
+
+  .cards-container,
+  .cards-mobile {
     display: none;
   }
 }
-  
 
-  
+@media (min-width: 651px) and (max-width:1180px) {
+  .container {
+    width: 98%;
+  }
+
+  .ButtonCourse {
+    margin-bottom: 0px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.5;
+    min-height: inherit;
+  }
+
+  .mat-cell {
+    padding: 1px;
+  }
+}
+@media (min-width: 780px) and (max-width:1180px) {
+  .ButtonCourse{
+    min-width: 138px;
+  }
+}
+@media (max-width: 651px) {
+  .container {
+    display: none;
+  }
+}
