@@ -16,3 +16,7 @@
   .mat-dialog-actions button {
     margin-left: 10px;
   }
+  .scrollable-content {
+    max-height: 400px; /* defino altura máxima para el contenedor del formulario*/
+    overflow-y: auto; /* agrego barra desplazamiento vertical cuando sea necesario */
+  }
