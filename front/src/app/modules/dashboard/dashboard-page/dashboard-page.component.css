@@ -1,5 +1,6 @@
 .dashboard-container {
   width: 100%;
+  
 }
 .expanded-toolbar {
   display: flex;
@@ -17,7 +18,6 @@
 
 .company-name {
   font-size: 18px;
-  
   margin-left: 16px;
 }
 .menu-items-container {
@@ -56,6 +56,7 @@
 
   .sidenav-container {
     height: 100%;
+    min-height: 300px;
   }
 
   .sidenav {

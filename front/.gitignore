@@ -42,3 +42,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+# Ignorar archivos y directorios de Firebase
+.firebase/
+.firebaserc
+firebase.json
+
+# Ignorar el directorio "public"
+public/
