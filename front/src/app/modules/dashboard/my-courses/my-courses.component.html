@@ -67,6 +67,14 @@
 
       <mat-card-actions>
         <button mat-raised-button color="accent">Darse de Baja</button>
+        <button 
+              mat-raised-button
+              color="primary"
+              (click)="payForCourse(course)"
+              
+            >
+              Pagar {{ course.price }}
+            </button>
       </mat-card-actions>
     </mat-card>
   </div>
