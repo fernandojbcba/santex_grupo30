@@ -11,11 +11,11 @@ export class PaymentService {
 
   constructor(private http: HttpClient) {}
 
-  initiatePayment(courseprice: number): Observable<string> {
+  initiatePayment(title: string,courseprice: number): Observable<string> {
     const url = `${this.apiUrl}/payments/create-order`;
     
     // Envía una solicitud al backend para iniciar el proceso de pago
-    return this.http.post<string>(url, { courseprice });
+    return this.http.post<string>(url, { title, courseprice });
 
   }
 }

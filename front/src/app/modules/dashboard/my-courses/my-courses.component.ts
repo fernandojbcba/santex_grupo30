@@ -30,9 +30,10 @@ export class MyCoursesComponent implements OnInit {
   payForCourse(course: Course) {
     if (course.price !== undefined) {
       const courseprice: number = course.price;
-      console.log('Datos de la solicitud de pago:', courseprice);
+      const title: string = course.title;
+      console.log('Datos de la solicitud de pago:', courseprice, title);
       // Llama al servicio de pago para iniciar el proceso de pago
-      this.paymentService.initiatePayment(courseprice).subscribe(
+      this.paymentService.initiatePayment(title, courseprice).subscribe(
         (response: any) => {
           if (response && response.order) {
             const orderUrl = response.order;

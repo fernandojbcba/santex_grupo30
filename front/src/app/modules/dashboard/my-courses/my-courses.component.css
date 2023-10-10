@@ -35,7 +35,10 @@
   display: flex;
   justify-content: flex-end;
 }
-
+button{
+  min-width: 126px;
+  margi: 5px;
+}
 /* Additional styles for the button */
 .mat-card-actions button {
   font-size: 0.9em;
@@ -48,7 +51,6 @@
 
 /* Adjust button color */
 .mat-card-actions button {
-  background-color: #ff4081; /* Adjust to your desired color */
   color: #fff; /* Adjust to your desired text color */
 }
 
