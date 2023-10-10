@@ -1,12 +1,12 @@
 const mercadopago = require('mercadopago');
 
 mercadopago.configure({
-  access_token: process.env.MERCADOPAGO_ACCESS_TOKEN, // Reemplazar por access token real
+  access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
 });
 class PaymentService {
   async createOrder(title, courseprice) {
     try {
-      // coursePrice en la creación de la orden
+      // look at the controller ehh
       const preference = {
         items: [
           {
@@ -21,7 +21,6 @@ class PaymentService {
       const response = await mercadopago.preferences.create(preference);
       return response.body.init_point;
     } catch (error) {
-      // Maneja los errores como lo hacías antes
       throw new Error('An error occurred while creating the order.');
     }
   }
